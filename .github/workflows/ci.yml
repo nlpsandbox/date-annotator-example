@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    release:
+        types: [created]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-18.04
+    container: hadolint/hadolint:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lint Dockerfiles
+      run: hadolint src/server/Dockerfile
+
+#   test:
+#     needs: [lint]
+#     runs-on: ubuntu-18.04
+#     steps:
+#     - uses: actions/checkout@v2
+#     # - name: Validate docker-compose files
+#     #   run: docker-compose -f docker-compose.yml config
+#     - name:
+
+#   release:
+#     needs: [test]
+#     runs-on: ubuntu-18.04
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Set variables
+#       id: vars
+#       run: |
+#         echo ::set-output \
+#           name=repository::tschaffter/${{ github.event.repository.name }}
+#         echo ::set-output name=user::tschaffter
+#         if [[ ${GITHUB_REF} = refs/tags/* ]]
+#         then
+#           echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+#           echo ::set-output name=push::true
+#         else
+#           echo ::set-output name=version::test
+#           echo ::set-output name=push::false
+#         fi
+
+#     - name: Build Dockerfile.base
+#       uses: docker/build-push-action@v1
+#       with:
+#         username: ${{ secrets.DOCKER_USERNAME }}
+#         password: ${{ secrets.DOCKER_PASSWORD }}
+#         repository: ${{ steps.vars.outputs.repository }}
+#         tags: latest, ${{ steps.vars.outputs.version }}
+#         push: ${{ steps.vars.outputs.push }}
