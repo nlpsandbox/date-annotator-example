@@ -1,0 +1,191 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: NLP Sandbox Date Annotator API
+  contact:
+    email: thomas.schaffter@sagebionetworks.org
+    url: 'https://data2health.github.io/nlp-sandbox-schemas'
+  license:
+    name: Apache 2.0
+    url: 'https://github.com/data2health/nlp-sandbox/blob/master/LICENSE'
+  x-logo:
+    url: 'https://data2health.github.io/nlp-sandbox-data-node-schemas/docs/logo.png'
+  description: >
+    The OpenAPI specification implemented by NLP Sandbox Date Annotators.
+
+    # Overview
+
+    This NLP tool detects date references in the clinical note specified and
+    returns a list of date annotations objects.
+tags:
+  - name: Date
+    description: Operations about dates
+  - name: Health
+    description: Operations about API health
+servers:
+  - url: 'http://example.com/api/v1'
+  - url: 'https://example.com/api/v1'
+paths:
+  /dates:
+    get:
+      tags:
+        - Date
+      summary: Get all date annotations
+      description: Returns the date annotations
+      operationId: dates.read_all
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DateAnnotation'
+        '403':
+          description: Forbidden
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Note'
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Get Health
+      description: Get the health of the API
+      operationId: health
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '403':
+          description: Forbidden
+        '404':
+          description: Note not found
+components:
+  schemas:
+    Email:
+      description: User email address
+      type: string
+      format: test
+      example: john.smith@example.com
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          minLength: 4
+          example: John78
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Smith
+        email:
+          $ref: '#/components/schemas/Email'
+      required:
+        - username
+        - firstName
+        - lastName
+        - email
+    Entity:
+      type: object
+      properties:
+        id:
+          description: ID
+          type: integer
+        createdBy:
+          description: The User who created this entity
+          $ref: '#/components/schemas/User'
+        createdAt:
+          description: When the entity has been created
+          type: string
+          format: date-time
+        updatedBy:
+          description: The User who update this entity
+          $ref: '#/components/schemas/User'
+        updatedAt:
+          description: When the entity has been updated
+          type: string
+          format: date-time
+      required:
+        - id
+    PatientPublicId:
+      type: string
+      description: The patient public ID
+      maxLength: 50
+      example: 4f6cf35x-2c4y-483z-a0a9-158621f77a21
+    Note:
+      type: object
+      description: A clinical note
+      properties:
+        text:
+          description: The content of the note
+          type: string
+          example: 'October 3, Ms Chloe Price met with...'
+        patientPublicId:
+          readOnly: true
+          allOf:
+            - $ref: '#/components/schemas/PatientPublicId'
+        fileName:
+          description: The filename of the source note
+          type: string
+          example: 260-01.xml
+        type:
+          description: The note type
+          type: string
+          enum:
+            - pathology
+            - phone_call
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+      required:
+        - text
+    Annotation:
+      type: object
+      description: An annotation in a text
+      properties:
+        noteId:
+          description: The note ID
+          type: integer
+        start:
+          description: The position of the first character
+          type: integer
+        length:
+          description: The length of the annotation
+          type: integer
+        text:
+          description: The string annotated
+          type: string
+      required:
+        - noteId
+        - start
+        - length
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+    DateAnnotation:
+      type: object
+      description: A date annotation in a text
+      properties:
+        dateFormat:
+          description: Date format (ISO 8601)
+          type: string
+      allOf:
+        - $ref: '#/components/schemas/Annotation'
+    Health:
+      type: object
+      properties:
+        status:
+          description: Health status
+          type: string
+          enum:
+            - pass
+            - warn
