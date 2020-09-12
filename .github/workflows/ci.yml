@@ -23,14 +23,14 @@ jobs:
         entrypoint: hadolint
         args: src/server/Dockerfile
 
-  test:
-    needs: [lint]
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    # - name: Validate docker-compose files
-    #   run: docker-compose -f docker-compose.yml config
-    - name:
+#   test:
+#     needs: [lint]
+#     runs-on: ubuntu-18.04
+#     steps:
+#     - uses: actions/checkout@v2
+#     # - name: Validate docker-compose files
+#     #   run: docker-compose -f docker-compose.yml config
+#     - name:
 
 #   release:
 #     needs: [test]
