@@ -1,11 +1,11 @@
 # nlp-sandbox-date-annotator-example
 
 [![GitHub Stars](https://img.shields.io/github/stars/data2health/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example)
-<!-- [![GitHub Release](https://img.shields.io/github/release/data2health/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example/releases) -->
 [![Docker Pulls](https://img.shields.io/docker/pulls/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/data2health/nlp-sandbox-date-annotator-example)
-<!-- [![Docker Stars](https://img.shields.io/docker/stars/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/data2health/nlp-sandbox-date-annotator-example) -->
 [![GitHub CI](https://img.shields.io/github/workflow/status/data2health/nlp-sandbox-date-annotator-example/ci.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example)
 [![GitHub License](https://img.shields.io/github/license/data2health/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example)
+<!-- [![GitHub Release](https://img.shields.io/github/release/data2health/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example/releases) -->
+<!-- [![Docker Stars](https://img.shields.io/docker/stars/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=stars&logo=docker)](https://hub.docker.com/r/data2health/nlp-sandbox-date-annotator-example) -->
 
 An example implementation of the NLP Sandbox Date Annotator
 
