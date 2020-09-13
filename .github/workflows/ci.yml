@@ -50,6 +50,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: src/server
+        file: src/server/Dockerfile
 
   # build-and-publish:
   #   needs: [test]
