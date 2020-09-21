@@ -24,7 +24,7 @@ tags:
   name: Health
 paths:
   /dates:
-    get:
+    post:
       description: Returns the date annotations
       operationId: dates_read_all
       requestBody:
