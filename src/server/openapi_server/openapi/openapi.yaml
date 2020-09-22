@@ -103,6 +103,7 @@ components:
         id:
           description: ID
           type: integer
+          example: 22
         createdBy:
           $ref: '#/components/schemas/User'
         createdAt:
@@ -128,19 +129,19 @@ components:
       - $ref: '#/components/schemas/Entity'
       description: A clinical note
       example:
+        id: 22
         fileName: 260-01.xml
-        text: October 3, Ms Chloe Price met with...
+        text: On 09-03-1999 Ms Chloe Price met with Dr Joe , please come back on 08/02/1999 or 08.03.1999 not next year in MAY of 2021 .
         type: pathology
         patientPublicId: ""
       properties:
         text:
           description: The content of the note
-          example: October 3, Ms Chloe Price met with...
+          example: On 09-03-1999 Ms Chloe Price met with Dr Joe , please come back on 08/02/1999 or 08.03.1999 not next year in MAY of 2021 .
           type: string
         patientPublicId:
           allOf:
           - $ref: '#/components/schemas/PatientPublicId'
-          readOnly: true
         fileName:
           description: The filename of the source note
           example: 260-01.xml
