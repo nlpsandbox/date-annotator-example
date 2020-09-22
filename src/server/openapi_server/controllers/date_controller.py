@@ -1,12 +1,13 @@
 import connexion
 import six
 
-from openapi_server.models.date_annotation import DateAnnotation  # noqa: E501
+from openapi_server.models.date_annotation import Annotation  # noqa: E501
+from openapi_server.models.date_annotation import DateAnnotation
 from openapi_server.models.note import Note  # noqa: E501
 from openapi_server import util
-from datetime import date
+from datetime import date as gkdate
 import logging
-
+import re
 
 def dates_read_all(note=None):  # noqa: E501
     """Get all date annotations
@@ -18,12 +19,43 @@ def dates_read_all(note=None):  # noqa: E501
 
     :rtype: List[DateAnnotation]
     """
-    print("in dates_read_all ")
+    logging.info("in dates_read_all ")
+    counter = 1
     returnList = []
     if connexion.request.is_json:
         note = [Note.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
-        logging.info(f"NOTE TEXT : { note[0]._text}")
-        returnList.append(DateAnnotation( date_format=None, id=2, created_by="George", created_at=date.today(), updated_by="Demo System", updated_at=date.today()))
-        return returnList
+        logging.info(f"NOTE TEXTA : { note[0]._text}")
 
-    return 'do some magic!'
+        # match on https://stackoverflow.com/questions/4709652/python-regex-to-match-dates
+
+        match = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])(/)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note[0]._text)
+        add_match(counter, match, note, returnList, "MM/DD/YYYY")
+
+        match = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])(-)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note[0]._text)
+        add_match(counter, match, note, returnList, "MM-DD-YYYY")
+
+        match = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.)([1-9]|0[1-9]|1[0-2])(\.)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note[0]._text)
+        add_match(counter, match, note, returnList, "MM.DD.YYYY")
+
+        match = re.finditer('([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])', note[0]._text)
+        add_match(counter, match, note, returnList, "YYYY")
+
+        match = re.finditer('(January|February|March|April|May|June|July|August|September|October|November|December)', note[0]._text, re.IGNORECASE)
+        add_match(counter, match, note, returnList, "MMMM")
+    return returnList
+
+
+def add_match(counter, match, note, returnList, date_format=None):
+    if match is not None:
+        for m in match:
+            logging.info(f"Date : {m[0]} found at {m.start()}")
+            da = DateAnnotation(date_format=date_format, id=counter, created_by="Date Annotation Example",
+                                created_at=gkdate.today(), updated_by="Date Annotation Example",
+                                updated_at=gkdate.today())
+            da.text = m[0]
+            da.note_id = note[0].id
+            da.start = m.start()
+            returnList.append(da)
+            counter = counter + 1
+    else:
+        logging.info(f"No Dates found")
