@@ -1,6 +1,6 @@
 {
     "name": "nlp-sandbox-date-annotator-example",
-    "version": "1.0.0-beta.1",
+    "version": "1.0.0",
     "license": "Apache-2.0",
     "repository": "github:data2health/nlp-sandbox-date-annotator-example",
     "devDependencies": {

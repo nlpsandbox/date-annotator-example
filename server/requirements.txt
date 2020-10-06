@@ -1,5 +1,4 @@
 connexion==2.7.0
-psycopg2-binary==2.8.6
 requests==2.24.0
 swagger-ui-bundle==0.0.8
 synapseclient==2.2.0

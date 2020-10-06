@@ -45,7 +45,7 @@ def main():
     app.add_api('openapi.yaml',
                 arguments={'title': 'NLP Sandbox Date Annotator API'},
                 pythonic_params=True)
-    app.run(port=8082)
+    app.run(port=8080)
 
 
 if __name__ == '__main__':
