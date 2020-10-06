@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  date-annotator:
+    image: nlpsandbox/date-annotator-example:latest
+    build:
+      context: server
+      dockerfile: Dockerfile
+    container_name: date-annotator-example
+    ports:
+      - "8080:8080"
