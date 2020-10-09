@@ -37,7 +37,7 @@ Install and start the Date Annotator.
 When running, the Date Annotator provides a web interface (http://localhost:8080/api/v1/ui/)
 that you can use to explore the input, output and actions available.
 
-<!-- ![API UI get dates](pictures/api_ui_get_dates.png) -->
+![API UI get dates](pictures/api_ui_get_dates.png)
 
 ## Development
 
