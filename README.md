@@ -37,7 +37,7 @@ Install and start the Date Annotator.
 When running, the Date Annotator provides a web interface (http://localhost:8080/api/v1/ui/)
 that you can use to explore the input, output and actions available.
 
-![API UI get dates](pictures/api_ui_get_dates.png)
+<!-- ![API UI get dates](pictures/api_ui_get_dates.png) -->
 
 ## Development
 
@@ -58,7 +58,7 @@ of the OpenAPI specification for this NLP Tool is available. The GitHub workfow
 also includes a job to automatically submit your Date Annotator to the NLP
 Sandbox for evaluation.
 
-TBA: Add image
+![Create repo from template](pictures/gh_repo_template.png)
 
 Alternatively, follow the steps listed below to generate an initial implementation
 of the Date Annotator using one of the many languages and framework supported by
