@@ -1,0 +1,18 @@
+version: 2
+
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+    reviewers:
+      - "tschaffter"
+
+  - package-ecosystem: "pip"
+    directory: "/server"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+    reviewers:
+      - "tschaffter"
