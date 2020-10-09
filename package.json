@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "repository": "github:data2health/nlp-sandbox-date-annotator-example",
     "devDependencies": {
-        "@openapitools/openapi-generator-cli": "^1.0.18-4.3.1"
+        "@openapitools/openapi-generator-cli": "^1.0.18-5.0.0-beta2"
     },
     "scripts": {
         "test": "tox"
