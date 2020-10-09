@@ -51,12 +51,12 @@ you can then submit for evaluation to the NLP Sandbox.
 
 ### Start developing your own server
 
-One option is to create a GitHub repository based on this template repository if
-you plan to write your code in Python. This repository comes with a GitHub workflow
-that will help you implementing good practices and notify you when a new version
-of the OpenAPI specification for this NLP Tool is available. The GitHub workfow
-also includes a job to automatically submit your Date Annotator to the NLP
-Sandbox for evaluation.
+One option is to [create a GitHub repository based on this template repository][create_gh_repo_from_template]
+if you plan to write your code in Python. This repository comes with a GitHub
+workflow that will help you implementing good practices and notify you when a
+new version of the OpenAPI specification for this NLP Tool is available. The
+GitHub workfow also includes a job to automatically submit your Date Annotator
+to the NLP Sandbox for evaluation.
 
 ![Create repo from template](pictures/gh_repo_template.png)
 
@@ -111,3 +111,4 @@ TBA
 
 [NLP Sandbox Date Annotator OpenAPI specification]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
 [OpenAPITools/openapi-generator]: https://github.com/OpenAPITools/openapi-generator
+[create_gh_repo_from_template]: https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template
