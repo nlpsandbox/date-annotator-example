@@ -7,6 +7,7 @@ from flask import json
 from six import BytesIO
 
 from openapi_server.models.date_annotation import DateAnnotation  # noqa: E501
+from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.note import Note  # noqa: E501
 from openapi_server.test import BaseTestCase
 
@@ -19,19 +20,14 @@ class TestDateController(BaseTestCase):
 
         Get all date annotations
         """
-        note = {
-  "fileName" : "260-01.xml",
-  "text" : "October 3, Ms Chloe Price met with...",
-  "type" : "pathology",
-  "patientPublicId" : ""
-}
+        note = null
         headers = { 
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
         response = self.client.open(
             '/api/v1/dates',
-            method='GET',
+            method='POST',
             headers=headers,
             data=json.dumps(note),
             content_type='application/json')

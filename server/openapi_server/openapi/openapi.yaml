@@ -128,6 +128,7 @@ components:
       properties:
         id:
           description: ID
+          example: 0
           type: integer
         createdBy:
           $ref: '#/components/schemas/User'
@@ -141,72 +142,53 @@ components:
           description: When the entity has been updated
           format: date-time
           type: string
-      required:
-      - id
       type: object
-    PatientPublicId:
-      description: The patient public ID
-      example: 4f6cf35x-2c4y-483z-a0a9-158621f77a21
-      maxLength: 50
-      type: string
     Note:
-      allOf:
-      - $ref: '#/components/schemas/Entity'
+      type: object
       description: A clinical note
-      example:
-        text: On March 11, Ms Chloe Price met with her family.
-        type: pathology
-        patientPublicId: ""
-      properties:
-        text:
-          description: The content of the note
-          example: On March 11, Ms Chloe Price met with her family.
-          type: string
-        patientPublicId:
-          allOf:
-          - $ref: '#/components/schemas/PatientPublicId'
-        type:
-          description: The note type
-          enum:
-          - pathology
-          - phone_call
-          type: string
-      required:
-      - text
-      type: object
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - type: object
+          properties:
+            text:
+              description: The content of the note
+              type: string
+              example: 'On 09-03-1999, Ms Chloe Price met with Dr Joe.'
+            type:
+              description: The note type
+              type: string
+              enum:
+                - pathology
+                - phone_call
     Annotation:
-      allOf:
-      - $ref: '#/components/schemas/Entity'
+      type: object
       description: An annotation in a text
-      properties:
-        noteId:
-          description: The note ID
-          type: integer
-        start:
-          description: The position of the first character
-          type: integer
-        length:
-          description: The length of the annotation
-          type: integer
-        text:
-          description: The string annotated
-          type: string
-      required:
-      - length
-      - noteId
-      - start
-      type: object
-    DateAnnotation:
       allOf:
-      - $ref: '#/components/schemas/Annotation'
-      description: A date annotation in a text
-      example:
-        format: format
-      properties:
-        format:
-          description: Date format (ISO 8601)
-          type: string
+        - $ref: '#/components/schemas/Entity'
+        - type: object
+          properties:
+            noteId:
+              description: The note ID
+              type: integer
+            start:
+              description: The position of the first character
+              type: integer
+            length:
+              description: The length of the annotation
+              type: integer
+            text:
+              description: The string annotated
+              type: string
+    DateAnnotation:
       type: object
+      description: A date annotation in a text
+      allOf:
+        - $ref: '#/components/schemas/Annotation'
+        - type: object
+          properties:
+            format:
+              description: Date format (ISO 8601)
+              type: string
     Error:
       properties:
         title:
@@ -237,3 +219,34 @@ components:
           - warn
           type: string
       type: object
+    # Note_allOf:
+    #   properties:
+    #     text:
+    #       description: The content of the note
+    #       example: On 09-03-1999, Ms Chloe Price met with Dr Joe.
+    #       type: string
+    #     type:
+    #       description: The note type
+    #       enum:
+    #       - pathology
+    #       - phone_call
+    #       type: string
+    # Annotation_allOf:
+    #   properties:
+    #     noteId:
+    #       description: The note ID
+    #       type: integer
+    #     start:
+    #       description: The position of the first character
+    #       type: integer
+    #     length:
+    #       description: The length of the annotation
+    #       type: integer
+    #     text:
+    #       description: The string annotated
+    #       type: string
+    # DateAnnotation_allOf:
+    #   properties:
+    #     format:
+    #       description: Date format (ISO 8601)
+    #       type: string

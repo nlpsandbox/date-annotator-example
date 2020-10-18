@@ -6,6 +6,7 @@ import unittest
 from flask import json
 from six import BytesIO
 
+from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.health import Health  # noqa: E501
 from openapi_server.test import BaseTestCase
 
