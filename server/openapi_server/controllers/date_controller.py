@@ -46,6 +46,9 @@ def dates_read_all(note=None):  # noqa: E501
             matches = re.finditer('(January|February|March|April|May|June|July|August|September|October|November|December)', note._text, re.IGNORECASE)
             add_date_annotation(res, note, matches, "MMMM")
 
+            # TODO: Remove annotations that are fully included into another
+            # annotation.
+
     return jsonify(res)
 
 
@@ -53,12 +56,11 @@ def add_date_annotation(res, note, matches, format):
     """
     Converts matches to DateAnnotation objects and adds them to res.
     """
-    if matches is not None:
-        for match in matches:
-            res.append({
-                'noteId': note._id,
-                'text':  match[0],
-                'format': format,
-                'start': match.start(),
-                'length': len(match[0])
-            })
+    for match in matches:
+        res.append({
+            'noteId': note._id,
+            'text':  match[0],
+            'format': format,
+            'start': match.start(),
+            'length': len(match[0])
+        })
