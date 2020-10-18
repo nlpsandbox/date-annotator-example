@@ -19,17 +19,9 @@ class Annotation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, note_id=None, start=None, length=None, text=None, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None):  # noqa: E501
+    def __init__(self, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None, note_id=None, start=None, length=None, text=None):  # noqa: E501
         """Annotation - a model defined in OpenAPI
 
-        :param note_id: The note_id of this Annotation.  # noqa: E501
-        :type note_id: int
-        :param start: The start of this Annotation.  # noqa: E501
-        :type start: int
-        :param length: The length of this Annotation.  # noqa: E501
-        :type length: int
-        :param text: The text of this Annotation.  # noqa: E501
-        :type text: str
         :param id: The id of this Annotation.  # noqa: E501
         :type id: int
         :param created_by: The created_by of this Annotation.  # noqa: E501
@@ -40,40 +32,48 @@ class Annotation(Model):
         :type updated_by: User
         :param updated_at: The updated_at of this Annotation.  # noqa: E501
         :type updated_at: datetime
+        :param note_id: The note_id of this Annotation.  # noqa: E501
+        :type note_id: int
+        :param start: The start of this Annotation.  # noqa: E501
+        :type start: int
+        :param length: The length of this Annotation.  # noqa: E501
+        :type length: int
+        :param text: The text of this Annotation.  # noqa: E501
+        :type text: str
         """
         self.openapi_types = {
-            'note_id': int,
-            '': int,
-            'length': int,
-            'text': str,
             'id': int,
             'created_by': User,
             'created_at': datetime,
             'updated_by': User,
-            'updated_at': datetime
+            'updated_at': datetime,
+            'note_id': int,
+            'start': int,
+            'length': int,
+            'text': str
         }
 
         self.attribute_map = {
-            'note_id': 'noteId',
-            'start': 'start',
-            'length': 'length',
-            'text': 'text',
             'id': 'id',
             'created_by': 'createdBy',
             'created_at': 'createdAt',
             'updated_by': 'updatedBy',
-            'updated_at': 'updatedAt'
+            'updated_at': 'updatedAt',
+            'note_id': 'noteId',
+            'start': 'start',
+            'length': 'length',
+            'text': 'text'
         }
 
-        self._note_id = note_id
-        self._start = start
-        self._length = length
-        self._text = text
         self._id = id
         self._created_by = created_by
         self._created_at = created_at
         self._updated_by = updated_by
         self._updated_at = updated_at
+        self._note_id = note_id
+        self._start = start
+        self._length = length
+        self._text = text
 
     @classmethod
     def from_dict(cls, dikt) -> 'Annotation':
@@ -85,104 +85,6 @@ class Annotation(Model):
         :rtype: Annotation
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def note_id(self):
-        """Gets the note_id of this Annotation.
-
-        The note ID  # noqa: E501
-
-        :return: The note_id of this Annotation.
-        :rtype: int
-        """
-        return self._note_id
-
-    @note_id.setter
-    def note_id(self, note_id):
-        """Sets the note_id of this Annotation.
-
-        The note ID  # noqa: E501
-
-        :param note_id: The note_id of this Annotation.
-        :type note_id: int
-        """
-        if note_id is None:
-            raise ValueError("Invalid value for `note_id`, must not be `None`")  # noqa: E501
-
-        self._note_id = note_id
-
-    @property
-    def start(self):
-        """Gets the start of this Annotation.
-
-        The position of the first character  # noqa: E501
-
-        :return: The start of this Annotation.
-        :rtype: int
-        """
-        return self._start
-
-    @start.setter
-    def start(self, start):
-        """Sets the start of this Annotation.
-
-        The position of the first character  # noqa: E501
-
-        :param start: The start of this Annotation.
-        :type start: int
-        """
-        if start is None:
-            raise ValueError("Invalid value for `start`, must not be `None`")  # noqa: E501
-
-        self._start = start
-
-    @property
-    def length(self):
-        """Gets the length of this Annotation.
-
-        The length of the annotation  # noqa: E501
-
-        :return: The length of this Annotation.
-        :rtype: int
-        """
-        return self._length
-
-    @length.setter
-    def length(self, length):
-        """Sets the length of this Annotation.
-
-        The length of the annotation  # noqa: E501
-
-        :param length: The length of this Annotation.
-        :type length: int
-        """
-        if length is None:
-            raise ValueError("Invalid value for `length`, must not be `None`")  # noqa: E501
-
-        self._length = length
-
-    @property
-    def text(self):
-        """Gets the text of this Annotation.
-
-        The string annotated  # noqa: E501
-
-        :return: The text of this Annotation.
-        :rtype: str
-        """
-        return self._text
-
-    @text.setter
-    def text(self, text):
-        """Sets the text of this Annotation.
-
-        The string annotated  # noqa: E501
-
-        :param text: The text of this Annotation.
-        :type text: str
-        """
-
-        self._text = text
 
     @property
     def id(self):
@@ -204,8 +106,6 @@ class Annotation(Model):
         :param id: The id of this Annotation.
         :type id: int
         """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -296,3 +196,95 @@ class Annotation(Model):
         """
 
         self._updated_at = updated_at
+
+    @property
+    def note_id(self):
+        """Gets the note_id of this Annotation.
+
+        The note ID  # noqa: E501
+
+        :return: The note_id of this Annotation.
+        :rtype: int
+        """
+        return self._note_id
+
+    @note_id.setter
+    def note_id(self, note_id):
+        """Sets the note_id of this Annotation.
+
+        The note ID  # noqa: E501
+
+        :param note_id: The note_id of this Annotation.
+        :type note_id: int
+        """
+
+        self._note_id = note_id
+
+    @property
+    def start(self):
+        """Gets the start of this Annotation.
+
+        The position of the first character  # noqa: E501
+
+        :return: The start of this Annotation.
+        :rtype: int
+        """
+        return self._start
+
+    @start.setter
+    def start(self, start):
+        """Sets the start of this Annotation.
+
+        The position of the first character  # noqa: E501
+
+        :param start: The start of this Annotation.
+        :type start: int
+        """
+
+        self._start = start
+
+    @property
+    def length(self):
+        """Gets the length of this Annotation.
+
+        The length of the annotation  # noqa: E501
+
+        :return: The length of this Annotation.
+        :rtype: int
+        """
+        return self._length
+
+    @length.setter
+    def length(self, length):
+        """Sets the length of this Annotation.
+
+        The length of the annotation  # noqa: E501
+
+        :param length: The length of this Annotation.
+        :type length: int
+        """
+
+        self._length = length
+
+    @property
+    def text(self):
+        """Gets the text of this Annotation.
+
+        The string annotated  # noqa: E501
+
+        :return: The text of this Annotation.
+        :rtype: str
+        """
+        return self._text
+
+    @text.setter
+    def text(self, text):
+        """Sets the text of this Annotation.
+
+        The string annotated  # noqa: E501
+
+        :param text: The text of this Annotation.
+        :type text: str
+        """
+
+        self._text = text

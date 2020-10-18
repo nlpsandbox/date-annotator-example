@@ -2,18 +2,19 @@ openapi: 3.0.2
 info:
   contact:
     email: thomas.schaffter@sagebionetworks.org
-    url: https://data2health.github.io/nlp-sandbox-schemas
+    name: The NLP Sandbox Team
+    url: https://Sage-Bionetworks.github.io/nlp-sandbox-schemas
   description: |
     The OpenAPI specification implemented by NLP Sandbox Date Annotators.
     # Overview
-    This NLP tool detects date references in the clinical note specified and returns a list of date annotations objects.
+    This NLP tool detects date references in the clinical note specified and returns a list of date annotations.
   license:
     name: Apache 2.0
-    url: https://github.com/data2health/nlp-sandbox/blob/master/LICENSE
+    url: https://github.com/Sage-Bionetworks/nlp-sandbox/blob/main/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 1.0.0
+  version: 0.1.5
   x-logo:
-    url: https://data2health.github.io/nlp-sandbox-data-node-schemas/docs/logo.png
+    url: https://Sage-Bionetworks.github.io/nlp-sandbox-schemas/logo.png
 servers:
 - url: http://example.com/api/v1
 - url: https://example.com/api/v1
@@ -44,7 +45,11 @@ paths:
                 type: array
           description: Success
         "403":
-          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
       summary: Get all date annotations
       tags:
       - Date
@@ -61,14 +66,35 @@ paths:
                 $ref: '#/components/schemas/Health'
           description: Success
         "403":
-          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
         "404":
-          description: Note not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found
       summary: Get Health
       tags:
       - Health
       x-openapi-router-controller: openapi_server.controllers.health_controller
 components:
+  responses:
+    Unauthorized:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Unauthorized
+    NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: The specified resource was not found
   schemas:
     Email:
       description: User email address
@@ -102,8 +128,8 @@ components:
       properties:
         id:
           description: ID
+          example: 0
           type: integer
-          example: 22
         createdBy:
           $ref: '#/components/schemas/User'
         createdAt:
@@ -116,77 +142,71 @@ components:
           description: When the entity has been updated
           format: date-time
           type: string
-      required:
-      - id
       type: object
-    PatientPublicId:
-      description: The patient public ID
-      example: 4f6cf35x-2c4y-483z-a0a9-158621f77a21
-      maxLength: 50
-      type: string
     Note:
-      allOf:
-      - $ref: '#/components/schemas/Entity'
+      type: object
       description: A clinical note
-      example:
-        id: 22
-        fileName: 260-01.xml
-        text: On 09-03-1999 Ms Chloe Price met with Dr Joe , please come back on 08/02/1999 or 08.03.1999 not next year in MAY of 2021 .
-        type: pathology
-        patientPublicId: ""
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - type: object
+          properties:
+            text:
+              description: The content of the note
+              type: string
+              example: 'On 09-03-1999, Ms Chloe Price met with Dr Joe.'
+            type:
+              description: The note type
+              type: string
+              enum:
+                - pathology
+                - phone_call
+    Annotation:
+      type: object
+      description: An annotation in a text
+      allOf:
+        - $ref: '#/components/schemas/Entity'
+        - type: object
+          properties:
+            noteId:
+              description: The note ID
+              type: integer
+            start:
+              description: The position of the first character
+              type: integer
+            length:
+              description: The length of the annotation
+              type: integer
+            text:
+              description: The string annotated
+              type: string
+    DateAnnotation:
+      type: object
+      description: A date annotation in a text
+      allOf:
+        - $ref: '#/components/schemas/Annotation'
+        - type: object
+          properties:
+            format:
+              description: Date format (ISO 8601)
+              type: string
+    Error:
       properties:
-        text:
-          description: The content of the note
-          example: On 09-03-1999 Ms Chloe Price met with Dr Joe , please come back on 08/02/1999 or 08.03.1999 not next year in MAY of 2021 .
+        title:
+          description: A human readable documentation for the problem type
           type: string
-        patientPublicId:
-          allOf:
-          - $ref: '#/components/schemas/PatientPublicId'
-        fileName:
-          description: The filename of the source note
-          example: 260-01.xml
+        status:
+          description: The HTTP status code
+          type: integer
+        detail:
+          description: A human readable explanation specific to this occurrence of
+            the problem
           type: string
         type:
-          description: The note type
-          enum:
-          - pathology
-          - phone_call
+          description: An absolute URI that identifies the problem type
           type: string
       required:
-      - text
-      type: object
-    Annotation:
-      allOf:
-      - $ref: '#/components/schemas/Entity'
-      description: An annotation in a text
-      properties:
-        noteId:
-          description: The note ID
-          type: integer
-        start:
-          description: The position of the first character
-          type: integer
-        length:
-          description: The length of the annotation
-          type: integer
-        text:
-          description: The string annotated
-          type: string
-      required:
-      - length
-      - noteId
-      - start
-      type: object
-    DateAnnotation:
-      allOf:
-      - $ref: '#/components/schemas/Annotation'
-      description: A date annotation in a text
-      example:
-        dateFormat: dateFormat
-      properties:
-        dateFormat:
-          description: Date format (ISO 8601)
-          type: string
+      - status
+      - title
       type: object
     Health:
       example:
@@ -199,3 +219,34 @@ components:
           - warn
           type: string
       type: object
+    # Note_allOf:
+    #   properties:
+    #     text:
+    #       description: The content of the note
+    #       example: On 09-03-1999, Ms Chloe Price met with Dr Joe.
+    #       type: string
+    #     type:
+    #       description: The note type
+    #       enum:
+    #       - pathology
+    #       - phone_call
+    #       type: string
+    # Annotation_allOf:
+    #   properties:
+    #     noteId:
+    #       description: The note ID
+    #       type: integer
+    #     start:
+    #       description: The position of the first character
+    #       type: integer
+    #     length:
+    #       description: The length of the annotation
+    #       type: integer
+    #     text:
+    #       description: The string annotated
+    #       type: string
+    # DateAnnotation_allOf:
+    #   properties:
+    #     format:
+    #       description: Date format (ISO 8601)
+    #       type: string

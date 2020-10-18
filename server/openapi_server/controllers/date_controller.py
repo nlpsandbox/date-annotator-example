@@ -1,61 +1,64 @@
 import connexion
 import six
 
-from openapi_server.models.date_annotation import Annotation  # noqa: E501
+from openapi_server.models.annotation import Annotation  # noqa: E501
 from openapi_server.models.date_annotation import DateAnnotation
 from openapi_server.models.note import Note  # noqa: E501
 from openapi_server import util
 from datetime import date as gkdate
 import logging
 import re
+from flask import jsonify
 
 def dates_read_all(note=None):  # noqa: E501
     """Get all date annotations
 
     Returns the date annotations # noqa: E501
 
-    :param note: 
+    :param note:
     :type note: list | bytes
 
     :rtype: List[DateAnnotation]
     """
-    logging.info("in dates_read_all ")
-    counter = 1
-    returnList = []
+
+    # TODO: Why is note value set to None when passing an array of notes using
+    # the interactive doc?
+    # logging.info(note)
+
+    res = []
     if connexion.request.is_json:
-        note = [Note.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
-        logging.info(f"NOTE TEXTA : { note[0]._text}")
+        notes = [Note.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
 
-        # match on https://stackoverflow.com/questions/4709652/python-regex-to-match-dates
+        for note in notes:
+            # George approach comes from https://stackoverflow.com/a/61234139
+            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])(/)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note._text)
+            add_date_annotation(res, note, matches, "MM/DD/YYYY")
 
-        match = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])(/)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note[0]._text)
-        add_match(counter, match, note, returnList, "MM/DD/YYYY")
+            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])(-)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note._text)
+            add_date_annotation(res, note, matches, "MM-DD-YYYY")
 
-        match = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])(-)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note[0]._text)
-        add_match(counter, match, note, returnList, "MM-DD-YYYY")
+            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.)([1-9]|0[1-9]|1[0-2])(\.)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note._text)
+            add_date_annotation(res, note, matches, "MM.DD.YYYY")
 
-        match = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.)([1-9]|0[1-9]|1[0-2])(\.)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note[0]._text)
-        add_match(counter, match, note, returnList, "MM.DD.YYYY")
+            matches = re.finditer('([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])', note._text)
+            add_date_annotation(res, note, matches, "YYYY")
 
-        match = re.finditer('([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])', note[0]._text)
-        add_match(counter, match, note, returnList, "YYYY")
+            matches = re.finditer('(January|February|March|April|May|June|July|August|September|October|November|December)', note._text, re.IGNORECASE)
+            add_date_annotation(res, note, matches, "MMMM")
 
-        match = re.finditer('(January|February|March|April|May|June|July|August|September|October|November|December)', note[0]._text, re.IGNORECASE)
-        add_match(counter, match, note, returnList, "MMMM")
-    return returnList
+    return jsonify(res)
 
 
-def add_match(counter, match, note, returnList, date_format=None):
-    if match is not None:
-        for m in match:
-            logging.info(f"Date : {m[0]} found at {m.start()}")
-            da = DateAnnotation(date_format=date_format, id=counter, created_by="Date Annotation Example",
-                                created_at=gkdate.today(), updated_by="Date Annotation Example",
-                                updated_at=gkdate.today())
-            da.text = m[0]
-            da.note_id = note[0].id
-            da.start = m.start()
-            returnList.append(da)
-            counter = counter + 1
-    else:
-        logging.info(f"No Dates found")
+def add_date_annotation(res, note, matches, format):
+    """
+    Converts matches to DateAnnotation objects and adds them to res.
+    """
+    if matches is not None:
+        for match in matches:
+            res.append({
+                'noteId': note._id,
+                'text':  match[0],
+                'format': format,
+                'start': match.start(),
+                'length': len(match[0])
+            })

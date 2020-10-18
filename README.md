@@ -1,10 +1,11 @@
-# nlp-sandbox-date-annotator-example
+# NLP Sandbox Date Annotator Example
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/data2health/nlp-sandbox-date-annotator-example)
-[![GitHub CI](https://img.shields.io/github/workflow/status/data2health/nlp-sandbox-date-annotator-example/ci.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example)
-[![GitHub License](https://img.shields.io/github/license/data2health/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/data2health/nlp-sandbox-date-annotator-example)
+[![GitHub CI](https://img.shields.io/github/workflow/status/Sage-Bionetworks/nlp-sandbox-date-annotator-example/ci.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example)
+[![GitHub Release](https://img.shields.io/github/release/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/releases)
+[![Docker Pulls](https://img.shields.io/docker/pulls/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/nlpsandbox/date-annotator-example)
+[![GitHub License](https://img.shields.io/github/license/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example)
 
-An example implementation of the NLP Sandbox Date Annotator.
+An example implementation of the [NLP Sandbox Date Annotator].
 
 ## Specification
 
@@ -109,6 +110,7 @@ TBA
 
 <!-- Definitions -->
 
+[NLP Sandbox Date Annotator]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
 [NLP Sandbox Date Annotator OpenAPI specification]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
 [OpenAPITools/openapi-generator]: https://github.com/OpenAPITools/openapi-generator
 [create_gh_repo_from_template]: https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template

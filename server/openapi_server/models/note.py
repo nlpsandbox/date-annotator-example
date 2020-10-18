@@ -19,17 +19,9 @@ class Note(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, text=None, patient_public_id=None, file_name=None, type=None, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None):  # noqa: E501
+    def __init__(self, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None, text=None, type=None):  # noqa: E501
         """Note - a model defined in OpenAPI
 
-        :param text: The text of this Note.  # noqa: E501
-        :type text: str
-        :param patient_public_id: The patient_public_id of this Note.  # noqa: E501
-        :type patient_public_id: str
-        :param file_name: The file_name of this Note.  # noqa: E501
-        :type file_name: str
-        :param type: The type of this Note.  # noqa: E501
-        :type type: str
         :param id: The id of this Note.  # noqa: E501
         :type id: int
         :param created_by: The created_by of this Note.  # noqa: E501
@@ -40,40 +32,38 @@ class Note(Model):
         :type updated_by: User
         :param updated_at: The updated_at of this Note.  # noqa: E501
         :type updated_at: datetime
+        :param text: The text of this Note.  # noqa: E501
+        :type text: str
+        :param type: The type of this Note.  # noqa: E501
+        :type type: str
         """
         self.openapi_types = {
-            'text': str,
-            'patient_public_id': str,
-            'file_name': str,
-            'type': str,
             'id': int,
             'created_by': User,
             'created_at': datetime,
             'updated_by': User,
-            'updated_at': datetime
+            'updated_at': datetime,
+            'text': str,
+            'type': str
         }
 
         self.attribute_map = {
-            'text': 'text',
-            'patient_public_id': 'patientPublicId',
-            'file_name': 'fileName',
-            'type': 'type',
             'id': 'id',
             'created_by': 'createdBy',
             'created_at': 'createdAt',
             'updated_by': 'updatedBy',
-            'updated_at': 'updatedAt'
+            'updated_at': 'updatedAt',
+            'text': 'text',
+            'type': 'type'
         }
 
-        self._text = text
-        self._patient_public_id = patient_public_id
-        self._file_name = file_name
-        self._type = type
         self._id = id
         self._created_by = created_by
         self._created_at = created_at
         self._updated_by = updated_by
         self._updated_at = updated_at
+        self._text = text
+        self._type = type
 
     @classmethod
     def from_dict(cls, dikt) -> 'Note':
@@ -85,104 +75,6 @@ class Note(Model):
         :rtype: Note
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def text(self):
-        """Gets the text of this Note.
-
-        The content of the note  # noqa: E501
-
-        :return: The text of this Note.
-        :rtype: str
-        """
-        return self._text
-
-    @text.setter
-    def text(self, text):
-        """Sets the text of this Note.
-
-        The content of the note  # noqa: E501
-
-        :param text: The text of this Note.
-        :type text: str
-        """
-        if text is None:
-            raise ValueError("Invalid value for `text`, must not be `None`")  # noqa: E501
-
-        self._text = text
-
-    @property
-    def patient_public_id(self):
-        """Gets the patient_public_id of this Note.
-
-
-        :return: The patient_public_id of this Note.
-        :rtype: str
-        """
-        return self._patient_public_id
-
-    @patient_public_id.setter
-    def patient_public_id(self, patient_public_id):
-        """Sets the patient_public_id of this Note.
-
-
-        :param patient_public_id: The patient_public_id of this Note.
-        :type patient_public_id: str
-        """
-
-        self._patient_public_id = patient_public_id
-
-    @property
-    def file_name(self):
-        """Gets the file_name of this Note.
-
-        The filename of the source note  # noqa: E501
-
-        :return: The file_name of this Note.
-        :rtype: str
-        """
-        return self._file_name
-
-    @file_name.setter
-    def file_name(self, file_name):
-        """Sets the file_name of this Note.
-
-        The filename of the source note  # noqa: E501
-
-        :param file_name: The file_name of this Note.
-        :type file_name: str
-        """
-
-        self._file_name = file_name
-
-    @property
-    def type(self):
-        """Gets the type of this Note.
-
-        The note type  # noqa: E501
-
-        :return: The type of this Note.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """Sets the type of this Note.
-
-        The note type  # noqa: E501
-
-        :param type: The type of this Note.
-        :type type: str
-        """
-        allowed_values = ["pathology", "phone_call"]  # noqa: E501
-        if type not in allowed_values:
-            raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}"
-                .format(type, allowed_values)
-            )
-
-        self._type = type
 
     @property
     def id(self):
@@ -204,8 +96,6 @@ class Note(Model):
         :param id: The id of this Note.
         :type id: int
         """
-        if id is None:
-            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
@@ -296,3 +186,57 @@ class Note(Model):
         """
 
         self._updated_at = updated_at
+
+    @property
+    def text(self):
+        """Gets the text of this Note.
+
+        The content of the note  # noqa: E501
+
+        :return: The text of this Note.
+        :rtype: str
+        """
+        return self._text
+
+    @text.setter
+    def text(self, text):
+        """Sets the text of this Note.
+
+        The content of the note  # noqa: E501
+
+        :param text: The text of this Note.
+        :type text: str
+        """
+        if text is None:
+            raise ValueError("Invalid value for `text`, must not be `None`")  # noqa: E501
+
+        self._text = text
+
+    @property
+    def type(self):
+        """Gets the type of this Note.
+
+        The note type  # noqa: E501
+
+        :return: The type of this Note.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this Note.
+
+        The note type  # noqa: E501
+
+        :param type: The type of this Note.
+        :type type: str
+        """
+        allowed_values = ["pathology", "phone_call"]  # noqa: E501
+        if type not in allowed_values:
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"
+                .format(type, allowed_values)
+            )
+
+        self._type = type
