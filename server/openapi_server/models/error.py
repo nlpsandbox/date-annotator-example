@@ -15,36 +15,36 @@ class Error(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type=None, title=None, status=None, detail=None):  # noqa: E501
+    def __init__(self, title=None, status=None, detail=None, type=None):  # noqa: E501
         """Error - a model defined in OpenAPI
 
-        :param type: The type of this Error.  # noqa: E501
-        :type type: str
         :param title: The title of this Error.  # noqa: E501
         :type title: str
         :param status: The status of this Error.  # noqa: E501
         :type status: int
         :param detail: The detail of this Error.  # noqa: E501
         :type detail: str
+        :param type: The type of this Error.  # noqa: E501
+        :type type: str
         """
         self.openapi_types = {
-            'type': str,
             'title': str,
             'status': int,
-            'detail': str
+            'detail': str,
+            'type': str
         }
 
         self.attribute_map = {
-            'type': 'type',
             'title': 'title',
             'status': 'status',
-            'detail': 'detail'
+            'detail': 'detail',
+            'type': 'type'
         }
 
-        self._type = type
         self._title = title
         self._status = status
         self._detail = detail
+        self._type = type
 
     @classmethod
     def from_dict(cls, dikt) -> 'Error':
@@ -56,29 +56,6 @@ class Error(Model):
         :rtype: Error
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def type(self):
-        """Gets the type of this Error.
-
-        An absolute URI that identifies the problem type  # noqa: E501
-
-        :return: The type of this Error.
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """Sets the type of this Error.
-
-        An absolute URI that identifies the problem type  # noqa: E501
-
-        :param type: The type of this Error.
-        :type type: str
-        """
-
-        self._type = type
 
     @property
     def title(self):
@@ -100,6 +77,8 @@ class Error(Model):
         :param title: The title of this Error.
         :type title: str
         """
+        if title is None:
+            raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
 
         self._title = title
 
@@ -123,6 +102,8 @@ class Error(Model):
         :param status: The status of this Error.
         :type status: int
         """
+        if status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 
@@ -148,3 +129,26 @@ class Error(Model):
         """
 
         self._detail = detail
+
+    @property
+    def type(self):
+        """Gets the type of this Error.
+
+        An absolute URI that identifies the problem type  # noqa: E501
+
+        :return: The type of this Error.
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this Error.
+
+        An absolute URI that identifies the problem type  # noqa: E501
+
+        :param type: The type of this Error.
+        :type type: str
+        """
+
+        self._type = type
