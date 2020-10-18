@@ -1,6 +1,9 @@
-from flask import jsonify
+import connexion
+import six
 
+from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.health import Health  # noqa: E501
+from openapi_server import util
 
 
 def health():  # noqa: E501
@@ -11,4 +14,4 @@ def health():  # noqa: E501
 
     :rtype: Health
     """
-    return jsonify(Health("pass"))
+    return 'do some magic!'

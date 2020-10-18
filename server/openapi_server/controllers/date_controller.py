@@ -1,26 +1,31 @@
 import connexion
 import six
 
-from openapi_server.models.date_annotation import Annotation  # noqa: E501
+from openapi_server.models.annotation import Annotation  # noqa: E501
 from openapi_server.models.date_annotation import DateAnnotation
 from openapi_server.models.note import Note  # noqa: E501
 from openapi_server import util
 from datetime import date as gkdate
 import logging
 import re
+from flask import jsonify
 
 def dates_read_all(note=None):  # noqa: E501
     """Get all date annotations
 
     Returns the date annotations # noqa: E501
 
-    :param note: 
+    :param note:
     :type note: list | bytes
 
     :rtype: List[DateAnnotation]
     """
-    logging.info("in dates_read_all ")
-    counter = 1
+
+
+
+
+
+    counter = 1  # TODO: Do not use counter as the note id
     returnList = []
     if connexion.request.is_json:
         note = [Note.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
@@ -42,19 +47,21 @@ def dates_read_all(note=None):  # noqa: E501
 
         match = re.finditer('(January|February|March|April|May|June|July|August|September|October|November|December)', note[0]._text, re.IGNORECASE)
         add_match(counter, match, note, returnList, "MMMM")
-    return returnList
+
+    return jsonify([])
 
 
 def add_match(counter, match, note, returnList, date_format=None):
     if match is not None:
         for m in match:
             logging.info(f"Date : {m[0]} found at {m.start()}")
-            da = DateAnnotation(date_format=date_format, id=counter, created_by="Date Annotation Example",
+            da = DateAnnotation(format=format, id=counter, created_by="Date Annotation Example",
                                 created_at=gkdate.today(), updated_by="Date Annotation Example",
                                 updated_at=gkdate.today())
             da.text = m[0]
             da.note_id = note[0].id
             da.start = m.start()
+            da.length = 10
             returnList.append(da)
             counter = counter + 1
     else:

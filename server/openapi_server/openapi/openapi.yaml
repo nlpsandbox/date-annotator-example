@@ -154,6 +154,7 @@ components:
       - $ref: '#/components/schemas/Entity'
       description: A clinical note
       example:
+        id: 0
         text: On March 11, Ms Chloe Price met with her family.
         type: pathology
         patientPublicId: ""
