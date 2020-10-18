@@ -43,7 +43,7 @@ class Annotation(Model):
         """
         self.openapi_types = {
             'note_id': int,
-            '': int,
+            'start': int,
             'length': int,
             'text': str,
             'id': int,

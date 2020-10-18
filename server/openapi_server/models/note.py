@@ -19,15 +19,13 @@ class Note(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, text=None, patient_public_id=None, file_name=None, type=None, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None):  # noqa: E501
+    def __init__(self, text=None, patient_public_id=None, type=None, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None):  # noqa: E501
         """Note - a model defined in OpenAPI
 
         :param text: The text of this Note.  # noqa: E501
         :type text: str
         :param patient_public_id: The patient_public_id of this Note.  # noqa: E501
         :type patient_public_id: str
-        :param file_name: The file_name of this Note.  # noqa: E501
-        :type file_name: str
         :param type: The type of this Note.  # noqa: E501
         :type type: str
         :param id: The id of this Note.  # noqa: E501
@@ -44,7 +42,6 @@ class Note(Model):
         self.openapi_types = {
             'text': str,
             'patient_public_id': str,
-            'file_name': str,
             'type': str,
             'id': int,
             'created_by': User,
@@ -56,7 +53,6 @@ class Note(Model):
         self.attribute_map = {
             'text': 'text',
             'patient_public_id': 'patientPublicId',
-            'file_name': 'fileName',
             'type': 'type',
             'id': 'id',
             'created_by': 'createdBy',
@@ -67,7 +63,6 @@ class Note(Model):
 
         self._text = text
         self._patient_public_id = patient_public_id
-        self._file_name = file_name
         self._type = type
         self._id = id
         self._created_by = created_by
@@ -131,29 +126,6 @@ class Note(Model):
         """
 
         self._patient_public_id = patient_public_id
-
-    @property
-    def file_name(self):
-        """Gets the file_name of this Note.
-
-        The filename of the source note  # noqa: E501
-
-        :return: The file_name of this Note.
-        :rtype: str
-        """
-        return self._file_name
-
-    @file_name.setter
-    def file_name(self, file_name):
-        """Sets the file_name of this Note.
-
-        The filename of the source note  # noqa: E501
-
-        :param file_name: The file_name of this Note.
-        :type file_name: str
-        """
-
-        self._file_name = file_name
 
     @property
     def type(self):

@@ -19,11 +19,11 @@ class DateAnnotation(Annotation):
     Do not edit the class manually.
     """
 
-    def __init__(self, date_format=None, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None):  # noqa: E501
+    def __init__(self, format=None, id=None, created_by=None, created_at=None, updated_by=None, updated_at=None):  # noqa: E501
         """DateAnnotation - a model defined in OpenAPI
 
-        :param date_format: The date_format of this DateAnnotation.  # noqa: E501
-        :type date_format: str
+        :param format: The format of this DateAnnotation.  # noqa: E501
+        :type format: str
         :param id: The id of this DateAnnotation.  # noqa: E501
         :type id: int
         :param created_by: The created_by of this DateAnnotation.  # noqa: E501
@@ -36,7 +36,7 @@ class DateAnnotation(Annotation):
         :type updated_at: datetime
         """
         self.openapi_types = {
-            'date_format': str,
+            'format': str,
             'id': int,
             'created_by': User,
             'created_at': datetime,
@@ -45,7 +45,7 @@ class DateAnnotation(Annotation):
         }
 
         self.attribute_map = {
-            'date_format': 'dateFormat',
+            'format': 'format',
             'id': 'id',
             'created_by': 'createdBy',
             'created_at': 'createdAt',
@@ -53,7 +53,7 @@ class DateAnnotation(Annotation):
             'updated_at': 'updatedAt'
         }
 
-        self._date_format = date_format
+        self._format = format
         self._id = id
         self._created_by = created_by
         self._created_at = created_at
@@ -72,27 +72,27 @@ class DateAnnotation(Annotation):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def date_format(self):
-        """Gets the date_format of this DateAnnotation.
+    def format(self):
+        """Gets the format of this DateAnnotation.
 
         Date format (ISO 8601)  # noqa: E501
 
-        :return: The date_format of this DateAnnotation.
+        :return: The format of this DateAnnotation.
         :rtype: str
         """
-        return self._date_format
+        return self._format
 
-    @date_format.setter
-    def date_format(self, date_format):
-        """Sets the date_format of this DateAnnotation.
+    @format.setter
+    def format(self, format):
+        """Sets the format of this DateAnnotation.
 
         Date format (ISO 8601)  # noqa: E501
 
-        :param date_format: The date_format of this DateAnnotation.
-        :type date_format: str
+        :param format: The format of this DateAnnotation.
+        :type format: str
         """
 
-        self._date_format = date_format
+        self._format = format
 
     @property
     def id(self):
