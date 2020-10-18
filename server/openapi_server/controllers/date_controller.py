@@ -30,14 +30,14 @@ def dates_read_all(note=None):  # noqa: E501
         notes = [Note.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
 
         for note in notes:
-            # George approach comes from https://stackoverflow.com/a/61234139
-            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])(/)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note._text)
+            # Adapted from https://stackoverflow.com/a/61234139
+            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])(/)(19[0-9][0-9]|20[0-9][0-9])', note._text)
             add_date_annotation(res, note, matches, "MM/DD/YYYY")
 
-            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])(-)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note._text)
+            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])(-)(19[0-9][0-9]|20[0-9][0-9])', note._text)
             add_date_annotation(res, note, matches, "MM-DD-YYYY")
 
-            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.)([1-9]|0[1-9]|1[0-2])(\.)([0-9][0-9]|19[0-9][0-9]|20[0-9][0-9])', note._text)
+            matches = re.finditer('([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\.)([1-9]|0[1-9]|1[0-2])(\.)(19[0-9][0-9]|20[0-9][0-9])', note._text)
             add_date_annotation(res, note, matches, "MM.DD.YYYY")
 
             matches = re.finditer('([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])', note._text)
@@ -46,6 +46,9 @@ def dates_read_all(note=None):  # noqa: E501
             matches = re.finditer('(January|February|March|April|May|June|July|August|September|October|November|December)', note._text, re.IGNORECASE)
             add_date_annotation(res, note, matches, "MMMM")
 
+            # TODO: Remove annotations that are fully included into another
+            # annotation.
+
     return jsonify(res)
 
 
@@ -53,12 +56,11 @@ def add_date_annotation(res, note, matches, format):
     """
     Converts matches to DateAnnotation objects and adds them to res.
     """
-    if matches is not None:
-        for match in matches:
-            res.append({
-                'noteId': note._id,
-                'text':  match[0],
-                'format': format,
-                'start': match.start(),
-                'length': len(match[0])
-            })
+    for match in matches:
+        res.append({
+            'noteId': note._id,
+            'text':  match[0],
+            'format': format,
+            'start': match.start(),
+            'length': len(match[0])
+        })
