@@ -108,6 +108,23 @@ given in the section [Running using Python](#Running-with-Python).
 TBA
 
 
+### Generate a Spring Boost server stub
+
+Generate the initial server stub from the OpenAPI specification
+
+    mkdir server
+    npx @openapitools/openapi-generator-cli \
+        generate -i openapi.yaml -g spring -o server
+
+Build and start the server with Maven
+
+    cd server
+    mvn package
+    java -jar target/openapi-spring-0.1.6.jar
+
+The documentation UI is now available at http://localhost:8080.
+
+
 <!-- Definitions -->
 
 [NLP Sandbox Date Annotator]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
