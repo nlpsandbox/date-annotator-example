@@ -17,8 +17,8 @@ def service():  # noqa: E501
         license="Apache-2.0",
         repository="github:Sage-Bionetworks/nlp-sandbox-date-annotator-" +
                    "example",
-        description="An example implementation of the NLP Sandbox Date" +
-                    " Annotator",
+        description="An example implementation of the NLP Sandbox Date " +
+                    "Annotator",
         author="The NLP Sandbox Team",
         author_email="thomas.schaffter@sagebionetworks.org",
         url="https://github.com/Sage-Bionetworks/nlp-sandbox-date-" +
