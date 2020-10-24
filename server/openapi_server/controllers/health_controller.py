@@ -8,5 +8,4 @@ def health():  # noqa: E501
     Get the health of the API # noqa: E501
     :rtype: Health
     """
-    # return jsonify(Health("pass"))
-    return jsonify({'status': 'pass'})
+    return jsonify(Health("pass")), 200
