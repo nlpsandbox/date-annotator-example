@@ -6,12 +6,10 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
-from openapi_server.models.annotation_all_of import AnnotationAllOf
 from openapi_server.models.entity import Entity
 from openapi_server.models.user import User
 from openapi_server import util
 
-from openapi_server.models.annotation_all_of import AnnotationAllOf  # noqa: E501
 from openapi_server.models.entity import Entity  # noqa: E501
 from openapi_server.models.user import User  # noqa: E501
 
