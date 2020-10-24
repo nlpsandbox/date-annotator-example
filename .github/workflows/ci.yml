@@ -122,8 +122,9 @@ jobs:
         # Replace "/pictures" by https://.../pictures in README.md so that the
         # images are redered in the DockerHub description.
         cat README.md
-        awk '{gsub("\(pictures", "('"${{ env.pictures_base }}"'/pictures", $0); print}' README.md > README.md
+        echo "$(awk '{gsub("(pictures", "('"${{ env.pictures_base }}"'/pictures", $0); print}' README.md)" > README.md
         cat README.md
+        echo PLOP
     - name: Docker Hub Description
       # if: steps.prep.outputs.push == 'true'
       uses: peter-evans/dockerhub-description@v2
