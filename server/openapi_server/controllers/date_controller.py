@@ -64,3 +64,4 @@ def add_date_annotation(res, note, matches, format):
             'start': match.start(),
             'length': len(match[0])
         })
+

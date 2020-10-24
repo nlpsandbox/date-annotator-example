@@ -25,6 +25,10 @@ jobs:
       run: |
         sort -f --check server/requirements.txt
         sort -f --check server/test-requirements.txt
+    - name: Lint Python code with Flake8
+      uses: docker://alpine/flake8:latest
+      with:
+        args: server
 
   test:
     needs: [lint]
