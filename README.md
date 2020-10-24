@@ -40,6 +40,14 @@ that you can use to explore the input, output and actions available.
 
 ![API UI get dates](pictures/api_ui_get_dates.png)
 
+## Evaluating performance in the NLP Sandbox
+
+Requirements:
+
+- The NLP Sandbox requires NLP Tools to be dockerized
+- The dockerized tool must be standalone and not depends on access to the
+  Internet. This requirement contributes to make the tool more reproducible.
+
 ## Development
 
 This section describes how you can start developing your own Date Annotator that
