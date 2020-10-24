@@ -140,17 +140,17 @@ The first is the easiest and least error prone if you are worried about overridi
 One can generate a new flask app in a "test" directory and compare results between the old and new
 directories . This is done with the command:
 
-    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotated-example-updated
+    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotated-example-updated/server
 
-Then compare the ~/nlp-sandbox-data-annotated-example-updated to your existing ~/nlp-sandbox-data-annotated-example directory to see
+Then compare the ~/nlp-sandbox-data-annotated-example-updated/server to your existing ~/nlp-sandbox-data-annotated-example/server directory to see
 what was updated.
 
 The other method, once you are more confident, is to lay the files on top of the existing repository you've already checked with the command:
 
-    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotatoed-example/server
+    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotated-example/server
 
 If one wants to prevent certain files you know have already been customized then add those file names
-cto the ~/nlp-sandbox-data-annotatoed-example/.openapi-generator-ignore file before running the preceeding command.
+cto the ~/nlp-sandbox-data-annotated-example/server/.openapi-generator-ignore file before running the preceding command.
 
 Then use git to see what is updated and if you overwrote any files you wanted
 to preserve. One can revert those changes and add those files to the .openapi-generator-ignore file for next time there is an update.
