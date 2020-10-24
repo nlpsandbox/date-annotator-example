@@ -23,6 +23,8 @@ tags:
   name: Date
 - description: Operations about API health
   name: Health
+- description: Operations about NLP services
+  name: Service
 paths:
   /dates:
     post:
@@ -81,6 +83,33 @@ paths:
       tags:
       - Health
       x-openapi-router-controller: openapi_server.controllers.health_controller
+  /service:
+    get:
+      description: Get information about the service
+      operationId: service
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found
+      summary: Get service information
+      tags:
+      - Service
+      x-openapi-router-controller: openapi_server.controllers.service_controller
 components:
   responses:
     Unauthorized:
@@ -219,34 +248,55 @@ components:
           - warn
           type: string
       type: object
-    # Note_allOf:
-    #   properties:
-    #     text:
-    #       description: The content of the note
-    #       example: On 09-03-1999, Ms Chloe Price met with Dr Joe.
-    #       type: string
-    #     type:
-    #       description: The note type
-    #       enum:
-    #       - pathology
-    #       - phone_call
-    #       type: string
-    # Annotation_allOf:
-    #   properties:
-    #     noteId:
-    #       description: The note ID
-    #       type: integer
-    #     start:
-    #       description: The position of the first character
-    #       type: integer
-    #     length:
-    #       description: The length of the annotation
-    #       type: integer
-    #     text:
-    #       description: The string annotated
-    #       type: string
-    # DateAnnotation_allOf:
-    #   properties:
-    #     format:
-    #       description: Date format (ISO 8601)
-    #       type: string
+    Service:
+      description: Information about an NLP service
+      example:
+        license: Apache-2.0
+        authorEmail: author@example.com
+        author: Example Author
+        name: awesome-date-annotator
+        description: An awesome Date Annotator based on regex patterns
+        repository: github:awesome-org/awesome-date-annotator
+        version: 1.0.0
+        url: https://openapi-generator.tech
+      properties:
+        name:
+          description: The service name
+          example: awesome-date-annotator
+          maxLength: 60
+          minLength: 3
+          pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
+          type: string
+        version:
+          description: The version of the service (SemVer string)
+          example: 1.0.0
+          minLength: 1
+          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
+          type: string
+        license:
+          description: The license of this service (spdx.org/licenses Identifier)
+          example: Apache-2.0
+          type: string
+        repository:
+          description: The place where the code lives
+          example: github:awesome-org/awesome-date-annotator
+          type: string
+        description:
+          description: A short, one-sentence summary of the service
+          example: An awesome Date Annotator based on regex patterns
+          maxLength: 100
+          type: string
+        author:
+          description: The author of the service
+          example: Example Author
+          type: string
+        authorEmail:
+          description: The email address of the author
+          example: author@example.com
+          format: email
+          type: string
+        url:
+          description: The URL to the homepage of the service
+          format: uri
+          type: string
+      type: object
