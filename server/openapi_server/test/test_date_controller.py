@@ -21,8 +21,7 @@ class TestDateController(BaseTestCase):
         Get all date annotations
         """
 
-        note = [Note(id=None, created_by=None, created_at=None,
-                updated_by=None, updated_at=None, text="text", type=None)]
+        note = [Note(text="text", type=None)]
         headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
