@@ -20,8 +20,9 @@ class TestDateController(BaseTestCase):
 
         Get all date annotations
         """
-        note = null
-        headers = { 
+
+        note = [Note(text="text", type=None)]
+        headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
