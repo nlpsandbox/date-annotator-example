@@ -119,10 +119,9 @@ jobs:
     - name: Replace README images path by URL
       if: steps.prep.outputs.push == 'true'
       run: |
-        # Replace "/pictures" by https://.../pictures so the images are
-        # visible in DockerHub description.
-        # sed -i 's/(pictures/('"${{ env.pictures_base }}"'\/pictures/g' README.md
-        awk '{gsub("(pictures", "${{ env.pictures_base }}", $0); print}' README.md
+        # Replace "/pictures" by https://.../pictures in README.md so that the
+        # images are redered in the DockerHub description.
+        awk '{gsub("\(pictures", "('"${{ emv.pictures_base }}"'", $0); print}' README.md > README.md
         cat README.md
     - name: Docker Hub Description
       if: steps.prep.outputs.push == 'true'
