@@ -113,7 +113,47 @@ given in the section [Running using Python](#Running-with-Python).
 
 ### Update the codebase when a new OpenAPI spec is available
 
-TBA
+When a new API has been released there are 2 ways to update this repository
+with the new specification.
+
+The procedure in both cases starts by checking out the [nlp-sandbox-schemas](https://github.com/Sage-Bionetworks/nlp-sandbox-schemas) repository that contains the
+newest API Specification of all NLP Sandbox projects. Make sure you have the prerequisits installed for that project
+before proceeding. These instructions assume you have checked out ALL projects to your home directory
+identified as ~ in the following documentation. Start by running the following:
+
+    cd ~/nlp-sandbox-schemas
+    npm run build openapi/date-annotator/openapi.yaml
+    
+This will generate an output file dist.yaml in the current directory. It should output the following:
+
+    $ npm run build openapi/date-annotator/openapi.yaml
+
+    > nlp-sandbox-schemas@0.1.6 build ~/nlp-sandbox-schemas
+    > openapi bundle -o dist $npm_config_entrypoint "openapi/date-annotator/openapi.yaml"
+    
+    bundling openapi/date-annotator/openapi.yaml...
+    📦 Created a bundle for openapi/date-annotator/openapi.yaml at dist.yaml in 28ms.
+
+Next to re-generate the flask app using one  of two methods.
+
+The first is the easiest and least error prone if you are worried about overriding existing files.
+One can generate a new flask app in a "test" directory and compare results between the old and new
+directories . This is done with the command:
+
+    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotated-example-updated
+
+Then compare the ~/nlp-sandbox-data-annotated-example-updated to your existing ~/nlp-sandbox-data-annotated-example directory to see
+what was updated.
+
+The other method, once you are more confident, is to lay the files on top of the existing repository you've already checked with the command:
+
+    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotatoed-example/server
+
+If one wants to prevent certain files you know have already been customized then add those file names
+cto the ~/nlp-sandbox-data-annotatoed-example/.openapi-generator-ignore file before running the preceeding command.
+
+Then use git to see what is updated and if you overwrote any files you wanted
+to preserve. One can revert those changes and add those files to the .openapi-generator-ignore file for next time there is an update.
 
 
 ### Generate a Spring Boost server stub
