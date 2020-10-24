@@ -12,9 +12,7 @@ on:
   pull_request:
 
 env:
-  # github.event.repository.default_branch not available for on: schedule
-  default_branch: develop
-  pictures_base: https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/raw/${default_branch}
+  pictures_base: https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/raw/develop
 
 jobs:
   lint:
