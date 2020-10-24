@@ -47,7 +47,7 @@ jobs:
         pip install tox
     - name: Run integration tests
       run: |
-        cd src/server
+        cd server
         tox
 
   docker:
