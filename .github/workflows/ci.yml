@@ -123,7 +123,7 @@ jobs:
         # images are redered in the DockerHub description.
         cat README.md
         awk -W version
-        awk '{gsub("(pictures", "('"${{ env.pictures_base }}"'/pictures", $0); print}' README.md)' > tmp && mv tmp README.md
+        gawk -i inplace '{gsub("(pictures", "('"${{ env.pictures_base }}"'/pictures"); print}' README.md
         cat README.md
         echo PLOP
     - name: Docker Hub Description
