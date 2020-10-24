@@ -28,7 +28,7 @@ jobs:
     - name: Lint Python code with Flake8
       uses: docker://alpine/flake8:latest
       with:
-        args: server
+        args: --config server/setup.cfg server
 
   test:
     needs: [lint]
