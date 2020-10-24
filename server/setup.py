@@ -1,6 +1,5 @@
 # coding: utf-8
 
-import sys
 from setuptools import setup, find_packages
 
 NAME = "openapi_server"
@@ -32,8 +31,7 @@ setup(
     include_package_data=True,
     entry_points={
         'console_scripts': ['openapi_server=openapi_server.__main__:main']},
-    long_description="""\
-    The OpenAPI specification implemented by NLP Sandbox Date Annotators. # Overview This NLP tool detects date references in the clinical note specified and returns a list of date annotations. 
+    long_description="""
+    The OpenAPI specification implemented by NLP Sandbox Date Annotators.
     """
 )
-
