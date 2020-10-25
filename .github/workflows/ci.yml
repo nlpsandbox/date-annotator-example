@@ -118,7 +118,7 @@ jobs:
       run: |
         # Replace "/pictures" by https://.../pictures in README.md so that the
         # images are visible in the README.md pushed to DockerHub
-        sed 's/(pictures/(https:\/\/github.com\/Sage-Bionetworks\/nlp-sandbox-date-annotator-example\/raw\/develop\/pictures/g' README.md
+        sed -i 's/(pictures/(https:\/\/github.com\/Sage-Bionetworks\/nlp-sandbox-date-annotator-example\/raw\/develop\/pictures/g' README.md
     - name: Docker Hub Description
       if: steps.prep.outputs.push == 'true'
       uses: peter-evans/dockerhub-description@v2
