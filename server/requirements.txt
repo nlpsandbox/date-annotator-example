@@ -1,6 +1,6 @@
-connexion[swagger-ui] <= 2.3.0; python_version=="3.5" or python_version=="3.4"
-connexion[swagger-ui] >= 2.6.0; python_version>="3.6"
-python_dateutil >= 2.6.0
-setuptools >= 21.0.0
-swagger-ui-bundle >= 0.0.2
+connexion[swagger-ui] == 2.6.0
+python_dateutil == 2.6.0
+setuptools == 21.0.0
+swagger-ui-bundle == 0.0.2
+uWSGI == 2.0.19.1
 werkzeug == 1.0.1; python_version=="3.5" or python_version=="3.4"
