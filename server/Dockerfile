@@ -3,6 +3,8 @@ FROM python:3.8.5-slim-buster
 ENV PIP_NO_CACHE_DIR=off
 ENV APP_USER=app
 ENV APP_DIR=/opt/app
+ENV APP_PROCESSES=4
+ENV APP_THREADS=2
 
 # Safer bash scripts with 'set -euxo pipefail'
 SHELL ["/bin/bash", "-euxo", "pipefail", "-c"]
