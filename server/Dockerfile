@@ -33,4 +33,4 @@ RUN pip install -r ${APP_DIR}/requirements.txt
 EXPOSE 8080
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["uwsgi", "--ini", "app.ini", "--http", ":8080"]
+CMD ["uwsgi", "--ini", "app.ini", "--http-socket", ":8080"]
