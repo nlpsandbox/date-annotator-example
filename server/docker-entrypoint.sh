@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-if [ "$1" = 'app' ]; then
+if [ "$1" = 'uwsgi' ]; then
     cd ${APP_DIR}
-
-    # if [ "${APP_}"]
-    exec gosu www-data uwsgi --ini app.ini
+    exec gosu www-data "$@"
 fi
 
 exec "$@"
