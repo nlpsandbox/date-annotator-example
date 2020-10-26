@@ -7,8 +7,5 @@ services:
       context: server
       dockerfile: Dockerfile
     container_name: date-annotator-example
-    environment:
-      - APP_PROCESSES=2
-      - APP_THREADS=2
     ports:
       - "8080:8080"
