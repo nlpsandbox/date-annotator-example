@@ -2,17 +2,8 @@
 set -e
 
 if [ "$1" = 'app' ]; then
-    service nginx start
     cd ${APP_DIR}
-    uwsgi --ini uwsgi.ini
-
-    # chown -R postgres "$PGDATA"
-
-    # if [ -z "$(ls -A "$PGDATA")" ]; then
-    #     gosu postgres initdb
-    # fi
-
-    # exec gosu postgres "$@"
+    exec gosu "${APP_UID}" uwsgi --ini app.ini
 fi
 
 exec "$@"

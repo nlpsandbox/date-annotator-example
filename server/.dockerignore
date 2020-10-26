@@ -5,6 +5,7 @@ README.md
 setup.cfg
 test-requirements.txt
 tox.ini
+Dockerfile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
