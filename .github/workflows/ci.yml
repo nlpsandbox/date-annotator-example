@@ -44,7 +44,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip tox
-        pip install tox
     - name: Run integration tests
       run: |
         cd server
