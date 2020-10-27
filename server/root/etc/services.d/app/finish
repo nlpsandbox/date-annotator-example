@@ -1,5 +1,0 @@
-#!/usr/bin/execlineb -S0
-
-# By default, services created in /etc/services.d will automatically restart.
-# Here we bring the container down if a service crashes.
-s6-svscanctl -t /var/run/s6/services
