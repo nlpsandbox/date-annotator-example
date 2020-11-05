@@ -116,13 +116,15 @@ given in the section [Running using Python](#Running-with-Python).
 When a new API has been released there are 2 ways to update this repository
 with the new specification.
 
-The procedure in both cases starts by checking out the [nlp-sandbox-schemas](https://github.com/Sage-Bionetworks/nlp-sandbox-schemas) repository that contains the
-newest API Specification of all NLP Sandbox projects. Make sure you have the prerequisits installed for that project
-before proceeding. These instructions assume you have checked out ALL projects to your home directory
-identified as ~ in the following documentation. Start by running the following:
+The procedure in both cases starts with:
 
-    cd ~/nlp-sandbox-schemas
-    npm run build openapi/date-annotator/openapi.yaml
+1. Look at  https://github.com/Sage-Bionetworks/nlp-sandbox-schemas repository.
+2. Identify if a newer version of the spec has been released since the developer created his tool OR since last time he updated it.
+3. Download the latest version of the spec: https://sage-bionetworks.github.io/nlp-sandbox-schemas/date-annotator/latest/openapi.yaml
+4. run the command :
+
+    npx @openapitools/openapi-generator-cli generate -i openapi.yaml -g python-flask -o server.
+
     
 This will generate an output file dist.yaml in the current directory. It should output the following:
 
