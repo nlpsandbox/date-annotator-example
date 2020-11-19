@@ -1,10 +1,11 @@
-.travis.yaml
+.empty
+.gitignore
 .openapi-generator-ignore
 README.md
-tox.ini
-git_push.sh
+setup.cfg
 test-requirements.txt
-setup.py
+tox.ini
+Dockerfile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
