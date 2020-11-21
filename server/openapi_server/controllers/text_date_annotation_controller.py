@@ -4,7 +4,6 @@ import re
 from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.note import Note  # noqa: E501
 from openapi_server.models.text_date_annotations import TextDateAnnotations  # noqa: E501
-from openapi_server import util
 
 
 def create_text_date_annotations(note=None):  # noqa: E501
@@ -20,36 +19,42 @@ def create_text_date_annotations(note=None):  # noqa: E501
     res = None
     status = None
 
-    if connexion.request.is_json:
-        note = Note.from_dict(connexion.request.get_json())  # noqa: E501
+    try:
+        if connexion.request.is_json:
+            note = Note.from_dict(connexion.request.get_json())  # noqa: E501
 
-        annotations = []
-        # Adapted from https://stackoverflow.com/a/61234139
-        matches = re.finditer(
-            "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])(/)" +
-            "(19[0-9][0-9]|20[0-9][0-9])", note._text)
-        add_date_annotation(annotations, matches, "MM/DD/YYYY")
+            annotations = []
+            # Adapted from https://stackoverflow.com/a/61234139
+            matches = re.finditer(
+                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])" +
+                "(/)(19[0-9][0-9]|20[0-9][0-9])", note._text)
+            add_date_annotation(annotations, matches, "MM/DD/YYYY")
 
-        matches = re.finditer(
-            "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])(-)" +
-            "(19[0-9][0-9]|20[0-9][0-9])", note._text)
-        add_date_annotation(annotations, matches, "MM-DD-YYYY")
+            matches = re.finditer(
+                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])" +
+                "(-)(19[0-9][0-9]|20[0-9][0-9])", note._text)
+            add_date_annotation(annotations, matches, "MM-DD-YYYY")
 
-        matches = re.finditer(
-            "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\\.)([1-9]|0[1-9]|1[0-2])" +
-            "(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
-        add_date_annotation(annotations, matches, "MM.DD.YYYY")
+            matches = re.finditer(
+                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\\.)([1-9]|0[1-9]|" +
+                "1[0-2])(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
+            add_date_annotation(annotations, matches, "MM.DD.YYYY")
 
-        matches = re.finditer(
-            "([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])", note._text)
-        add_date_annotation(annotations, matches, "YYYY")
+            matches = re.finditer(
+                "([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])", note._text)
+            add_date_annotation(annotations, matches, "YYYY")
 
-        matches = re.finditer(
-            "(January|February|March|April|May|June|July|August|September|" +
-            "October|November|December)", note._text, re.IGNORECASE)
-        add_date_annotation(annotations, matches, "MMMM")
+            matches = re.finditer(
+                "(January|February|March|April|May|June|July|August|" +
+                "September|October|November|December)",
+                note._text, re.IGNORECASE)
+            add_date_annotation(annotations, matches, "MMMM")
 
-        res = TextDateAnnotations(annotations)
+            res = TextDateAnnotations(annotations)
+            status = 201
+    except Exception as error:
+        status = 500
+        res = Error("Internal error", status, str(error))
 
     return res, status
 
