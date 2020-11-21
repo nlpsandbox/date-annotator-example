@@ -19,8 +19,8 @@ def create_text_date_annotations(note=None):  # noqa: E501
     res = None
     status = None
 
-    try:
-        if connexion.request.is_json:
+    if connexion.request.is_json:
+        try:
             note = Note.from_dict(connexion.request.get_json())  # noqa: E501
 
             annotations = []
@@ -51,10 +51,10 @@ def create_text_date_annotations(note=None):  # noqa: E501
             add_date_annotation(annotations, matches, "MMMM")
 
             res = TextDateAnnotations(annotations)
-            status = 201
-    except Exception as error:
-        status = 500
-        res = Error("Internal error", status, str(error))
+            status = 200
+        except Exception as error:
+            status = 500
+            res = Error("Internal error", status, str(error))
 
     return res, status
 

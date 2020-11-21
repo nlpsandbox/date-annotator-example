@@ -23,10 +23,9 @@ class TestTextDateAnnotationController(BaseTestCase):
         note = {
   "noteType" : "loinc:LP29684-5",
   "patientId" : "507f1f77bcf86cd799439011",
-  "id" : "id",
   "text" : "This is the content of a clinical note."
 }
-        headers = { 
+        headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
