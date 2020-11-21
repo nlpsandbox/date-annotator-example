@@ -26,18 +26,18 @@ def create_text_date_annotations(note=None):  # noqa: E501
             annotations = []
             # Adapted from https://stackoverflow.com/a/61234139
             matches = re.finditer(
-                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(/)([1-9]|0[1-9]|1[0-2])" +
+                "([1-9]|0[1-9]|1[0-2])(/)([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
                 "(/)(19[0-9][0-9]|20[0-9][0-9])", note._text)
             add_date_annotation(annotations, matches, "MM/DD/YYYY")
 
             matches = re.finditer(
-                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(-)([1-9]|0[1-9]|1[0-2])" +
+                "([1-9]|0[1-9]|1[0-2])(-)([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
                 "(-)(19[0-9][0-9]|20[0-9][0-9])", note._text)
             add_date_annotation(annotations, matches, "MM-DD-YYYY")
 
             matches = re.finditer(
-                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\\.)([1-9]|0[1-9]|" +
-                "1[0-2])(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
+                "([1-9]|0[1-9]|1[0-2])(\\.)([1-9]|0[1-9]|1[0-9]|2[0-9]|" +
+                "3[0-1])(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
             add_date_annotation(annotations, matches, "MM.DD.YYYY")
 
             matches = re.finditer(

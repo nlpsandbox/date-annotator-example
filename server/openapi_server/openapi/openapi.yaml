@@ -98,7 +98,7 @@ components:
         noteType: loinc:LP29684-5
         patientId: 507f1f77bcf86cd799439011
         id: id
-        text: This is the content of a clinical note.
+        text: On 12/26/2020, Ms. Chloe Price met with Dr. Masahiro.
       properties:
         id:
           description: The ID of the note
