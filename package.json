@@ -1,0 +1,11 @@
+{
+    "name": "awesome-date-annotator",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@openapitools/openapi-generator-cli": "^1.0.18-4.3.1"
+    },
+    "scripts": {
+        "generate:server": "openapi-generator generate -g python-flask -o server -i $npm_config_spec"
+    }
+}

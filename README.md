@@ -1,9 +1,9 @@
 # NLP Sandbox Date Annotator Example
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/nlpsandbox/date-annotator-example)
+[![GitHub Release](https://img.shields.io/github/release/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/releases)
 [![GitHub CI](https://img.shields.io/github/workflow/status/Sage-Bionetworks/nlp-sandbox-date-annotator-example/ci.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example)
 [![GitHub License](https://img.shields.io/github/license/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example)
-[![GitHub Release](https://img.shields.io/github/release/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/releases)
 
 An example implementation of the [NLP Sandbox Date Annotator].
 
@@ -38,8 +38,6 @@ Install and start the Date Annotator.
 When running, the Date Annotator provides a web interface (http://localhost:8080/api/v1/ui/)
 that you can use to explore the input, output and actions available.
 
-![API UI get dates](pictures/api_ui_get_dates.png)
-
 ## Evaluating performance in the NLP Sandbox
 
 Requirements:
@@ -66,8 +64,6 @@ workflow that will help you implementing good practices and notify you when a
 new version of the OpenAPI specification for this NLP Tool is available. The
 GitHub workfow also includes a job to automatically submit your Date Annotator
 to the NLP Sandbox for evaluation.
-
-![Create repo from template](pictures/gh_repo_template.png)
 
 Alternatively, follow the steps listed below to generate an initial implementation
 of the Date Annotator using one of the many languages and framework supported by
@@ -98,20 +94,21 @@ Install the dependencies listed in *package.json*
 
 Display help information about `openapi-generator`
 
-    npx openapi-generator --help
+    ./node_modules/.bin/openapi-generator --help
 
 Identify the server generator that you want to use from this list
 
-    npx openapi-generator list
+    ./node_modules/.bin/openapi-generator list
 
 Generate the server codebase using the selected generator (here `python-flask`)
 
-    npx openapi-generator generate -i openapi.yaml -g python-flask -o server
+    ./node_modules/.bin/openapi-generator \
+        generate -i openapi.yaml -g python-flask -o server
 
 That's it! You can now start the Data Annotator server using the instructions
 given in the section [Running using Python](#Running-with-Python).
 
-### Update the codebase when a new OpenAPI spec is available
+<!-- ### Update the codebase when a new OpenAPI spec is available (TO UPDATE)
 
 When a new API has been released there are 2 ways to update this repository
 with the new specification.
@@ -142,7 +139,8 @@ The first is the easiest and least error prone if you are worried about overridi
 One can generate a new flask app in a "test" directory and compare results between the old and new
 directories . This is done with the command:
 
-    openapi-generator generate -i dist.yaml -g python-flask -o ~/nlp-sandbox-data-annotated-example-updated/server
+    npx @openapitools/openapi-generator-cli \
+        generate -i dist.yaml -g python-flask -o server
 
 Then compare the ~/nlp-sandbox-data-annotated-example-updated/server to your existing ~/nlp-sandbox-data-annotated-example/server directory to see
 what was updated.
@@ -155,7 +153,7 @@ If one wants to prevent certain files you know have already been customized then
 cto the ~/nlp-sandbox-data-annotated-example/server/.openapi-generator-ignore file before running the preceding command.
 
 Then use git to see what is updated and if you overwrote any files you wanted
-to preserve. One can revert those changes and add those files to the .openapi-generator-ignore file for next time there is an update.
+to preserve. One can revert those changes and add those files to the .openapi-generator-ignore file for next time there is an update. -->
 
 
 ### Generate a Spring Boost server stub
@@ -163,7 +161,7 @@ to preserve. One can revert those changes and add those files to the .openapi-ge
 Generate the initial server stub from the OpenAPI specification
 
     mkdir server
-    npx @openapitools/openapi-generator-cli \
+    ./node_modules/.bin/openapi-generator \
         generate -i openapi.yaml -g spring -o server
 
 Build and start the server with Maven
@@ -172,7 +170,7 @@ Build and start the server with Maven
     mvn package
     java -jar target/openapi-spring-0.1.6.jar
 
-The documentation UI is now available at http://localhost:8080.
+The API documentation UI is now available at http://localhost:8080.
 
 
 <!-- Definitions -->
