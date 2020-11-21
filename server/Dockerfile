@@ -1,6 +1,5 @@
 FROM python:3.8.5-slim-buster
 
-ENV PIP_NO_CACHE_DIR=off
 ENV APP_DIR=/opt/app
 
 # Safer bash scripts with 'set -euxo pipefail'
