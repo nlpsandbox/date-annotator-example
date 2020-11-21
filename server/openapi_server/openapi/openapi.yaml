@@ -12,77 +12,18 @@ info:
     name: Apache 2.0
     url: https://github.com/Sage-Bionetworks/nlp-sandbox/blob/main/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 0.1.6
+  version: 0.2.0
   x-logo:
     url: https://Sage-Bionetworks.github.io/nlp-sandbox-schemas/logo.png
 servers:
 - url: http://example.com/api/v1
 - url: https://example.com/api/v1
 tags:
-- description: Operations about dates
-  name: Date
-- description: Operations about API health
-  name: Health
-- description: Operations about NLP services
+- description: Operations about text date annotations
+  name: TextDateAnnotation
+- description: Operations about this API service
   name: Service
 paths:
-  /dates:
-    post:
-      description: Returns the date annotations
-      operationId: dates_read_all
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/Note'
-              type: array
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/DateAnnotation'
-                type: array
-          description: Success
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-      summary: Get all date annotations
-      tags:
-      - Date
-      x-openapi-router-controller: openapi_server.controllers.date_controller
-  /health:
-    get:
-      description: Get the health of the API
-      operationId: health
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Health'
-          description: Success
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: The specified resource was not found
-      summary: Get Health
-      tags:
-      - Health
-      x-openapi-router-controller: openapi_server.controllers.health_controller
   /service:
     get:
       description: Get information about the service
@@ -110,6 +51,32 @@ paths:
       tags:
       - Service
       x-openapi-router-controller: openapi_server.controllers.service_controller
+  /textDateAnnotations:
+    post:
+      description: Return the date annotations found in a clinical note
+      operationId: create_text_date_annotations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextDateAnnotations'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+      summary: Annotate dates in a clinical note
+      tags:
+      - TextDateAnnotation
+      x-openapi-router-controller: openapi_server.controllers.text_date_annotation_controller
 components:
   responses:
     Unauthorized:
@@ -125,100 +92,84 @@ components:
             $ref: '#/components/schemas/Error'
       description: The specified resource was not found
   schemas:
-    Email:
-      description: User email address
-      example: john.smith@example.com
-      format: test
-      type: string
-    User:
-      properties:
-        username:
-          example: John78
-          minLength: 4
-          type: string
-        firstName:
-          example: John
-          type: string
-        lastName:
-          example: Smith
-          type: string
-        email:
-          description: User email address
-          example: john.smith@example.com
-          format: test
-          type: string
-      required:
-      - email
-      - firstName
-      - lastName
-      - username
-      type: object
-    Entity:
+    Note:
+      description: A clinical note
+      example:
+        noteType: loinc:LP29684-5
+        patientId: 507f1f77bcf86cd799439011
+        id: id
+        text: This is the content of a clinical note.
       properties:
         id:
-          description: ID
-          example: 0
-          type: integer
-        createdBy:
-          $ref: '#/components/schemas/User'
-        createdAt:
-          description: When the entity has been created
-          format: date-time
+          description: The ID of the note
+          readOnly: true
           type: string
-        updatedBy:
-          $ref: '#/components/schemas/User'
-        updatedAt:
-          description: When the entity has been updated
-          format: date-time
+        text:
+          description: The content of the clinical note
+          example: This is the content of a clinical note.
           type: string
+        noteType:
+          description: The note type (LOINC concept)
+          example: loinc:LP29684-5
+          type: string
+        patientId:
+          description: The patient ID
+          example: 507f1f77bcf86cd799439011
+          type: string
+      required:
+      - noteType
+      - text
       type: object
-    Note:
-      type: object
-      description: A clinical note
-      allOf:
-        - $ref: '#/components/schemas/Entity'
-        - type: object
-          properties:
-            text:
-              description: The content of the note
-              type: string
-              example: 'On 09-03-1999, Ms Chloe Price met with Dr Joe.'
-            type:
-              description: The note type
-              type: string
-              enum:
-                - pathology
-                - phone_call
-    Annotation:
-      type: object
+    TextAnnotation:
       description: An annotation in a text
-      allOf:
-        - $ref: '#/components/schemas/Entity'
-        - type: object
-          properties:
-            noteId:
-              description: The note ID
-              type: integer
-            start:
-              description: The position of the first character
-              type: integer
-            length:
-              description: The length of the annotation
-              type: integer
-            text:
-              description: The string annotated
-              type: string
-    DateAnnotation:
+      properties:
+        start:
+          description: The position of the first character
+          example: 42
+          type: integer
+        length:
+          description: The length of the annotation
+          example: 10
+          type: integer
+        text:
+          description: The string annotated
+          type: string
+      required:
+      - length
+      - start
       type: object
-      description: A date annotation in a text
+    TextDateAnnotation:
       allOf:
-        - $ref: '#/components/schemas/Annotation'
-        - type: object
-          properties:
-            format:
-              description: Date format (ISO 8601)
-              type: string
+      - $ref: '#/components/schemas/TextAnnotation'
+      - $ref: '#/components/schemas/TextDateAnnotation_allOf'
+      description: A date annotation in a text
+      example:
+        start: 42
+        length: 10
+        text: 10/26/2020
+        dateFormat: MM/DD/YYYY
+      type: object
+    TextDateAnnotations:
+      description: A list of text date annotations
+      example:
+        textDateAnnotations:
+        - start: 42
+          length: 10
+          text: 10/26/2020
+          dateFormat: MM/DD/YYYY
+        - start: 42
+          length: 10
+          text: 10/26/2020
+          dateFormat: MM/DD/YYYY
+      properties:
+        textDateAnnotations:
+          description: A list of text date annotations
+          items:
+            $ref: '#/components/schemas/TextDateAnnotation'
+          type: array
+      type: object
     Error:
+      description: Problem details (tools.ietf.org/html/rfc7807)
       properties:
         title:
           description: A human readable documentation for the problem type
@@ -236,17 +187,6 @@ components:
       required:
       - status
       - title
-      type: object
-    Health:
-      example:
-        status: pass
-      properties:
-        status:
-          description: Health status
-          enum:
-          - pass
-          - warn
-          type: string
       type: object
     Service:
       description: Information about an NLP service
@@ -300,3 +240,9 @@ components:
           format: uri
           type: string
       type: object
+    TextDateAnnotation_allOf:
+      properties:
+        dateFormat:
+          description: Date format (ISO 8601)
+          example: MM/DD/YYYY
+          type: string
