@@ -23,6 +23,7 @@
 #!docs/README.md
 
 # do not update
+.dockerignore
 Dockerfile
 requirements.txt
 test-requirements.txt
