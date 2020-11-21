@@ -15,14 +15,12 @@ def service():  # noqa: E501
         name="date-annotator-example",
         version="0.2.1",
         license="Apache-2.0",
-        repository="github:Sage-Bionetworks/nlp-sandbox-date-annotator-" +
-                   "example",
+        repository="github:nlpsandbox/date-annotator-example",
         description="An example implementation of the NLP Sandbox Date " +
                     "Annotator",
         author="The NLP Sandbox Team",
         author_email="thomas.schaffter@sagebionetworks.org",
-        url="https://github.com/Sage-Bionetworks/nlp-sandbox-date-" +
-            "annotator-example"
+        url="https://github.com/nlpsandbox/date-annotator-example"
     )
 
     return jsonify(service), 200
