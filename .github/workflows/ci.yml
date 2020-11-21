@@ -112,12 +112,6 @@ jobs:
           org.opencontainers.image.version=${{ steps.prep.outputs.version }}
           org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.licenses=${{ github.event.repository.license.name }}
-    - name: Patch README images to use full image URLs
-      if: steps.prep.outputs.push == 'true'
-      run: |
-        # Replace "/pictures" by https://.../pictures in README.md so that the
-        # images are visible in the README.md pushed to DockerHub
-        sed -i 's/(pictures/(https:\/\/github.com\/Sage-Bionetworks\/nlp-sandbox-date-annotator-example\/raw\/develop\/pictures/g' README.md
     - name: Docker Hub Description
       if: steps.prep.outputs.push == 'true'
       uses: peter-evans/dockerhub-description@v2
