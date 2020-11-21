@@ -13,7 +13,7 @@ def service():  # noqa: E501
     """
     service = Service(
         name="date-annotator-example",
-        version="0.1.6",
+        version="0.2.1",
         license="Apache-2.0",
         repository="github:Sage-Bionetworks/nlp-sandbox-date-annotator-" +
                    "example",
