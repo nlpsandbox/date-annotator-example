@@ -1,9 +1,9 @@
 # NLP Sandbox Date Annotator Example
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/nlpsandbox/date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pulls&logo=docker)](https://hub.docker.com/r/nlpsandbox/date-annotator-example)
-[![GitHub Release](https://img.shields.io/github/release/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/releases)
 [![GitHub CI](https://img.shields.io/github/workflow/status/Sage-Bionetworks/nlp-sandbox-date-annotator-example/ci.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example)
 [![GitHub License](https://img.shields.io/github/license/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example)
+[![GitHub Release](https://img.shields.io/github/release/Sage-Bionetworks/nlp-sandbox-date-annotator-example.svg?include_prereleases&color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/Sage-Bionetworks/nlp-sandbox-date-annotator-example/releases)
 
 An example implementation of the [NLP Sandbox Date Annotator].
 
@@ -125,14 +125,14 @@ The procedure in both cases starts with:
 
     npx @openapitools/openapi-generator-cli generate -i openapi.yaml -g python-flask -o server.
 
-    
+
 This will generate an output file dist.yaml in the current directory. It should output the following:
 
     $ npm run build openapi/date-annotator/openapi.yaml
 
     > nlp-sandbox-schemas@0.1.6 build ~/nlp-sandbox-schemas
     > openapi bundle -o dist $npm_config_entrypoint "openapi/date-annotator/openapi.yaml"
-    
+
     bundling openapi/date-annotator/openapi.yaml...
     📦 Created a bundle for openapi/date-annotator/openapi.yaml at dist.yaml in 28ms.
 
