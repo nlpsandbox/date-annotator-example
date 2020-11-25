@@ -18,5 +18,6 @@ openapi_server/models/text_date_annotation_request.py
 openapi_server/models/text_date_annotations.py
 openapi_server/openapi/openapi.yaml
 openapi_server/test/__init__.py
+openapi_server/test/test_text_date_annotation_controller.py
 openapi_server/typing_utils.py
 openapi_server/util.py

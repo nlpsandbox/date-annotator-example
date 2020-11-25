@@ -7,7 +7,7 @@ from flask import json
 from six import BytesIO
 
 from openapi_server.models.error import Error  # noqa: E501
-from openapi_server.models.note import Note  # noqa: E501
+from openapi_server.models.text_date_annotation_request import TextDateAnnotationRequest  # noqa: E501
 from openapi_server.models.text_date_annotations import TextDateAnnotations  # noqa: E501
 from openapi_server.test import BaseTestCase
 
@@ -20,12 +20,15 @@ class TestTextDateAnnotationController(BaseTestCase):
 
         Annotate dates in a clinical note
         """
-        note = {
-  "noteType" : "loinc:LP29684-5",
-  "patientId" : "507f1f77bcf86cd799439011",
-  "text" : "This is the content of a clinical note."
+        text_date_annotation_request = {
+  "note" : {
+    "noteType" : "loinc:LP29684-5",
+    "patientId" : "507f1f77bcf86cd799439011",
+    "id" : "id",
+    "text" : "On 12/26/2020, Ms. Chloe Price met with Dr. Prescott."
+  }
 }
-        headers = {
+        headers = { 
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
@@ -33,7 +36,7 @@ class TestTextDateAnnotationController(BaseTestCase):
             '/api/v1/textDateAnnotations',
             method='POST',
             headers=headers,
-            data=json.dumps(note),
+            data=json.dumps(text_date_annotation_request),
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
