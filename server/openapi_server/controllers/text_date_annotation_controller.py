@@ -2,7 +2,6 @@ import connexion
 import re
 
 from openapi_server.models.error import Error  # noqa: E501
-from openapi_server.models.note import Note  # noqa: E501
 from openapi_server.models.text_date_annotation_request import TextDateAnnotationRequest  # noqa: E501
 from openapi_server.models.text_date_annotations import TextDateAnnotations  # noqa: E501
 
