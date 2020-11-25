@@ -15,7 +15,7 @@ class TextAnnotation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, start=None, length=None, text=None):  # noqa: E501
+    def __init__(self, start=None, length=None, text=None, confidence=None):  # noqa: E501
         """TextAnnotation - a model defined in OpenAPI
 
         :param start: The start of this TextAnnotation.  # noqa: E501
@@ -24,22 +24,27 @@ class TextAnnotation(Model):
         :type length: int
         :param text: The text of this TextAnnotation.  # noqa: E501
         :type text: str
+        :param confidence: The confidence of this TextAnnotation.  # noqa: E501
+        :type confidence: float
         """
         self.openapi_types = {
             'start': int,
             'length': int,
-            'text': str
+            'text': str,
+            'confidence': float
         }
 
         self.attribute_map = {
             'start': 'start',
             'length': 'length',
-            'text': 'text'
+            'text': 'text',
+            'confidence': 'confidence'
         }
 
         self._start = start
         self._length = length
         self._text = text
+        self._confidence = confidence
 
     @classmethod
     def from_dict(cls, dikt) -> 'TextAnnotation':
@@ -124,3 +129,30 @@ class TextAnnotation(Model):
         """
 
         self._text = text
+
+    @property
+    def confidence(self):
+        """Gets the confidence of this TextAnnotation.
+
+        The confidence in the accuracy of the annotation  # noqa: E501
+
+        :return: The confidence of this TextAnnotation.
+        :rtype: float
+        """
+        return self._confidence
+
+    @confidence.setter
+    def confidence(self, confidence):
+        """Sets the confidence of this TextAnnotation.
+
+        The confidence in the accuracy of the annotation  # noqa: E501
+
+        :param confidence: The confidence of this TextAnnotation.
+        :type confidence: float
+        """
+        if confidence is not None and confidence > 100:  # noqa: E501
+            raise ValueError("Invalid value for `confidence`, must be a value less than or equal to `100`")  # noqa: E501
+        if confidence is not None and confidence < 0:  # noqa: E501
+            raise ValueError("Invalid value for `confidence`, must be a value greater than or equal to `0`")  # noqa: E501
+
+        self._confidence = confidence

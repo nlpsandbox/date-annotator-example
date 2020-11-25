@@ -2,7 +2,7 @@ import connexion
 import re
 
 from openapi_server.models.error import Error  # noqa: E501
-from openapi_server.models.note import Note  # noqa: E501
+from openapi_server.models.text_date_annotation_request import TextDateAnnotationRequest  # noqa: E501
 from openapi_server.models.text_date_annotations import TextDateAnnotations  # noqa: E501
 
 
@@ -21,7 +21,8 @@ def create_text_date_annotations(note=None):  # noqa: E501
 
     if connexion.request.is_json:
         try:
-            note = Note.from_dict(connexion.request.get_json())  # noqa: E501
+            annotation_request = TextDateAnnotationRequest.from_dict(connexion.request.get_json())  # noqa: E501
+            note = annotation_request._note
 
             annotations = []
             # Adapted from https://stackoverflow.com/a/61234139
@@ -70,4 +71,5 @@ def add_date_annotation(annotations, matches, format):
             'length': len(match[0]),
             'text':  match[0],
             'format': format,
+            'confidence': 95
         })

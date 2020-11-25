@@ -12,7 +12,7 @@ info:
     name: Apache 2.0
     url: https://github.com/Sage-Bionetworks/nlp-sandbox/blob/main/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 0.2.1
+  version: 0.2.2
   x-logo:
     url: https://Sage-Bionetworks.github.io/nlp-sandbox-schemas/logo.png
 servers:
@@ -59,7 +59,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Note'
+              $ref: '#/components/schemas/TextDateAnnotationRequest'
       responses:
         "200":
           content:
@@ -98,7 +98,7 @@ components:
         noteType: loinc:LP29684-5
         patientId: 507f1f77bcf86cd799439011
         id: id
-        text: On 12/26/2020, Ms. Chloe Price met with Dr. Masahiro.
+        text: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott.
       properties:
         id:
           description: The ID of the note
@@ -106,7 +106,7 @@ components:
           type: string
         text:
           description: The content of the clinical note
-          example: This is the content of a clinical note.
+          example: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott.
           type: string
         noteType:
           description: The note type (LOINC concept)
@@ -119,6 +119,18 @@ components:
       required:
       - noteType
       - text
+      type: object
+    TextDateAnnotationRequest:
+      description: An annotation request
+      example:
+        note:
+          noteType: loinc:LP29684-5
+          patientId: 507f1f77bcf86cd799439011
+          id: id
+          text: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott.
+      properties:
+        note:
+          $ref: '#/components/schemas/Note'
       type: object
     TextAnnotation:
       description: An annotation in a text
@@ -134,6 +146,13 @@ components:
         text:
           description: The string annotated
           type: string
+        confidence:
+          description: The confidence in the accuracy of the annotation
+          example: 95
+          format: float
+          maximum: 100
+          minimum: 0
+          type: number
       required:
       - length
       - start
@@ -246,3 +265,4 @@ components:
           description: Date format (ISO 8601)
           example: MM/DD/YYYY
           type: string
+      type: object
