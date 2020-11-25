@@ -7,7 +7,6 @@ openapi_server/controllers/service_controller.py
 openapi_server/controllers/text_date_annotation_controller.py
 openapi_server/encoder.py
 openapi_server/models/__init__.py
-openapi_server/models/annotation_request.py
 openapi_server/models/base_model_.py
 openapi_server/models/error.py
 openapi_server/models/note.py
@@ -15,6 +14,7 @@ openapi_server/models/service.py
 openapi_server/models/text_annotation.py
 openapi_server/models/text_date_annotation.py
 openapi_server/models/text_date_annotation_all_of.py
+openapi_server/models/text_date_annotation_request.py
 openapi_server/models/text_date_annotations.py
 openapi_server/openapi/openapi.yaml
 openapi_server/test/__init__.py

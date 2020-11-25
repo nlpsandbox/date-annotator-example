@@ -12,7 +12,7 @@ info:
     name: Apache 2.0
     url: https://github.com/Sage-Bionetworks/nlp-sandbox/blob/main/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 0.2.1
+  version: 0.2.2
   x-logo:
     url: https://Sage-Bionetworks.github.io/nlp-sandbox-schemas/logo.png
 servers:
@@ -59,7 +59,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AnnotationRequest'
+              $ref: '#/components/schemas/TextDateAnnotationRequest'
       responses:
         "200":
           content:
@@ -120,7 +120,7 @@ components:
       - noteType
       - text
       type: object
-    AnnotationRequest:
+    TextDateAnnotationRequest:
       description: An annotation request
       example:
         note:
