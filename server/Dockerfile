@@ -19,7 +19,7 @@ RUN apt-get update -qq -y \
 
 # Copy server files
 COPY openapi_server ${APP_DIR}/openapi_server
-COPY requirements.txt app.ini ${APP_DIR}/
+COPY requirements.txt uwsgi.ini ${APP_DIR}/
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
@@ -31,4 +31,4 @@ EXPOSE 8080
 
 # Set the entrypoint script and the default command run by the container
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["uwsgi", "--ini", "app.ini", "--lazy", "--http-socket", ":8080"]
+CMD ["uwsgi", "--ini", "uwsgi.ini", "--lazy", "--http-socket", ":8080"]
