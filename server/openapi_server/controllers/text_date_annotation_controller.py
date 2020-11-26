@@ -3,6 +3,7 @@ import re
 
 from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.text_date_annotation_request import TextDateAnnotationRequest  # noqa: E501
+from openapi_server.models.text_date_annotation import TextDateAnnotation
 from openapi_server.models.text_date_annotations import TextDateAnnotations  # noqa: E501
 
 
@@ -60,16 +61,16 @@ def create_text_date_annotations(note=None):  # noqa: E501
     return res, status
 
 
-def add_date_annotation(annotations, matches, format):
+def add_date_annotation(annotations, matches, date_format):
     """
     Converts matches to TextDateAnnotation objects and adds them to the
     annotations array specified.
     """
     for match in matches:
-        annotations.append({
-            'start': match.start(),
-            'length': len(match[0]),
-            'text':  match[0],
-            'format': format,
-            'confidence': 95
-        })
+        annotations.append(TextDateAnnotation(
+            start=match.start(),
+            length=len(match[0]),
+            text=match[0],
+            date_format=date_format,
+            confidence=95
+        ))
