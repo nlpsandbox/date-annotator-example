@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 
 import connexion
+import flask
 
 from openapi_server import encoder
 
 app = connexion.App(__name__, specification_dir='./openapi/')
 app.app.json_encoder = encoder.JSONEncoder
 app.add_api('openapi.yaml',
-            arguments={'title': 'NLP Sandbox Date Annotator API'},
             pythonic_params=True)
+
+# Configuring / to return the service information (required by the NLP Sandbox)
+app.add_url_rule('/', 'root', lambda: flask.redirect('/api/v1/service'))
 
 
 def main():
-    # TODO: Consider using param host="0.0.0.0", debug=True,
     app.run(port=8080)
 
 
