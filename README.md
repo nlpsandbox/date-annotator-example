@@ -10,8 +10,8 @@ An example implementation of the [NLP Sandbox Date Annotator].
 
 ## Specification
 
-- Annotates date strings in clinical notes using simple regular expressions
 - Implements the [NLP Sandbox Date Annotator OpenAPI specification]
+- Annotates date strings in clinical notes using simple regular expressions
 
 ## Usage
 
