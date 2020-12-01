@@ -24,7 +24,8 @@ COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
 # Install dependencies
-RUN pip install --no-cache-dir -r ${APP_DIR}/requirements.txt
+RUN pip install --no-cache-dir \
+    -r ${APP_DIR}/requirements.txt uWSGI==2.0.19.1
 
 # Expose the port used by the application
 EXPOSE 8080
