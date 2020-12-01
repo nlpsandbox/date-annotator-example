@@ -1,4 +1,3 @@
-connexion[swagger-ui] == 2.7.0
-python_dateutil == 2.8.1
-setuptools == 50.3.2
-swagger-ui-bundle == 0.0.8
+connexion==2.7.0
+python_dateutil==2.8.1
+swagger-ui-bundle==0.0.8
