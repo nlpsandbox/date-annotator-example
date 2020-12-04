@@ -22,15 +22,16 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 
-# do not update
+.travis.yml
+git_push.sh
+openapi_server/models/*_all_of.py
+setup.py
+
+# this list has been defined after the generation of the initial codebase
 .dockerignore
 Dockerfile
+openapi_server/controllers/security_controller_.py
+openapi_server/__main__.py
 requirements.txt
 test-requirements.txt
 tox.ini
-openapi_server/__main__.py
-
-# do not create
-.travis.yml
-git_push.sh
-setup.py

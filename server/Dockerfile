@@ -32,4 +32,9 @@ EXPOSE 8080
 
 # Set the entrypoint script and the default command run by the container
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["uwsgi", "--ini", "uwsgi.ini", "--lazy", "--http-socket", ":8080"]
+
+# Run server in development mode
+# CMD ["python", "-m", "openapi_server"]
+
+# Run server in production mode
+CMD ["uwsgi", "--ini", "uwsgi.ini", "--lazy", "--http", ":8080"]

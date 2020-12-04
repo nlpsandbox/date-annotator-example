@@ -15,7 +15,7 @@ An example implementation of the [NLP Sandbox Date Annotator].
 
 ## Usage
 
-[![Gitpod](https://img.shields.io/badge/Gitpod-Open_in_Gitpod-blue?color=0273b3&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=gitpod&label=)](https://hub.docker.com/r/nlpsandbox/date-annotator-example)
+[![Gitpod](https://img.shields.io/badge/Gitpod-Open_in_Gitpod-blue?color=0273b3&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=gitpod&label=)](gitpod.io/#https://github.com/nlpsandbox/date-annotator-example)
 
 ### Running with Docker
 
