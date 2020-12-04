@@ -3,12 +3,7 @@
 from __future__ import absolute_import
 import unittest
 
-from flask import json
-from six import BytesIO
-
-from openapi_server.models.error import Error  # noqa: E501
-from openapi_server.models.service import Service  # noqa: E501
-from openapi_server.test import BaseTestCase
+from openapi_server.test.integration import BaseTestCase
 
 
 class TestServiceController(BaseTestCase):
@@ -19,7 +14,7 @@ class TestServiceController(BaseTestCase):
 
         Get service information
         """
-        headers = { 
+        headers = {
             'Accept': 'application/json',
         }
         response = self.client.open(
