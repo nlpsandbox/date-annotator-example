@@ -10,7 +10,7 @@ app.app.json_encoder = encoder.JSONEncoder
 app.add_api('openapi.yaml', pythonic_params=True)
 
 # Configuring / to return the service information (required by NLP Sandbox)
-app.add_url_rule('/', 'root', lambda: flask.redirect('/api/v1/service'))
+app.add_url_rule('/', 'root', lambda: flask.redirect('/api/v1/tool'))
 
 
 def main():
