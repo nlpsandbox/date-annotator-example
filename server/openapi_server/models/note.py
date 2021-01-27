@@ -61,7 +61,7 @@ class Note(Model):
     def id(self):
         """Gets the id of this Note.
 
-        The ID of the note  # noqa: E501
+        ID of the clinical note  # noqa: E501
 
         :return: The id of this Note.
         :rtype: str
@@ -72,7 +72,7 @@ class Note(Model):
     def id(self, id):
         """Sets the id of this Note.
 
-        The ID of the note  # noqa: E501
+        ID of the clinical note  # noqa: E501
 
         :param id: The id of this Note.
         :type id: str
@@ -134,7 +134,7 @@ class Note(Model):
     def patient_id(self):
         """Gets the patient_id of this Note.
 
-        The patient ID  # noqa: E501
+        ID of the FHIR patient  # noqa: E501
 
         :return: The patient_id of this Note.
         :rtype: str
@@ -145,7 +145,7 @@ class Note(Model):
     def patient_id(self, patient_id):
         """Sets the patient_id of this Note.
 
-        The patient ID  # noqa: E501
+        ID of the FHIR patient  # noqa: E501
 
         :param patient_id: The patient_id of this Note.
         :type patient_id: str
