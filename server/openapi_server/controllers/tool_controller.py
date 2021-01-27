@@ -22,7 +22,6 @@ def get_tool():  # noqa: E501
         url="https://github.com/nlpsandbox/date-annotator-example",
         tool_type="nlpsandbox:date-annotator"
     )
-
     return tool, 200
 
 

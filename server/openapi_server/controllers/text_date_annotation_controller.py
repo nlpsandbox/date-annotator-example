@@ -12,9 +12,6 @@ def create_text_date_annotations():  # noqa: E501
 
     Return the date annotations found in a clinical note # noqa: E501
 
-    :param text_date_annotation_request:
-    :type text_date_annotation_request: dict | bytes
-
     :rtype: TextDateAnnotations
     """
     res = None
