@@ -6,19 +6,19 @@ import unittest
 from openapi_server.test.integration import BaseTestCase
 
 
-class TestServiceController(BaseTestCase):
-    """ServiceController integration test stubs"""
+class TestHealthCheckController(BaseTestCase):
+    """HealthCheckController integration test stubs"""
 
-    def test_service(self):
-        """Test case for service
+    def test_get_health_check(self):
+        """Test case for get_health_check
 
-        Get service information
+        Get health check information
         """
         headers = {
             'Accept': 'application/json',
         }
         response = self.client.open(
-            '/api/v1/service',
+            '/api/v1/healthCheck',
             method='GET',
             headers=headers)
         self.assert200(response,
