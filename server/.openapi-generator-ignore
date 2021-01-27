@@ -23,6 +23,7 @@
 #!docs/README.md
 
 .travis.yml
+.openapi-generator/FILES
 git_push.sh
 openapi_server/models/*_all_of.py
 setup.py
@@ -32,6 +33,7 @@ setup.py
 Dockerfile
 openapi_server/controllers/security_controller_.py
 openapi_server/__main__.py
+openapi_server/test/__init__.py
 requirements.txt
 test-requirements.txt
 tox.ini
