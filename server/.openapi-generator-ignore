@@ -23,6 +23,7 @@
 #!docs/README.md
 
 .travis.yml
+.openapi-generator/FILES
 git_push.sh
 openapi_server/models/*_all_of.py
 setup.py
