@@ -7,6 +7,8 @@ is an example of building a OpenAPI-enabled Flask server.
 
 This example uses the [Connexion](https://github.com/zalando/connexion) library on top of Flask.
 
+plop
+
 ## Requirements
 Python 3.5.2+
 
