@@ -6,6 +6,6 @@ services:
     build:
       context: server
       dockerfile: Dockerfile
-    container_name: nlp-date-annotator
+    container_name: date-annotator
     ports:
       - "8080:8080"

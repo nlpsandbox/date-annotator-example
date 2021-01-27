@@ -33,7 +33,7 @@ We recommend using a Conda environment to install and run the Date Annotator.
 Install and start the Date Annotator.
 
     cd server/
-    pip install .
+    pip install -r requirements.txt
     cd server && python -m openapi_server
 
 ## Annotating clinical notes
@@ -164,7 +164,7 @@ to preserve. One can revert those changes and add those files to the .openapi-ge
 Generate the initial server stub from the OpenAPI specification
 
     mkdir server
-    ./node_modules/.bin/openapi-generator \
+    ./node_modules/.bin/openapi-generator-cli \
         generate -i openapi.yaml -g spring -o server
 
 Build and start the server with Maven
