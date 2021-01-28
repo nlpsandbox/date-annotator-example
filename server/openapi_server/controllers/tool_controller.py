@@ -1,5 +1,5 @@
 from openapi_server.models.tool import Tool  # noqa: E501
-# from openapi_server.models.tool_dependencies import ToolDependencies  # noqa: E501
+from openapi_server.models.tool_dependencies import ToolDependencies  # noqa: E501
 
 
 def get_tool():  # noqa: E501
@@ -33,4 +33,4 @@ def get_tool_dependencies():  # noqa: E501
 
     :rtype: ToolDependencies
     """
-    return [], 200
+    return ToolDependencies(tool_dependencies=[]), 200
