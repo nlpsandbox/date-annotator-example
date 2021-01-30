@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+- name: NLP Sandbox Synapse discussion
+  url: https://www.synapse.org/#!Synapse:syn22277123/discussion/default
+  about: Please ask questions related to Synapse and the website
+- name: NLP Sandbox Discord server
+  url: https://discord.com/invite/Zb4ymtF
+  about: Meet with this project community and team
