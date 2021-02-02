@@ -13,6 +13,12 @@ An example implementation of the [NLP Sandbox Date Annotator].
 - Implements the [NLP Sandbox Date Annotator OpenAPI specification]
 - Annotates date strings in clinical notes using simple regular expressions
 
+NLP Sandbox API implemented:
+
+| API | Type | Version |
+|---|---|---|
+| [Date Annotator](/openapi/date-annotator) | `nlpsandbox:date-annotator` | 0.3.1 |
+
 ## Usage
 
 [![Gitpod](https://img.shields.io/badge/Gitpod-Open_in_Gitpod-blue?color=0273b3&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=gitpod&label=)](https://gitpod.io/#https://github.com/nlpsandbox/date-annotator-example)
