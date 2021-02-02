@@ -53,7 +53,6 @@ def create_text_date_annotations():  # noqa: E501
         except Exception as error:
             status = 500
             res = Error("Internal error", status, str(error))
-
     return res, status
 
 
