@@ -17,7 +17,7 @@ NLP Sandbox API implemented:
 
 | API | Type | Version |
 |---|---|---|
-| [Date Annotator](/openapi/date-annotator) | `nlpsandbox:date-annotator` | 0.3.1 |
+| [Date Annotator](/openapi/date-annotator) | `nlpsandbox:date-annotator` | 0.3.2 |
 
 ## Usage
 

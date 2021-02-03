@@ -13,7 +13,7 @@ def get_tool():  # noqa: E501
     """
     tool = Tool(
         name="date-annotator-example",
-        version="0.3.1",
+        version="0.3.2",
         license=License.APACHE_2_0,
         repository="github:nlpsandbox/date-annotator-example",
         description="An example implementation of the NLP Sandbox Date " +

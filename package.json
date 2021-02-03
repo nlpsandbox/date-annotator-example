@@ -1,7 +1,4 @@
 {
-    "name": "awesome-date-annotator",
-    "version": "0.3.1",
-    "license": "Apache-2.0",
     "devDependencies": {
         "@openapitools/openapi-generator-cli": "2.1.18"
     },
