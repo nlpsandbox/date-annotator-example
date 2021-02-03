@@ -1,15 +1,15 @@
 http {
-    upstream date-annotator {
-        server ${SERVER_HOST}:${SERVER_PORT};
+    upstream tool {
+        server ${TOOL_HOST}:${TOOL_PORT};
         keepalive 15;
     }
 
     server {
         listen 80;
-        server_name date-annotator;
+        server_name tool;
 
-        error_log   /var/log/nginx/date-annotator.error.log;
-        access_log  /var/log/nginx/date-annotator.access.log;
+        error_log   /var/log/nginx/tool.error.log;
+        access_log  /var/log/nginx/tool.access.log;
 
         location / {
             proxy_set_header X-Real-IP $remote_addr;
@@ -23,7 +23,7 @@ http {
             proxy_set_header Connection "Keep-Alive";
             proxy_set_header Proxy-Connection "Keep-Alive";
 
-            proxy_pass http://date-annotator;
+            proxy_pass http://tool;
         }
     }
 }
