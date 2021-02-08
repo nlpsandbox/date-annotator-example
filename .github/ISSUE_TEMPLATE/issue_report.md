@@ -1,6 +1,6 @@
 ---
 name: Issue report
-about: Report a problem with this project or its documentation
+about: Report a problem with this project or its documentation.
 labels: Bug
 ---
 
