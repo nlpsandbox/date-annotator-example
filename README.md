@@ -20,7 +20,7 @@ annotations found in the clinical note.
 - Tool version: 0.x.y
 - Docker image: [nlpsandbox/date-annotator-example]
 
-## Model
+## This Tool
 
 This implementation relies on simple regular expressions to identify the
 location of date strings in a clinical note.
