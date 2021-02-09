@@ -8,20 +8,33 @@
 
 An example implementation of the [NLP Sandbox Date Annotator].
 
-## Specification
+## Overview
 
-- Implements the [NLP Sandbox Date Annotator OpenAPI specification]
-- Annotates date strings in clinical notes using simple regular expressions
+This repository provides a Python-Flask implementation of the [NLP Sandbox Date
+Annotator]. The Date Annotator is one of the first NLP Tools that can be
+benchmarked on nlpsandbox.io. A Date Annotator takes as input one clinical notes
+as well as information about the patient and outputs a list of predicted date
+annotations found in the clinical note.
 
-NLP Sandbox API implemented:
+- Date Annotator API version: 0.3.1
+- Tool version: 0.x.y
+- Docker image: [nlpsandbox/date-annotator-example]
 
-| API | Type | Version |
-|---|---|---|
-| [Date Annotator](/openapi/date-annotator) | `nlpsandbox:date-annotator` | 0.3.2 |
+## Model
+
+This implementation relies on simple regular expressions to identify the
+location of date strings in a clinical note.
+
+## Creating your own NLP Tool
+
+This implementation is provided as an example that Developers can use to quick
+start the development of a new model by create a new repository from this
+[GitHub template] (see below). The Docker image built and published
+automatically by the CI/CD workflow of this repository can be submitted "as it
+is" to the [NLP Sandbox] to benchmark its performance if you wish to try
+submitting first (don't expect a high performance!).
 
 ## Usage
-
-[![Gitpod](https://img.shields.io/badge/Gitpod-Open_in_Gitpod-blue?color=0273b3&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=gitpod&label=)](https://gitpod.io/#https://github.com/nlpsandbox/date-annotator-example)
 
 ### Running with Docker
 
@@ -33,7 +46,7 @@ The command below starts the Date Annotator locally.
 
 We recommend using a Conda environment to install and run the Date Annotator.
 
-    conda create --name nlp-sandbox-date-annotator-example python=3.8.5
+    conda create --name nlp-sandbox-date-annotator-example python=3.9.1
     conda activate nlp-sandbox-date-annotator-example
 
 Install and start the Date Annotator.
@@ -42,18 +55,15 @@ Install and start the Date Annotator.
     pip install -r requirements.txt
     cd server && python -m openapi_server
 
-## Annotating clinical notes
+### Annotating clinical notes
 
-When running, the Date Annotator provides a web interface (http://localhost:8080/api/v1/ui/)
-that you can use to explore the input, output and actions available.
+The Date Annotator provides a web interface that you can use to annotate
+clinical notes. The address of this interface depends on whether you run the
+Date Annotator using Docker (production mode) or using Python development
+server.
 
-## Evaluating performance in the NLP Sandbox
-
-Requirements:
-
-- The NLP Sandbox requires NLP Tools to be dockerized
-- The dockerized tool must be standalone and not depends on access to the
-  Internet. This requirement contributes to make the tool more reproducible.
+- Using Docker: http://localhost
+- Using Python: http://localhost:8080/api/v1/ui/
 
 ## Development
 
@@ -65,9 +75,72 @@ you can then submit for evaluation to the NLP Sandbox.
 - [Node JS](https://nodejs.org/)
 - Java (required by [OpenAPITools/openapi-generator])
 
-### Start developing your own server
+### Creating a new GitHub repository
 
-One option is to [create a GitHub repository based on this template repository][create_gh_repo_from_template]
+Depending on the programming language-framework
+
+- If you develop in Python-Flask, create a new repository from this [GitHub
+  template].
+- If you develop in Java-Spring, create a new repository from the GitHub
+  template [nlpsandbox/date-annotator-example-java].
+
+If you prefer to developed using another language or if you want to learn how
+this repository has been generated, go to the section [Creating a new GitHub
+repository from scratch](#Creating-a-new-GitHub-repository-from-scratch).
+
+### Configuring the CI/CD workflow
+
+This repository provides a GitHub CI/CD workflow that performs the following
+actions:
+
+- Lint the Python code and Docker files.
+- Test this NLP tool (integration tests).
+- Build this NLP tool as a Docker image and publish it to DockerHub.
+
+If you wish to enable the above CI/CD actions for your repository, please:
+
+1. Create a public or private Docker repository on DockerHub (or another Docker
+   registry).
+2. Add the following GitHub Secrets to your repository to specify the
+   credentials that the CI/CD workflow will use to push the Docker image to the
+   registry.
+    - `DOCKERHUB_PASSWORD`
+    - `DOCKERHUB_USERNAME`
+3. In the CI/CD workflow (.github/workflows/ci.yml), update the environment
+   variable listed below with the name of your docker repository.
+    - `docker_repository`
+
+Note that the credentials used to push the Docker image to DockerHub must have
+the permission `Admin` to push the README of your repository to DockerHub and
+complete successfully the CI/CD workflow.
+
+### Docker tags
+
+The CI/CD workflow builds and pushes the following tags to the docker registry:
+
+- The tag `edge` is created when a commit is pushed to the default branch of
+  this repository (`develop`).
+- The tags `latest`, `x`, `x.y`, `x.y.z` are created when the GitHub release
+  `x.y.z` is created.
+- The tag `nighlty` is created every night everyday at 10am UTC.
+
+### Creating a new GitHub repository from scratch
+
+TBA
+
+### Updating your repository after the release of a new API version
+
+TBA
+
+### Testing the NLP tool
+
+TBA
+
+## License
+
+[Apache License 2.0]
+
+<!-- One option is to [create a GitHub repository based on this template repository][create_gh_repo_from_template]
 if you plan to write your code in Python. This repository comes with a GitHub
 workflow that will help you implementing good practices and notify you when a
 new version of the OpenAPI specification for this NLP Tool is available. The
@@ -115,7 +188,7 @@ Generate the server codebase using the selected generator (here `python-flask`)
         generate -i openapi.yaml -g python-flask -o server
 
 That's it! You can now start the Data Annotator server using the instructions
-given in the section [Running using Python](#Running-with-Python).
+given in the section [Running using Python](#Running-with-Python). -->
 
 <!-- ### Update the codebase when a new OpenAPI spec is available (TO UPDATE)
 
@@ -165,7 +238,7 @@ Then use git to see what is updated and if you overwrote any files you wanted
 to preserve. One can revert those changes and add those files to the .openapi-generator-ignore file for next time there is an update. -->
 
 
-### Generate a Spring Boost server stub
+<!-- ### Generate a Spring Boost server stub
 
 Generate the initial server stub from the OpenAPI specification
 
@@ -179,12 +252,20 @@ Build and start the server with Maven
     mvn package
     java -jar target/openapi-spring-0.1.6.jar
 
-The API documentation UI is now available at http://localhost:8080.
+The API documentation UI is now available at http://localhost:8080. -->
+
+<!-- Links -->
 
 
-<!-- Definitions -->
+[NLP Sandbox Date Annotator API]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
+[NLP Sandbox Date Annotator]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/
+[nlpsandbox/date-annotator-example]: https://hub.docker.com/r/nlpsandbox/date-annotator-example
+[GitHub template]: https://github.com/nlpsandbox/date-annotator-example/generate
+[NLP Sandbox]: nlpsandbox.io
+[nlpsandbox/date-annotator-example-java]: https://github.com/nlpsandbox/date-annotator-example-java
+[Apache License 2.0]: https://github.com/nlpsandbox/date-annotator-example/blob/develop/LICENSE
 
-[NLP Sandbox Date Annotator]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
+
 [NLP Sandbox Date Annotator OpenAPI specification]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
 [OpenAPITools/openapi-generator]: https://github.com/OpenAPITools/openapi-generator
 [create_gh_repo_from_template]: https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template
