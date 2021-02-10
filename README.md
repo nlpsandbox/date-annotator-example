@@ -194,11 +194,35 @@ new release of the Date Annotator specification is available:
    version of the file. Changes can be accepted or rejected at the level of an
    entire file or selected lines.
 
-### Versioning
-
 ### Testing the NLP tool
 
-TBA
+We recommend
+
+This command will check that your Python code adheres to the style guide defined
+for this project (see [server/setup.cfg](server/setup.cfg)).
+
+    cd server && flake8
+
+The command below will run the unit and integration tests of this project.
+
+    cd server && tox
+
+### Versioning
+
+This package uses [semantic versioning] for releasing new versions. Creating a
+GitHub release of this repository will trigger the CI/CD workflow which will in
+turn build the new Docker image for this tool before publishing it to DockerHub.
+
+We recommend to include the following information at the top of your README:
+
+- `Date Annotator API version`: The version of the Date Annotator specification
+  implemented by the tool.
+- `Tool version`: The version of the tool.
+
+Initially, it may be tempating to align the tool version to the API version. As
+you improve your tool and fixes bugs, you will likely release more than one
+version of your tool for the same API version. Note that for the sake of
+reproducibility, it is encouraged to not reuse version tags.
 
 ## Evaluating the performance of this NLP Tool
 
@@ -333,6 +357,7 @@ The API documentation UI is now available at http://localhost:8080. -->
 [Apache License 2.0]: https://github.com/nlpsandbox/date-annotator-example/blob/develop/LICENSE
 [Patient schema]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/openapi/commons/components/schemas/Patient.yaml
 [nlpsandbox/nlpsandbox-schemas]: https://github.com/nlpsandbox/nlpsandbox-schemas
+[semantic versioning]: https://semver.org/
 
 [NLP Sandbox Date Annotator OpenAPI specification]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
 [OpenAPITools/openapi-generator]: https://github.com/OpenAPITools/openapi-generator
