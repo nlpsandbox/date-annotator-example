@@ -17,7 +17,7 @@ as well as information about the patient and outputs a list of predicted date
 annotations found in the clinical note.
 
 - Date Annotator API version: 0.3.1
-- Tool version: 0.x.y
+- Tool version: 0.3.2
 - Docker image: [nlpsandbox/date-annotator-example]
 
 ## Model
