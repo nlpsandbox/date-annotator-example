@@ -16,6 +16,8 @@ benchmarked on nlpsandbox.io. A Date Annotator takes as input one clinical note,
 as well as information about the patient, and outputs a list of predicted date
 annotations found in the clinical note.
 
+#### Specification
+
 - Date Annotator API version: 0.3.1
 - Tool version: 0.3.2
 - Docker image: [nlpsandbox/date-annotator-example]
@@ -75,7 +77,7 @@ you can then submit for evaluation to the NLP Sandbox.
 
 ### Creating a new GitHub repository
 
-Depending on the programming language-framework
+This step will depend on your preferred programming language-framework.
 
 - If you develop in Python-Flask, create a new repository from this [GitHub
   template].
