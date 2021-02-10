@@ -44,8 +44,8 @@ The command below starts the Date Annotator locally.
 
 We recommend using a Conda environment to install and run the Date Annotator.
 
-    conda create --name nlp-sandbox-date-annotator-example python=3.9.1
-    conda activate nlp-sandbox-date-annotator-example
+    conda create --name date-annotator-example python=3.9.1
+    conda activate date-annotator-example
 
 Install and start the Date Annotator.
 
