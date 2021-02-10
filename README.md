@@ -12,11 +12,11 @@ An example implementation of the [NLP Sandbox Date Annotator].
 
 This repository provides a Python-Flask implementation of the [NLP Sandbox Date
 Annotator]. The Date Annotator is one of the first NLP Tools that can be
-benchmarked on nlpsandbox.io. A Date Annotator takes as input one clinical note,
-as well as information about the patient, and outputs a list of predicted date
-annotations found in the clinical note.
+benchmarked on [nlpsandbox.io]. A Date Annotator takes as input one clinical
+note, as well as information about the patient, and outputs a list of predicted
+date annotations found in the clinical note.
 
-#### Specification
+### Specification
 
 - Date Annotator API version: 0.3.1
 - Tool version: 0.3.2
@@ -29,10 +29,12 @@ date strings in a clinical note.
 
 This implementation is provided as an example that Developers can use to quick
 start the development of a new model by creating a repository from this [GitHub
-template] (see below). The Docker image built and published automatically by the
-CI/CD workflow of this repository can be submitted "as it is" to the [NLP
-Sandbox] to benchmark its performance if you wish to try submitting first (don't
-expect a high performance!).
+template] (see below).
+
+The CI/CD workflow of this repository will automatically build and publish a
+Docker image to DockerHub. The model can then be submitted as-is to the [NLP
+Sandbox], if you wish to benchmark its performance -- just don't expect a high
+performance!
 
 ## Usage
 
@@ -41,6 +43,8 @@ expect a high performance!).
 The command below starts the Date Annotator locally.
 
     docker-compose up --build
+
+You can stop the container run with `Ctrl+C`, followed by `docker-compose down`.
 
 ### Running with Python
 
@@ -130,7 +134,7 @@ Follow the steps listed below to generate an initial implementation - also
 called "stub" - of the Date Annotator using one of the many languages and
 framework supported by [OpenAPITools/openapi-generator].
 
-1. Download the latest OpenAPI specification of the NLP Sandbox Date Annotator.
+1. Download the latest OpenAPI specification of the [NLP Sandbox Date Annotator].
 
        curl -fO https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/openapi.yaml
 
@@ -235,8 +239,9 @@ performance on public and private datasets.
 
 <!-- Links -->
 
-[NLP Sandbox Date Annotator API]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
-[NLP Sandbox Date Annotator]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/
+[nlpsandbox.io]: https://www.synapse.org/nlpsandbox
+[NLP Sandbox]: https://www.synapse.org/nlpsandbox
+[NLP Sandbox Date Annotator]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
 [nlpsandbox/date-annotator-example]: https://hub.docker.com/r/nlpsandbox/date-annotator-example
 [GitHub template]: https://github.com/nlpsandbox/date-annotator-example/generate
 [NLP Sandbox]: nlpsandbox.io
