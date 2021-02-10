@@ -57,7 +57,7 @@ Install and start the Date Annotator.
 
 The Date Annotator provides a web interface that you can use to annotate
 clinical notes. The address of this interface depends on whether you run the
-Date Annotator using Docker (production mode) or using Python development
+Date Annotator using Docker (production mode) or the Python development
 server.
 
 - Using Docker: http://localhost
