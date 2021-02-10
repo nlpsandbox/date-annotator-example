@@ -12,7 +12,7 @@ An example implementation of the [NLP Sandbox Date Annotator].
 
 This repository provides a Python-Flask implementation of the [NLP Sandbox Date
 Annotator]. The Date Annotator is one of the first NLP Tools that can be
-benchmarked on nlpsandbox.io. A Date Annotator takes as input one clinical notes
+benchmarked on nlpsandbox.io. A Date Annotator takes as input one clinical note,
 as well as information about the patient and outputs a list of predicted date
 annotations found in the clinical note.
 
