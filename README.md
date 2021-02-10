@@ -196,16 +196,14 @@ new release of the Date Annotator specification is available:
 
 ### Testing the NLP tool
 
-We recommend
-
 This command will check that your Python code adheres to the style guide defined
 for this project (see [server/setup.cfg](server/setup.cfg)).
 
-    cd server && flake8
+    npm run lint
 
 The command below will run the unit and integration tests of this project.
 
-    cd server && tox
+    npm run test
 
 ### Versioning
 
