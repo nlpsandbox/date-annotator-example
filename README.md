@@ -38,7 +38,7 @@ expect a high performance!).
 
 The command below starts the Date Annotator locally.
 
-    docker-compose up
+    docker-compose up --build
 
 ### Running with Python
 
