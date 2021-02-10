@@ -22,17 +22,15 @@ annotations found in the clinical note.
 
 ## Model
 
-This implementation relies on simple regular expressions to identify the
-location of date strings in a clinical note.
-
-## Creating your own NLP Tool
+This NLP tool relies on simple regular expressions to identify the location of
+date strings in a clinical note.
 
 This implementation is provided as an example that Developers can use to quick
-start the development of a new model by create a new repository from this
-[GitHub template] (see below). The Docker image built and published
-automatically by the CI/CD workflow of this repository can be submitted "as it
-is" to the [NLP Sandbox] to benchmark its performance if you wish to try
-submitting first (don't expect a high performance!).
+start the development of a new model by creating a repository from this [GitHub
+template] (see below). The Docker image built and published automatically by the
+CI/CD workflow of this repository can be submitted "as it is" to the [NLP
+Sandbox] to benchmark its performance if you wish to try submitting first (don't
+expect a high performance!).
 
 ## Usage
 
@@ -124,17 +122,87 @@ The CI/CD workflow builds and pushes the following tags to the docker registry:
   `x.y.z` is created.
 - The tag `nighlty` is created every night everyday at 10am UTC.
 
-### Creating a new GitHub repository from scratch
+### Creating a new Date Annotator from scratch
 
-TBA
+Follow the steps listed below to generate an initial implementation - also
+called "stub" - of the Date Annotator using one of the many languages and
+framework supported by [OpenAPITools/openapi-generator].
 
-### Updating your repository after the release of a new API version
+1. Download the latest OpenAPI specification of the NLP Sandbox Date Annotator.
 
-TBA
+       curl -fO https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/openapi.yaml
+
+2. Copy the file [package.json] from this repository to your project.
+3. Install the development tools defined in *package.json*
+
+       npm ci
+
+4. Display the help information of `openapi-generator-cli`
+
+       ./node_modules/.bin/openapi-generator-cli --help
+
+5. Display the list of programming languages-framework supported by the OpenAPI
+   generator to create SERVER stubs.
+
+       ./node_modules/.bin/openapi-generator-cli list
+
+6. Generate the server stub using the generator of your choice (here
+   `python-flask`). The option `-o` is to specify the name of the folder where
+   the files generated will be saved.
+
+       mkdir server
+       ./node_modules/.bin/openapi-generator-cli \
+           generate -i openapi.yaml -g python-flask -o server
+
+7. Start your new NLP tool locally by following the instructions outlines in the
+   section [Running with Python](#Running-with-Python). Open the page
+   http://localhost:8080/api/v1/ui/ in your browser to navigate to the web
+   interface of the tool. You can now start implementing the different
+   controllers of the tools in the folder *server/openapi_server/controllers*.
+   Use the controllers defined in this repository as a reference.
+
+### Updating your tool after the release of a new API version
+
+The NLP Sandbox Team and community may introduce changes to the OpenAPI
+specifications of the NLP Sandbox Tools. For example, the [Patient schema] may
+include in the future a new property that this tool could leverage to generate
+more accurate predictions. When this happens, the version of the tool
+specifications will be bumped. The latest version of each specification can be
+found in the README of the repository [nlpsandbox/nlpsandbox-schemas].
+
+Here is the protocol that we apply to update this example Date Annotator when a
+new release of the Date Annotator specification is available:
+
+1. Create a new branch
+
+       git checkout -b update-to-specification-x.y.z
+
+2. Download the latest OpenAPI specification of the Date Annotator.
+
+       curl -fO https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/openapi.yaml
+
+3. Re-run the OpenAPI generator using the same command that you have used to
+   generated the initial server stub. If you are using Python, you can use the
+   following command that we have defined in *package.json*.
+
+       npm run generate:server openapi.yaml
+
+4. Review and merge the changes. If you are using VS Code, this step can be
+   performed relatively easily using the section named "Source Control". This
+   section lists the files that have been modified by the generator. When
+   clicking on a file, VS Code shows side-by-side the current and updated
+   version of the file. Changes can be accepted or rejected at the level of an
+   entire file or selected lines.
+
+### Versioning
 
 ### Testing the NLP tool
 
 TBA
+
+## Evaluating the performance of this NLP Tool
+
+
 
 ## License
 
@@ -256,7 +324,6 @@ The API documentation UI is now available at http://localhost:8080. -->
 
 <!-- Links -->
 
-
 [NLP Sandbox Date Annotator API]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
 [NLP Sandbox Date Annotator]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/
 [nlpsandbox/date-annotator-example]: https://hub.docker.com/r/nlpsandbox/date-annotator-example
@@ -264,7 +331,8 @@ The API documentation UI is now available at http://localhost:8080. -->
 [NLP Sandbox]: nlpsandbox.io
 [nlpsandbox/date-annotator-example-java]: https://github.com/nlpsandbox/date-annotator-example-java
 [Apache License 2.0]: https://github.com/nlpsandbox/date-annotator-example/blob/develop/LICENSE
-
+[Patient schema]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/openapi/commons/components/schemas/Patient.yaml
+[nlpsandbox/nlpsandbox-schemas]: https://github.com/nlpsandbox/nlpsandbox-schemas
 
 [NLP Sandbox Date Annotator OpenAPI specification]: https://github.com/Sage-Bionetworks/nlp-sandbox-schemas
 [OpenAPITools/openapi-generator]: https://github.com/OpenAPITools/openapi-generator
