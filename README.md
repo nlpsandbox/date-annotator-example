@@ -218,7 +218,7 @@ We recommend to include the following information at the top of your README:
 - `Tool version`: The version of the tool.
 
 Initially, it may be tempting to align the tool version to the API version. As
-you improve your tool and fixes bugs, you will likely release more than one
+you improve your tool and fix bugs, you will likely release more than one
 version of your tool for the same API version. Note that for the sake of
 reproducibility, it is encouraged to not reuse version tags.
 
