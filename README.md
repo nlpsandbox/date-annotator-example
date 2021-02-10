@@ -82,7 +82,7 @@ Depending on the programming language-framework
 - If you develop in Java-Spring, create a new repository from the GitHub
   template [nlpsandbox/date-annotator-example-java].
 
-If you prefer to developed using another language or if you want to learn how
+If you prefer to develop using another language or if you want to learn how
 this repository has been generated, go to the section [Creating a new GitHub
 repository from scratch](#Creating-a-new-GitHub-repository-from-scratch).
 
