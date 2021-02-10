@@ -122,7 +122,7 @@ The CI/CD workflow builds and pushes the following tags to the docker registry:
   this repository (`develop`).
 - The tags `latest`, `x`, `x.y`, `x.y.z` are created when the GitHub release
   `x.y.z` is created.
-- The tag `nighlty` is created every night everyday at 10am UTC.
+- The tag `nightly` is created every night everyday at 10am UTC.
 
 ### Creating a new Date Annotator from scratch
 
