@@ -230,8 +230,8 @@ reproducibility, it is encouraged to not reuse version tags.
 
 ## Benchmarking
 
-Visit nlpsandbox.io for instructions on how to submit your tool and evaluate its
-performance on public and private datasets.
+Visit [nlpsandbox.io] for instructions on how to submit your tool and evaluate
+its performance on public and private datasets.
 
 ## License
 
