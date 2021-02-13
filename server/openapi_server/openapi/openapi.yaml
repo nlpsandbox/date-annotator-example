@@ -1,18 +1,17 @@
-openapi: 3.0.2
+openapi: 3.0.3
 info:
   contact:
     email: thomas.schaffter@sagebionetworks.org
     name: The NLP Sandbox Team
-    url: https://nlpsandbox.github.io/nlpsandbox-schemas
+    url: https://nlpsandbox.io
   description: |
-    The OpenAPI specification implemented by NLP Sandbox Date Annotators.
     # Overview
-    This NLP tool detects date references in the clinical note specified and returns a list of date annotations.
+    This NLP tool detects references of dates in the clinical note given as input and returns a list of date annotations.
   license:
     name: Apache 2.0
-    url: https://nlpsandbox.github.io/nlpsandbox-schemas/blob/develop/LICENSE
+    url: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 0.3.1
+  version: 1.0.0
   x-logo:
     url: https://nlpsandbox.github.io/nlpsandbox-schemas/logo.png
 servers:
@@ -70,12 +69,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/TextDateAnnotations'
           description: Success
-        "403":
+        "400":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-          description: Unauthorized
+          description: Invalid request
         "500":
           content:
             application/json:
@@ -157,12 +156,12 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
       description: The request cannot be fulfilled due to an unexpected server error
-    Unauthorized:
+    BadRequest:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-      description: Unauthorized
+      description: Invalid request
   schemas:
     HealthCheck:
       description: Represents the health of a service
@@ -199,71 +198,87 @@ components:
       - status
       - title
       type: object
-    NoteResourceId:
-      description: ID of the clinical note
-      example: 507f1f77bcf86cd799439011
+    NoteId:
+      description: The ID of the clinical note
+      example: awesome-note
+      maxLength: 60
+      minLength: 3
+      pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
       type: string
-    PatientResourceId:
-      description: ID of the FHIR patient
-      example: 507f1f77bcf86cd799439011
+    PatientId:
+      description: The ID of the FHIR patient
+      example: awesome-patient
+      maxLength: 60
+      minLength: 3
+      pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
       type: string
     Note:
       description: A clinical note
       example:
+        identifier: awesome-note
+        text: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott in Seattle.
         noteType: loinc:LP29684-5
-        patientId: 507f1f77bcf86cd799439011
-        id: 507f1f77bcf86cd799439011
-        text: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott.
+        patientId: awesome-patient
       properties:
-        id:
-          description: ID of the clinical note
-          example: 507f1f77bcf86cd799439011
+        identifier:
+          description: The ID of the clinical note
+          example: awesome-note
+          maxLength: 60
+          minLength: 3
+          pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
           type: string
         text:
           description: The content of the clinical note
-          example: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott.
           type: string
         noteType:
           description: The note type (LOINC concept)
-          example: loinc:LP29684-5
           type: string
         patientId:
-          description: ID of the FHIR patient
-          example: 507f1f77bcf86cd799439011
+          description: The ID of the FHIR patient
+          example: awesome-patient
+          maxLength: 60
+          minLength: 3
+          pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
           type: string
       required:
+      - identifier
       - noteType
+      - patientId
       - text
       type: object
     TextDateAnnotationRequest:
       description: An annotation request
       example:
         note:
+          identifier: awesome-note
+          text: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott in Seattle.
           noteType: loinc:LP29684-5
-          patientId: 507f1f77bcf86cd799439011
-          id: 507f1f77bcf86cd799439011
-          text: On 12/26/2020, Ms. Chloe Price met with Dr. Prescott.
+          patientId: awesome-patient
       properties:
         note:
           $ref: '#/components/schemas/Note'
+      required:
+      - note
       type: object
     TextAnnotation:
       description: An annotation in a text
+      example:
+        start: 42
+        length: 19
+        text: the annotation text
+        confidence: 95.5
       properties:
         start:
           description: The position of the first character
-          example: 42
           type: integer
         length:
           description: The length of the annotation
-          example: 10
           type: integer
         text:
           description: The string annotated
           type: string
         confidence:
           description: The confidence in the accuracy of the annotation
-          example: 95
           format: float
           maximum: 100
           minimum: 0
@@ -283,6 +298,7 @@ components:
         length: 10
         text: 10/26/2020
         dateFormat: MM/DD/YYYY
+        confidence: 95.5
       type: object
     TextDateAnnotations:
       description: A list of text date annotations
@@ -292,19 +308,23 @@ components:
           length: 10
           text: 10/26/2020
           dateFormat: MM/DD/YYYY
+          confidence: 95.5
         - start: 42
           length: 10
           text: 10/26/2020
           dateFormat: MM/DD/YYYY
+          confidence: 95.5
       properties:
         textDateAnnotations:
           description: A list of text date annotations
           items:
             $ref: '#/components/schemas/TextDateAnnotation'
           type: array
+      required:
+      - textDateAnnotations
       type: object
     License:
-      description: License (license keyword used by GitHub)
+      description: The license (license keyword used by GitHub)
       enum:
       - afl-3.0
       - apache-2.0
@@ -343,32 +363,34 @@ components:
       example: apache-2.0
       type: string
     ToolType:
-      description: Type of this tool
+      description: The type of this tool
       example: nlpsandbox:date-annotator
+      maxLength: 60
+      minLength: 3
+      pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$
       type: string
     Tool:
       description: Information about an NLP tool
       example:
+        name: awesome-nlp-tool
+        version: 1.0.6
         license: apache-2.0
+        repository: github:awesome-org/awesome-nlp-tool
+        description: An awesome NLP Tool that takes as input X and outputs Y.
+        author: Awesome Team
         authorEmail: author@example.com
-        author: Example Author
-        name: awesome-date-annotator
-        description: An awesome Date Annotator based on regex patterns
-        repository: github:awesome-org/awesome-date-annotator
-        version: 1.0.0
+        url: https://example.com
         toolType: nlpsandbox:date-annotator
-        url: https://openapi-generator.tech
+        toolApiVersion: 1.0.0
       properties:
         name:
           description: The tool name
-          example: awesome-date-annotator
           maxLength: 60
           minLength: 3
           pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
           type: string
         version:
           description: The version of the tool (SemVer string)
-          example: 1.0.0
           minLength: 1
           pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
           type: string
@@ -376,20 +398,16 @@ components:
           $ref: '#/components/schemas/License'
         repository:
           description: The place where the code lives
-          example: github:awesome-org/awesome-date-annotator
           type: string
         description:
           description: A short, one-sentence summary of the tool
-          example: An awesome Date Annotator based on regex patterns
           maxLength: 100
           type: string
         author:
           description: The author of the tool
-          example: Example Author
           type: string
         authorEmail:
           description: The email address of the author
-          example: author@example.com
           format: email
           type: string
         url:
@@ -397,8 +415,16 @@ components:
           format: uri
           type: string
         toolType:
-          description: Type of this tool
+          description: The type of this tool
           example: nlpsandbox:date-annotator
+          maxLength: 60
+          minLength: 3
+          pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$
+          type: string
+        toolApiVersion:
+          description: The version of the tool OpenAPI specification
+          minLength: 1
+          pattern: ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$
           type: string
       required:
       - author
@@ -407,6 +433,7 @@ components:
       - license
       - name
       - repository
+      - toolApiVersion
       - toolType
       - url
       - version
@@ -415,30 +442,34 @@ components:
       description: A list of tool dependencies
       example:
         toolDependencies:
-        - license: apache-2.0
+        - name: awesome-nlp-tool
+          version: 1.0.6
+          license: apache-2.0
+          repository: github:awesome-org/awesome-nlp-tool
+          description: An awesome NLP Tool that takes as input X and outputs Y.
+          author: Awesome Team
           authorEmail: author@example.com
-          author: Example Author
-          name: awesome-date-annotator
-          description: An awesome Date Annotator based on regex patterns
-          repository: github:awesome-org/awesome-date-annotator
-          version: 1.0.0
+          url: https://example.com
           toolType: nlpsandbox:date-annotator
-          url: https://openapi-generator.tech
-        - license: apache-2.0
+          toolApiVersion: 1.0.0
+        - name: awesome-nlp-tool
+          version: 1.0.6
+          license: apache-2.0
+          repository: github:awesome-org/awesome-nlp-tool
+          description: An awesome NLP Tool that takes as input X and outputs Y.
+          author: Awesome Team
           authorEmail: author@example.com
-          author: Example Author
-          name: awesome-date-annotator
-          description: An awesome Date Annotator based on regex patterns
-          repository: github:awesome-org/awesome-date-annotator
-          version: 1.0.0
+          url: https://example.com
           toolType: nlpsandbox:date-annotator
-          url: https://openapi-generator.tech
+          toolApiVersion: 1.0.0
       properties:
         toolDependencies:
           description: A list of tools
           items:
             $ref: '#/components/schemas/Tool'
           type: array
+      required:
+      - toolDependencies
       type: object
     TextDateAnnotation_allOf:
       properties:

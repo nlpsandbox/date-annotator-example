@@ -1,3 +1,7 @@
+# Project files
+.empty/
+.openapi-generator/FILES
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

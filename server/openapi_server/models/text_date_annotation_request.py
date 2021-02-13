@@ -62,5 +62,7 @@ class TextDateAnnotationRequest(Model):
         :param note: The note of this TextDateAnnotationRequest.
         :type note: Note
         """
+        if note is None:
+            raise ValueError("Invalid value for `note`, must not be `None`")  # noqa: E501
 
         self._note = note

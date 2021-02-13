@@ -1,9 +1,9 @@
 {
     "devDependencies": {
-        "@openapitools/openapi-generator-cli": "2.1.18"
+        "@openapitools/openapi-generator-cli": "2.1.23"
     },
     "scripts": {
-        "generate:server": "openapi-generator-cli generate -g python-flask -o server -i $npm_config_spec",
+        "generate:server": "openapi-generator-cli generate -g python-flask -o server -i $npm_config_specification",
         "lint": "cd server && flake8",
         "test": "cd server && tox"
     }

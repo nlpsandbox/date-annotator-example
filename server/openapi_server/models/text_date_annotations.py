@@ -64,5 +64,7 @@ class TextDateAnnotations(Model):
         :param text_date_annotations: The text_date_annotations of this TextDateAnnotations.
         :type text_date_annotations: List[TextDateAnnotation]
         """
+        if text_date_annotations is None:
+            raise ValueError("Invalid value for `text_date_annotations`, must not be `None`")  # noqa: E501
 
         self._text_date_annotations = text_date_annotations
