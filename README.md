@@ -13,13 +13,13 @@ An example implementation of the [NLP Sandbox Date Annotator].
 This repository provides a Python-Flask implementation of the [NLP Sandbox Date
 Annotator]. The Date Annotator is one of the first NLP Tools that can be
 benchmarked on [nlpsandbox.io]. A Date Annotator takes as input one clinical
-note, as well as information about the patient, and outputs a list of predicted
-date annotations found in the clinical note.
+note and outputs a list of predicted date annotations found in the clinical
+note.
 
 ### Specification
 
-- Date Annotator API version: 0.3.1
-- Tool version: 0.3.2
+- Date Annotator API version: 1.0.0
+- Tool version: 1.0.0
 - Docker image: [nlpsandbox/date-annotator-example]
 
 ## Model
