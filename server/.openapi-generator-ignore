@@ -25,11 +25,11 @@
 .travis.yml
 .openapi-generator/FILES
 git_push.sh
-openapi_server/models/*_all_of.py
 setup.py
 
 # this list has been defined after the generation of the initial codebase
 .dockerignore
+.gitignore
 Dockerfile
 requirements.txt
 test-requirements.txt

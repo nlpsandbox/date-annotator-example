@@ -64,5 +64,7 @@ class ToolDependencies(Model):
         :param tool_dependencies: The tool_dependencies of this ToolDependencies.
         :type tool_dependencies: List[Tool]
         """
+        if tool_dependencies is None:
+            raise ValueError("Invalid value for `tool_dependencies`, must not be `None`")  # noqa: E501
 
         self._tool_dependencies = tool_dependencies

@@ -7,6 +7,12 @@ updates:
       interval: "monthly"
     target-branch: "develop"
 
+  - package-ecosystem: "docker"
+    directory: "/server"
+    schedule:
+      interval: "monthly"
+    target-branch: "develop"
+
   - package-ecosystem: "pip"
     directory: "/server"
     schedule:
