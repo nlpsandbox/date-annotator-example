@@ -75,5 +75,5 @@ def add_date_annotation(annotations, matches, date_format):
             length=len(match[0]),
             text=match[0],
             date_format=date_format,
-            confidence=95
+            confidence=95.5
         ))
