@@ -57,7 +57,7 @@ Install and start the Date Annotator.
 
     cd server/
     pip install -r requirements.txt
-    cd server && python -m openapi_server
+    python -m openapi_server
 
 ### Accessing the UI
 
@@ -188,8 +188,7 @@ new release of the Date Annotator specification is available:
        curl -fO https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/openapi.yaml
 
 3. Re-run the OpenAPI generator using the same command that you have used to
-   generated the initial server stub. If you are using Python, you can use the
-   following command that we have defined in *package.json*.
+   generated the initial server stub.
 
        npm run generate:server openapi.yaml
 
