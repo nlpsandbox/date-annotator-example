@@ -5,8 +5,8 @@ from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.text_date_annotation_request import \
     TextDateAnnotationRequest  # noqa: E501
 from openapi_server.models.text_date_annotation import TextDateAnnotation
-from openapi_server.models.text_date_annotations import \
-    TextDateAnnotations  # noqa: E501
+from openapi_server.models.text_date_annotation_response import \
+    TextDateAnnotationResponse  # noqa: E501
 
 
 def create_text_date_annotations():  # noqa: E501
@@ -56,7 +56,7 @@ def create_text_date_annotations():  # noqa: E501
                 note._text, re.IGNORECASE)
             add_date_annotation(annotations, matches, "MMMM")
 
-            res = TextDateAnnotations(annotations)
+            res = TextDateAnnotationResponse(annotations)
             status = 200
         except Exception as error:
             status = 500

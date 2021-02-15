@@ -6,7 +6,14 @@ info:
     url: https://nlpsandbox.io
   description: |
     # Overview
-    This NLP tool detects references of dates in the clinical note given as input and returns a list of date annotations.
+
+    This NLP tool detects references of dates in the clinical note given as
+    input and returns a list of date annotations.
+
+    # Examples
+
+    - [NLP Sandbox Date Annotator (Python)](https://github.com/nlpsandbox/date-annotator-example)
+    - [NLP Sandbox Date Annotator (Java)](https://github.com/nlpsandbox/date-annotator-example-java)
   license:
     name: Apache 2.0
     url: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/LICENSE
@@ -67,7 +74,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TextDateAnnotations'
+                $ref: '#/components/schemas/TextDateAnnotationResponse'
           description: Success
         "400":
           content:
@@ -247,7 +254,7 @@ components:
       - text
       type: object
     TextDateAnnotationRequest:
-      description: An annotation request
+      description: A request to annotate dates in a clinical note
       example:
         note:
           identifier: awesome-note
@@ -300,8 +307,8 @@ components:
         dateFormat: MM/DD/YYYY
         confidence: 95.5
       type: object
-    TextDateAnnotations:
-      description: A list of text date annotations
+    TextDateAnnotationResponse:
+      description: The response to a dates annotation request
       example:
         textDateAnnotations:
         - start: 42
@@ -316,7 +323,7 @@ components:
           confidence: 95.5
       properties:
         textDateAnnotations:
-          description: A list of text date annotations
+          description: A list of date annotations
           items:
             $ref: '#/components/schemas/TextDateAnnotation'
           type: array
