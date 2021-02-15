@@ -86,7 +86,7 @@ class Note(Model):
         if identifier is not None and len(identifier) < 3:
             raise ValueError("Invalid value for `identifier`, length must be greater than or equal to `3`")  # noqa: E501
         if identifier is not None and not re.search(r'^[a-z0-9]+(?:-[a-z0-9]+)*$', identifier):  # noqa: E501
-            raise ValueError(r"Invalid value for `identifier`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
+            raise ValueError("Invalid value for `identifier`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
 
         self._identifier = identifier
 
@@ -167,6 +167,6 @@ class Note(Model):
         if patient_id is not None and len(patient_id) < 3:
             raise ValueError("Invalid value for `patient_id`, length must be greater than or equal to `3`")  # noqa: E501
         if patient_id is not None and not re.search(r'^[a-z0-9]+(?:-[a-z0-9]+)*$', patient_id):  # noqa: E501
-            raise ValueError(r"Invalid value for `patient_id`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
+            raise ValueError("Invalid value for `patient_id`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
 
         self._patient_id = patient_id

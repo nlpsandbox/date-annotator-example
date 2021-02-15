@@ -5,8 +5,8 @@ from openapi_server.models.error import Error  # noqa: E501
 from openapi_server.models.text_date_annotation_request import \
     TextDateAnnotationRequest  # noqa: E501
 from openapi_server.models.text_date_annotation import TextDateAnnotation
-from openapi_server.models.text_date_annotations import \
-    TextDateAnnotations  # noqa: E501
+from openapi_server.models.text_date_annotation_response import \
+    TextDateAnnotationResponse  # noqa: E501
 
 
 def create_text_date_annotations():  # noqa: E501
@@ -32,19 +32,9 @@ def create_text_date_annotations():  # noqa: E501
             add_date_annotation(annotations, matches, "MM/DD/YYYY")
 
             matches = re.finditer(
-                "([1-9]|0[1-9]|1[0-2])-([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
-                "-(19[0-9][0-9]|20[0-9][0-9])", note._text)
-            add_date_annotation(annotations, matches, "MM-DD-YYYY")
-
-            matches = re.finditer(
-                "(19[0-9][0-9]|20[0-9][0-9])-([1-9]|0[1-9]|1[0-2])" +
-                "-([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])", note._text)
-            add_date_annotation(annotations, matches, "YYYY-MM-DD")
-
-            matches = re.finditer(
-                "([1-9]|0[1-9]|1[0-2])(\\.)([1-9]|0[1-9]|1[0-9]|2[0-9]|" +
-                "3[0-1])(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
-            add_date_annotation(annotations, matches, "MM.DD.YYYY")
+                "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\\.)([1-9]|0[1-9]|" +
+                "1[0-2])(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
+            add_date_annotation(annotations, matches, "DD.MM.YYYY")
 
             matches = re.finditer(
                 "([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])", note._text)
@@ -56,7 +46,7 @@ def create_text_date_annotations():  # noqa: E501
                 note._text, re.IGNORECASE)
             add_date_annotation(annotations, matches, "MMMM")
 
-            res = TextDateAnnotations(annotations)
+            res = TextDateAnnotationResponse(annotations)
             status = 200
         except Exception as error:
             status = 500
