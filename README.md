@@ -12,7 +12,7 @@ Example implementation of the [NLP Sandbox Date Annotator]
 
 This repository provides a Python-Flask implementation of the [NLP Sandbox Date
 Annotator]. The Date Annotator is one of the first NLP Tools that can be
-benchmarked on [nlpsandbox.io]. A Date Annotator takes as input one clinical
+benchmarked on [nlpsandbox.io]. A Date Annotator takes as input a clinical
 note and outputs a list of predicted date annotations found in the clinical
 note.
 
@@ -50,8 +50,8 @@ You can stop the container run with `Ctrl+C`, followed by `docker-compose down`.
 
 We recommend using a Conda environment to install and run the Date Annotator.
 
-    conda create --name date-annotator-example python=3.9.1
-    conda activate date-annotator-example
+    conda create --name date-annotator python=3.9.1
+    conda activate date-annotator
 
 Install and start the Date Annotator.
 
@@ -59,15 +59,15 @@ Install and start the Date Annotator.
     pip install -r requirements.txt
     cd server && python -m openapi_server
 
-### Annotating clinical notes
+### Accessing the UI
 
 The Date Annotator provides a web interface that you can use to annotate
 clinical notes. The address of this interface depends on whether you run the
 Date Annotator using Docker (production mode) or the Python development
 server.
 
-- Using Docker: http://localhost
-- Using Python: http://localhost:8080/api/v1/ui/
+- Using Docker: http://localhost/ui
+- Using Python: http://localhost:8080/ui
 
 ## Development
 
@@ -162,10 +162,10 @@ framework supported by [OpenAPITools/openapi-generator].
 
 7. Start your new NLP tool locally by following the instructions outlines in the
    section [Running with Python](#Running-with-Python). Open the page
-   http://localhost:8080/api/v1/ui/ in your browser to navigate to the web
-   interface of the tool. You can now start implementing the different
-   controllers of the tools in the folder *server/openapi_server/controllers*.
-   Use the controllers defined in this repository as a reference.
+   http://localhost:8080/ui in your browser to navigate to the web interface of
+   the tool. You can now start implementing the different controllers of the
+   tools in the folder *server/openapi_server/controllers*. Use the controllers
+   defined in this repository as a reference.
 
 ### Updating your tool after the release of a new API version
 
@@ -207,7 +207,7 @@ for this project (see [server/setup.cfg](server/setup.cfg)).
 
     npm run lint
 
-The command below will run the unit and integration tests of this project.
+The command below will run the unit and integration tests.
 
     npm run test
 
@@ -232,6 +232,11 @@ reproducibility, it is encouraged to not reuse version tags.
 
 Visit [nlpsandbox.io] for instructions on how to submit your tool and evaluate
 its performance on public and private datasets.
+
+## Contributing
+
+Thinking about contributing to this project? Get started by reading our
+[Contributor Guide](CONTRIBUTING.md).
 
 ## License
 
