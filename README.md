@@ -56,7 +56,7 @@ We recommend using a Conda environment to install and run the Date Annotator.
 Install and start the Date Annotator.
 
     cd server/
-    pip install -r requirements.txt
+    pip install -e .
     python -m openapi_server
 
 ### Accessing the UI
