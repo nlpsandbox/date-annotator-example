@@ -152,6 +152,8 @@ class TextAnnotation(Model):
         :param confidence: The confidence of this TextAnnotation.
         :type confidence: float
         """
+        if confidence is None:
+            raise ValueError("Invalid value for `confidence`, must not be `None`")  # noqa: E501
         if confidence is not None and confidence > 100:  # noqa: E501
             raise ValueError("Invalid value for `confidence`, must be a value less than or equal to `100`")  # noqa: E501
         if confidence is not None and confidence < 0:  # noqa: E501

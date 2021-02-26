@@ -52,6 +52,7 @@ class License(Model):
     NCSA = "ncsa"
     UNLICENSE = "unlicense"
     ZLIB = "zlib"
+    NONE = "none"
     def __init__(self):  # noqa: E501
         """License - a model defined in OpenAPI
 
