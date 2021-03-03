@@ -19,7 +19,7 @@ class TextDateAnnotation(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, start=None, length=None, text=None, confidence=None, date_format=None):  # noqa: E501
+    def __init__(self, start=None, length=None, text=None, confidence=None, date=None, date_format=None):  # noqa: E501
         """TextDateAnnotation - a model defined in OpenAPI
 
         :param start: The start of this TextDateAnnotation.  # noqa: E501
@@ -30,6 +30,8 @@ class TextDateAnnotation(Model):
         :type text: str
         :param confidence: The confidence of this TextDateAnnotation.  # noqa: E501
         :type confidence: float
+        :param date: The date of this TextDateAnnotation.  # noqa: E501
+        :type date: date
         :param date_format: The date_format of this TextDateAnnotation.  # noqa: E501
         :type date_format: str
         """
@@ -38,6 +40,7 @@ class TextDateAnnotation(Model):
             'length': int,
             'text': str,
             'confidence': float,
+            'date': date,
             'date_format': str
         }
 
@@ -46,6 +49,7 @@ class TextDateAnnotation(Model):
             'length': 'length',
             'text': 'text',
             'confidence': 'confidence',
+            'date': 'date',
             'date_format': 'dateFormat'
         }
 
@@ -53,6 +57,7 @@ class TextDateAnnotation(Model):
         self._length = length
         self._text = text
         self._confidence = confidence
+        self._date = date
         self._date_format = date_format
 
     @classmethod
@@ -169,6 +174,29 @@ class TextDateAnnotation(Model):
             raise ValueError("Invalid value for `confidence`, must be a value greater than or equal to `0`")  # noqa: E501
 
         self._confidence = confidence
+
+    @property
+    def date(self):
+        """Gets the date of this TextDateAnnotation.
+
+        The date contained in the annotation  # noqa: E501
+
+        :return: The date of this TextDateAnnotation.
+        :rtype: date
+        """
+        return self._date
+
+    @date.setter
+    def date(self, date):
+        """Sets the date of this TextDateAnnotation.
+
+        The date contained in the annotation  # noqa: E501
+
+        :param date: The date of this TextDateAnnotation.
+        :type date: date
+        """
+
+        self._date = date
 
     @property
     def date_format(self):

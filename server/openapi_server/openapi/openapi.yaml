@@ -491,6 +491,10 @@ components:
       type: object
     TextDateAnnotation_allOf:
       properties:
+        date:
+          description: The date contained in the annotation
+          format: date
+          type: string
         dateFormat:
           description: Date format (ISO 8601)
           example: MM/DD/YYYY
