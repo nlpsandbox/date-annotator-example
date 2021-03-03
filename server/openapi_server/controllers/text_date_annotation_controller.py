@@ -1,3 +1,5 @@
+import calendar
+
 import connexion
 import re
 
@@ -7,6 +9,10 @@ from openapi_server.models.text_date_annotation_request import \
 from openapi_server.models.text_date_annotation import TextDateAnnotation
 from openapi_server.models.text_date_annotation_response import \
     TextDateAnnotationResponse  # noqa: E501
+
+
+MONTH_NUMBERS = {name: str(number).zfill(2) for
+                 number, name in enumerate(calendar.month_name)}
 
 
 def create_text_date_annotations():  # noqa: E501
@@ -29,22 +35,27 @@ def create_text_date_annotations():  # noqa: E501
             matches = re.finditer(
                 "([1-9]|0[1-9]|1[0-2])(/)([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
                 "(/)(19[0-9][0-9]|20[0-9][0-9])", note._text)
-            add_date_annotation(annotations, matches, "MM/DD/YYYY")
+            add_date_annotation(annotations, matches, "MM/DD/YYYY",
+                                lambda match: match.expand(r'\5-\1-\3'))
 
             matches = re.finditer(
                 "([1-9]|0[1-9]|1[0-9]|2[0-9]|3[0-1])(\\.)([1-9]|0[1-9]|" +
                 "1[0-2])(\\.)(19[0-9][0-9]|20[0-9][0-9])", note._text)
-            add_date_annotation(annotations, matches, "DD.MM.YYYY")
+            add_date_annotation(annotations, matches, "DD.MM.YYYY",
+                                lambda match: match.expand(r'\5-\3-\1'))
 
             matches = re.finditer(
                 "([1-9][1-9][0-9][0-9]|2[0-9][0-9][0-9])", note._text)
-            add_date_annotation(annotations, matches, "YYYY")
+            add_date_annotation(annotations, matches, "YYYY",
+                                lambda match: match.expand(r'\1'))
 
             matches = re.finditer(
                 "(January|February|March|April|May|June|July|August|" +
                 "September|October|November|December)",
                 note._text, re.IGNORECASE)
-            add_date_annotation(annotations, matches, "MMMM")
+            add_date_annotation(annotations, matches, "MMMM",
+                                lambda match:
+                                '--'+MONTH_NUMBERS[match.group(1)])
 
             res = TextDateAnnotationResponse(annotations)
             status = 200
@@ -54,7 +65,7 @@ def create_text_date_annotations():  # noqa: E501
     return res, status
 
 
-def add_date_annotation(annotations, matches, date_format):
+def add_date_annotation(annotations, matches, date_format, formatter):
     """
     Converts matches to TextDateAnnotation objects and adds them to the
     annotations array specified.
@@ -65,5 +76,6 @@ def add_date_annotation(annotations, matches, date_format):
             length=len(match[0]),
             text=match[0],
             date_format=date_format,
+            date=formatter(match),
             confidence=95.5
         ))
