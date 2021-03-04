@@ -15,13 +15,15 @@ RUN apt-get update -qq -y \
     && apt-get -y autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-COPY openapi_server ${APP_DIR}/openapi_server
-COPY requirements.txt uwsgi.ini ${APP_DIR}/
-COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
-
+WORKDIR ${APP_DIR}
+COPY openapi_server openapi_server/
+COPY requirements.txt prod-requirements.txt uwsgi.ini ./
 RUN pip install --no-cache-dir \
-    -r ${APP_DIR}/requirements.txt uWSGI==2.0.19.1
+    -r requirements.txt -r prod-requirements.txt
+
+WORKDIR /
+COPY docker-entrypoint.sh .
+RUN chmod +x docker-entrypoint.sh
 
 EXPOSE 8080
 
