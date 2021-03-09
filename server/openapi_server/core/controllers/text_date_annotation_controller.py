@@ -1,12 +1,12 @@
 import re
 
-from openapi_server.models.error import Error  # noqa: E501
+from openapi_server.models.error import Error
 from openapi_server.models.text_date_annotation import TextDateAnnotation
 from openapi_server.models.text_date_annotation_response import \
-    TextDateAnnotationResponse  # noqa: E501
+    TextDateAnnotationResponse
 
 
-def create_text_date_annotations(text_date_annotation_request):  # noqa: E501
+def create_text_date_annotations(text_date_annotation_request):
     """Annotate dates in a clinical note
 
     Return the date annotations found in a clinical note # noqa: E501
