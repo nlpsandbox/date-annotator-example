@@ -1,12 +1,11 @@
-from openapi_server.models.error import Error  # noqa: E501
-from openapi_server.models.health_check import HealthCheck  # noqa: E501
+from openapi_server.models.error import Error
+from openapi_server.models.health_check import HealthCheck
 
 
-def get_health_check():  # noqa: E501
+def get_health_check():
     """Get health check information
 
-    Get information about the health of the service # noqa: E501
-
+    Get information about the health of the service
 
     :rtype: HealthCheck
     """

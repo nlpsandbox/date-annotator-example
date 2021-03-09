@@ -1,13 +1,12 @@
-from openapi_server.models.tool import Tool  # noqa: E501
-from openapi_server.models.tool_dependencies import ToolDependencies  # noqa: E501
+from openapi_server.models.tool import Tool
+from openapi_server.models.tool_dependencies import ToolDependencies
 from openapi_server.models.license import License
 
 
-def get_tool():  # noqa: E501
+def get_tool():
     """Get tool information
 
-    Get information about the tool # noqa: E501
-
+    Get information about the tool
 
     :rtype: Tool
     """
@@ -26,11 +25,10 @@ def get_tool():  # noqa: E501
     return tool, 200
 
 
-def get_tool_dependencies():  # noqa: E501
+def get_tool_dependencies():
     """Get tool dependencies
 
-    Get the dependencies of this tool # noqa: E501
-
+    Get the dependencies of this tool
 
     :rtype: ToolDependencies
     """
