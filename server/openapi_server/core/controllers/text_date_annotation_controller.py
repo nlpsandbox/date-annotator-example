@@ -9,7 +9,7 @@ from openapi_server.models.text_date_annotation_response import \
 def create_text_date_annotations(text_date_annotation_request):
     """Annotate dates in a clinical note
 
-    Return the date annotations found in a clinical note # noqa: E501
+    Return the date annotations found in a clinical note
 
     :rtype: TextDateAnnotations
     """
