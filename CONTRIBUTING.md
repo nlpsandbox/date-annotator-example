@@ -132,4 +132,4 @@ channel that best matches the topic of your request.
 [docs site]: https://github.com/nlpsandbox/nlpsandbox-website-synapse
 [Forking Workflow]: https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
 [package.json]: package.json
-[NLP Sandbox Discord server]: https://discord.gg/Zb4ymtF
+[NLP Sandbox Discord server]: https://nlpsandbox.io/discord
