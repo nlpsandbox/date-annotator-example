@@ -212,6 +212,14 @@ The command below will run the unit and integration tests.
 
     npm run test
 
+### Creating Openapi Generator Template
+
+This command will create the openapi-generator templates, for more information about [using templates](https://openapi-generator.tech/docs/templating/)
+
+```
+openapi-generator author template -g python -o .codegen/server
+```
+
 ### Versioning
 
 This package uses [semantic versioning] for releasing new versions. Creating a
