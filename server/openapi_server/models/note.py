@@ -17,35 +17,35 @@ class Note(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, identifier=None, text=None, note_type=None, patient_id=None):  # noqa: E501
+    def __init__(self, identifier=None, text=None, type=None, patient_id=None):  # noqa: E501
         """Note - a model defined in OpenAPI
 
         :param identifier: The identifier of this Note.  # noqa: E501
         :type identifier: str
         :param text: The text of this Note.  # noqa: E501
         :type text: str
-        :param note_type: The note_type of this Note.  # noqa: E501
-        :type note_type: str
+        :param type: The type of this Note.  # noqa: E501
+        :type type: str
         :param patient_id: The patient_id of this Note.  # noqa: E501
         :type patient_id: str
         """
         self.openapi_types = {
             'identifier': str,
             'text': str,
-            'note_type': str,
+            'type': str,
             'patient_id': str
         }
 
         self.attribute_map = {
             'identifier': 'identifier',
             'text': 'text',
-            'note_type': 'noteType',
+            'type': 'type',
             'patient_id': 'patientId'
         }
 
         self._identifier = identifier
         self._text = text
-        self._note_type = note_type
+        self._type = type
         self._patient_id = patient_id
 
     @classmethod
@@ -116,29 +116,29 @@ class Note(Model):
         self._text = text
 
     @property
-    def note_type(self):
-        """Gets the note_type of this Note.
+    def type(self):
+        """Gets the type of this Note.
 
         The note type (LOINC concept)  # noqa: E501
 
-        :return: The note_type of this Note.
+        :return: The type of this Note.
         :rtype: str
         """
-        return self._note_type
+        return self._type
 
-    @note_type.setter
-    def note_type(self, note_type):
-        """Sets the note_type of this Note.
+    @type.setter
+    def type(self, type):
+        """Sets the type of this Note.
 
         The note type (LOINC concept)  # noqa: E501
 
-        :param note_type: The note_type of this Note.
-        :type note_type: str
+        :param type: The type of this Note.
+        :type type: str
         """
-        if note_type is None:
-            raise ValueError("Invalid value for `note_type`, must not be `None`")  # noqa: E501
+        if type is None:
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
-        self._note_type = note_type
+        self._type = type
 
     @property
     def patient_id(self):

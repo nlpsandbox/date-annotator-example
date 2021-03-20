@@ -19,7 +19,7 @@ class Tool(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, name=None, version=None, license=None, repository=None, description=None, author=None, author_email=None, url=None, tool_type=None, tool_api_version=None):  # noqa: E501
+    def __init__(self, name=None, version=None, license=None, repository=None, description=None, author=None, author_email=None, url=None, type=None, api_version=None):  # noqa: E501
         """Tool - a model defined in OpenAPI
 
         :param name: The name of this Tool.  # noqa: E501
@@ -38,10 +38,10 @@ class Tool(Model):
         :type author_email: str
         :param url: The url of this Tool.  # noqa: E501
         :type url: str
-        :param tool_type: The tool_type of this Tool.  # noqa: E501
-        :type tool_type: str
-        :param tool_api_version: The tool_api_version of this Tool.  # noqa: E501
-        :type tool_api_version: str
+        :param type: The type of this Tool.  # noqa: E501
+        :type type: str
+        :param api_version: The api_version of this Tool.  # noqa: E501
+        :type api_version: str
         """
         self.openapi_types = {
             'name': str,
@@ -52,8 +52,8 @@ class Tool(Model):
             'author': str,
             'author_email': str,
             'url': str,
-            'tool_type': str,
-            'tool_api_version': str
+            'type': str,
+            'api_version': str
         }
 
         self.attribute_map = {
@@ -65,8 +65,8 @@ class Tool(Model):
             'author': 'author',
             'author_email': 'authorEmail',
             'url': 'url',
-            'tool_type': 'toolType',
-            'tool_api_version': 'toolApiVersion'
+            'type': 'type',
+            'api_version': 'apiVersion'
         }
 
         self._name = name
@@ -77,8 +77,8 @@ class Tool(Model):
         self._author = author
         self._author_email = author_email
         self._url = url
-        self._tool_type = tool_type
-        self._tool_api_version = tool_api_version
+        self._type = type
+        self._api_version = api_version
 
     @classmethod
     def from_dict(cls, dikt) -> 'Tool':
@@ -302,61 +302,61 @@ class Tool(Model):
         self._url = url
 
     @property
-    def tool_type(self):
-        """Gets the tool_type of this Tool.
+    def type(self):
+        """Gets the type of this Tool.
 
         The type of this tool  # noqa: E501
 
-        :return: The tool_type of this Tool.
+        :return: The type of this Tool.
         :rtype: str
         """
-        return self._tool_type
+        return self._type
 
-    @tool_type.setter
-    def tool_type(self, tool_type):
-        """Sets the tool_type of this Tool.
+    @type.setter
+    def type(self, type):
+        """Sets the type of this Tool.
 
         The type of this tool  # noqa: E501
 
-        :param tool_type: The tool_type of this Tool.
-        :type tool_type: str
+        :param type: The type of this Tool.
+        :type type: str
         """
-        if tool_type is None:
-            raise ValueError("Invalid value for `tool_type`, must not be `None`")  # noqa: E501
-        if tool_type is not None and len(tool_type) > 60:
-            raise ValueError("Invalid value for `tool_type`, length must be less than or equal to `60`")  # noqa: E501
-        if tool_type is not None and len(tool_type) < 3:
-            raise ValueError("Invalid value for `tool_type`, length must be greater than or equal to `3`")  # noqa: E501
-        if tool_type is not None and not re.search(r'^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$', tool_type):  # noqa: E501
-            raise ValueError("Invalid value for `tool_type`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
+        if type is None:
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        if type is not None and len(type) > 60:
+            raise ValueError("Invalid value for `type`, length must be less than or equal to `60`")  # noqa: E501
+        if type is not None and len(type) < 3:
+            raise ValueError("Invalid value for `type`, length must be greater than or equal to `3`")  # noqa: E501
+        if type is not None and not re.search(r'^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$', type):  # noqa: E501
+            raise ValueError("Invalid value for `type`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
 
-        self._tool_type = tool_type
+        self._type = type
 
     @property
-    def tool_api_version(self):
-        """Gets the tool_api_version of this Tool.
+    def api_version(self):
+        """Gets the api_version of this Tool.
 
         The version of the tool OpenAPI specification  # noqa: E501
 
-        :return: The tool_api_version of this Tool.
+        :return: The api_version of this Tool.
         :rtype: str
         """
-        return self._tool_api_version
+        return self._api_version
 
-    @tool_api_version.setter
-    def tool_api_version(self, tool_api_version):
-        """Sets the tool_api_version of this Tool.
+    @api_version.setter
+    def api_version(self, api_version):
+        """Sets the api_version of this Tool.
 
         The version of the tool OpenAPI specification  # noqa: E501
 
-        :param tool_api_version: The tool_api_version of this Tool.
-        :type tool_api_version: str
+        :param api_version: The api_version of this Tool.
+        :type api_version: str
         """
-        if tool_api_version is None:
-            raise ValueError("Invalid value for `tool_api_version`, must not be `None`")  # noqa: E501
-        if tool_api_version is not None and len(tool_api_version) < 1:
-            raise ValueError("Invalid value for `tool_api_version`, length must be greater than or equal to `1`")  # noqa: E501
-        if tool_api_version is not None and not re.search(r'^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$', tool_api_version):  # noqa: E501
-            raise ValueError("Invalid value for `tool_api_version`, must be a follow pattern or equal to `/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/`")  # noqa: E501
+        if api_version is None:
+            raise ValueError("Invalid value for `api_version`, must not be `None`")  # noqa: E501
+        if api_version is not None and len(api_version) < 1:
+            raise ValueError("Invalid value for `api_version`, length must be greater than or equal to `1`")  # noqa: E501
+        if api_version is not None and not re.search(r'^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$', api_version):  # noqa: E501
+            raise ValueError("Invalid value for `api_version`, must be a follow pattern or equal to `/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/`")  # noqa: E501
 
-        self._tool_api_version = tool_api_version
+        self._api_version = api_version
