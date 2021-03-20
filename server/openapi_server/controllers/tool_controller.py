@@ -20,8 +20,8 @@ def get_tool():  # noqa: E501
         author="The NLP Sandbox Team",
         author_email="thomas.schaffter@sagebionetworks.org",
         url="https://github.com/nlpsandbox/date-annotator-example",
-        tool_type="nlpsandbox:date-annotator",
-        tool_api_version="1.0.1"
+        type="nlpsandbox:date-annotator",
+        api_version="1.0.1"
     )
     return tool, 200
 

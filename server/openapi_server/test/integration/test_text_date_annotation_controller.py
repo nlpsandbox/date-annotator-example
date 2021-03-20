@@ -19,7 +19,7 @@ class TestTextDateAnnotationController(BaseTestCase):
         text_date_annotation_request = {
             "note": {
                 "identifier": "awesome-note",
-                "noteType": "loinc:LP29684-5",
+                "type": "loinc:LP29684-5",
                 "patientId": "awesome-patient",
                 "text": "On 12/26/2020, Ms. Chloe Price met with Dr. Prescott."
             }
