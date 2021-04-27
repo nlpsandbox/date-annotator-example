@@ -5,6 +5,7 @@
     "scripts": {
         "generate:server": "openapi-generator-cli generate -g python-flask -o server -i $npm_config_specification",
         "generate:server:latest": "openapi-generator-cli generate -g python-flask -o server -i https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/openapi.json",
+        "generate:server:edge": "openapi-generator-cli generate -g python-flask -o server -i https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/edge/openapi.json",
         "lint": "cd server && flake8",
         "test": "cd server && tox"
     }
