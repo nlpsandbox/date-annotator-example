@@ -15,20 +15,25 @@ class TextDateAnnotationAllOf(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, date_format=None):  # noqa: E501
+    def __init__(self, date=None, date_format=None):  # noqa: E501
         """TextDateAnnotationAllOf - a model defined in OpenAPI
 
+        :param date: The date of this TextDateAnnotationAllOf.  # noqa: E501
+        :type date: date
         :param date_format: The date_format of this TextDateAnnotationAllOf.  # noqa: E501
         :type date_format: str
         """
         self.openapi_types = {
+            'date': date,
             'date_format': str
         }
 
         self.attribute_map = {
+            'date': 'date',
             'date_format': 'dateFormat'
         }
 
+        self._date = date
         self._date_format = date_format
 
     @classmethod
@@ -41,6 +46,29 @@ class TextDateAnnotationAllOf(Model):
         :rtype: TextDateAnnotationAllOf
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def date(self):
+        """Gets the date of this TextDateAnnotationAllOf.
+
+        The date contained in the annotation  # noqa: E501
+
+        :return: The date of this TextDateAnnotationAllOf.
+        :rtype: date
+        """
+        return self._date
+
+    @date.setter
+    def date(self, date):
+        """Sets the date of this TextDateAnnotationAllOf.
+
+        The date contained in the annotation  # noqa: E501
+
+        :param date: The date of this TextDateAnnotationAllOf.
+        :type date: date
+        """
+
+        self._date = date
 
     @property
     def date_format(self):
