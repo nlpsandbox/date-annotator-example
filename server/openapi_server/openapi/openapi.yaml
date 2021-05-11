@@ -488,7 +488,7 @@ components:
             $ref: '#/components/schemas/Tool'
           type: array
       required:
-      - toolDependencies
+      - tools
       type: object
     TextDateAnnotation_allOf:
       properties:
