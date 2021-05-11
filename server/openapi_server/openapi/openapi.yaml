@@ -1,24 +1,25 @@
 openapi: 3.0.3
 info:
   contact:
-    email: thomas.schaffter@sagebionetworks.org
-    name: The NLP Sandbox Team
+    email: team@nlpsandbox.io
+    name: NLP Sandbox Team
     url: https://nlpsandbox.io
   description: |
     # Introduction
-    The Date Annotator is one of the first type of NLP Tools that can be benchmarked on [nlpsandbox.io](https://nlpsandbox.io). A Date Annotator takes as input a clinical note and outputs a list of predicted date annotations found in the clinical note. This OpenAPI document describes the specification of a Date Annotator. This specification includes the schemas of the input and output data, and the conditions that this annotator must meet if you want to benchmark its performance on [nlpsandbox.io](https://nlpsandbox.io).
+    A Date Annotator takes as input a clinical note and outputs a list of predicted date annotations found in the clinical note. This OpenAPI document describes the specification of a Date Annotator. This specification includes the schemas of the input and output data, and the conditions that this annotator must meet if you want to benchmark its performance on [nlpsandbox.io](https://nlpsandbox.io).
     # Getting Started
-    The GitHub repository [nlpsandbox/date-annotator-example](https://github.com/nlpsandbox/date-annotator-example) provides a simple example implementation of a Python-Flask Date Annotator. By the end of the tutorial available in this repository, you will have built a Docker image for a simple Date Annotator. You will then be able to submit this image to [nlpsandbox.io](https://nlpsandbox.io) to benchmark its performance.
+    The GitHub repository [nlpsandbox/date-annotator-example](https://github.com/nlpsandbox/date-annotator-example) provides a simple example implementation of a Python-Flask Date Annotator. By the end of the tutorial available in the README, you will have built a Docker image for a simple Date Annotator. You will then be able to submit this image to [nlpsandbox.io](https://nlpsandbox.io) to benchmark its performance.
     # Benchmarking Requirements
-    The following conditions must be met by your Date Annotator if you want to benchmark its performance on [nlpsandbox.io](https://nlpsandbox.io).
+    Your NLP Sandbox tool must meet the following conditions before evaluating its performance on [nlpsandbox.io](https://nlpsandbox.io).
     - The endpoint `/` must redirect to `/api/v1/tool`.
     - The endpoint `/ui` must redirect to the web interface (UI).
     - The output of this tool must be reproducible: a given input should always
       generate the same output.
 
-    - This tool must not attempt to connect to remote server for reproducibility,
-      robustness, and security reasons. When benchmarked on [nlpsandbox.io](https://nlpsandbox.io),
-      this tool will not be able to connect to remote servers.
+    - To ensure the results are reproducible and robust, and the data are
+      secured, this tool must not connect to any remote server. When benchmarked
+      on [nlpsandbox.io](https://nlpsandbox.io), this tool will not be able to
+      connect to remote servers.
 
     # Examples
     - [Date Annotator Example (Python)](https://github.com/nlpsandbox/date-annotator-example)
@@ -27,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 1.0.2
+  version: 1.1.0
   x-logo:
     url: https://nlpsandbox.github.io/nlpsandbox-schemas/logo.png
 servers:
@@ -399,7 +400,7 @@ components:
         authorEmail: author@example.com
         url: https://example.com
         type: nlpsandbox:date-annotator
-        apiVersion: 1.0.2
+        apiVersion: 1.1.0
       properties:
         name:
           description: The tool name
@@ -459,7 +460,7 @@ components:
     ToolDependencies:
       description: A list of tool dependencies
       example:
-        toolDependencies:
+        tools:
         - name: awesome-nlp-tool
           version: 1.0.6
           license: apache-2.0
@@ -469,7 +470,7 @@ components:
           authorEmail: author@example.com
           url: https://example.com
           type: nlpsandbox:date-annotator
-          apiVersion: 1.0.2
+          apiVersion: 1.1.0
         - name: awesome-nlp-tool
           version: 1.0.6
           license: apache-2.0
@@ -479,15 +480,15 @@ components:
           authorEmail: author@example.com
           url: https://example.com
           type: nlpsandbox:date-annotator
-          apiVersion: 1.0.2
+          apiVersion: 1.1.0
       properties:
-        toolDependencies:
+        tools:
           description: A list of tools
           items:
             $ref: '#/components/schemas/Tool'
           type: array
       required:
-      - toolDependencies
+      - tools
       type: object
     TextDateAnnotation_allOf:
       properties:

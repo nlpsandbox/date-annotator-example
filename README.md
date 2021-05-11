@@ -21,8 +21,8 @@ note.
 
 ### Specification
 
-- Date Annotator API version: 1.0.2
-- Tool version: 1.0.2
+- Date Annotator API version: 1.1.0
+- Tool version: 1.1.0
 - Docker image: [nlpsandbox/date-annotator-example]
 
 ## Model
@@ -53,13 +53,13 @@ You can stop the container run with `Ctrl+C`, followed by `docker-compose down`.
 
 We recommend using a Conda environment to install and run the Date Annotator.
 
-    conda create --name date-annotator python=3.9.1
+    conda create --name date-annotator python=3.9
     conda activate date-annotator
 
 Install and start the Date Annotator.
 
     cd server/
-    pip install -e .
+    pip install -r requirements.txt
     python -m openapi_server
 
 ### Accessing the UI

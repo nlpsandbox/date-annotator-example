@@ -17,21 +17,21 @@ class ToolDependencies(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, tool_dependencies=None):  # noqa: E501
+    def __init__(self, tools=None):  # noqa: E501
         """ToolDependencies - a model defined in OpenAPI
 
-        :param tool_dependencies: The tool_dependencies of this ToolDependencies.  # noqa: E501
-        :type tool_dependencies: List[Tool]
+        :param tools: The tools of this ToolDependencies.  # noqa: E501
+        :type tools: List[Tool]
         """
         self.openapi_types = {
-            'tool_dependencies': List[Tool]
+            'tools': List[Tool]
         }
 
         self.attribute_map = {
-            'tool_dependencies': 'toolDependencies'
+            'tools': 'tools'
         }
 
-        self._tool_dependencies = tool_dependencies
+        self._tools = tools
 
     @classmethod
     def from_dict(cls, dikt) -> 'ToolDependencies':
@@ -45,26 +45,26 @@ class ToolDependencies(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def tool_dependencies(self):
-        """Gets the tool_dependencies of this ToolDependencies.
+    def tools(self):
+        """Gets the tools of this ToolDependencies.
 
         A list of tools  # noqa: E501
 
-        :return: The tool_dependencies of this ToolDependencies.
+        :return: The tools of this ToolDependencies.
         :rtype: List[Tool]
         """
-        return self._tool_dependencies
+        return self._tools
 
-    @tool_dependencies.setter
-    def tool_dependencies(self, tool_dependencies):
-        """Sets the tool_dependencies of this ToolDependencies.
+    @tools.setter
+    def tools(self, tools):
+        """Sets the tools of this ToolDependencies.
 
         A list of tools  # noqa: E501
 
-        :param tool_dependencies: The tool_dependencies of this ToolDependencies.
-        :type tool_dependencies: List[Tool]
+        :param tools: The tools of this ToolDependencies.
+        :type tools: List[Tool]
         """
-        if tool_dependencies is None:
-            raise ValueError("Invalid value for `tool_dependencies`, must not be `None`")  # noqa: E501
+        if tools is None:
+            raise ValueError("Invalid value for `tools`, must not be `None`")  # noqa: E501
 
-        self._tool_dependencies = tool_dependencies
+        self._tools = tools
