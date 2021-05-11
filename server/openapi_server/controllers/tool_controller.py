@@ -34,4 +34,4 @@ def get_tool_dependencies():  # noqa: E501
 
     :rtype: ToolDependencies
     """
-    return ToolDependencies(tool_dependencies=[]), 200
+    return ToolDependencies(tools=[]), 200
