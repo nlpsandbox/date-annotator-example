@@ -28,7 +28,7 @@ info:
     name: Apache 2.0
     url: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/LICENSE
   title: NLP Sandbox Date Annotator API
-  version: 1.1.0
+  version: 1.1.1
   x-logo:
     url: https://nlpsandbox.github.io/nlpsandbox-schemas/logo.png
 servers:
@@ -191,29 +191,36 @@ components:
           - pass
           - fail
           - warn
+          title: status
           type: string
       required:
       - status
+      title: HealthCheck
       type: object
     Error:
       description: Problem details (tools.ietf.org/html/rfc7807)
       properties:
         title:
           description: A human readable documentation for the problem type
+          title: title
           type: string
         status:
           description: The HTTP status code
+          title: status
           type: integer
         detail:
           description: A human readable explanation specific to this occurrence of
             the problem
+          title: detail
           type: string
         type:
           description: An absolute URI that identifies the problem type
+          title: type
           type: string
       required:
       - status
       - title
+      title: Error
       type: object
     NoteId:
       description: The ID of the clinical note
@@ -262,6 +269,7 @@ components:
       - patientId
       - text
       - type
+      title: Note
       type: object
     TextDateAnnotationRequest:
       description: A request to annotate dates in a clinical note
@@ -317,6 +325,7 @@ components:
         text: 10/26/2020
         dateFormat: MM/DD/YYYY
         confidence: 95.5
+      title: TextDateAnnotation
       type: object
     TextDateAnnotationResponse:
       description: The response to a dates annotation request
@@ -337,9 +346,11 @@ components:
           description: A list of date annotations
           items:
             $ref: '#/components/schemas/TextDateAnnotation'
+          title: textDateAnnotations
           type: array
       required:
       - textDateAnnotations
+      title: TextDateAnnotationResponse
       type: object
     License:
       description: The license (license keyword used by GitHub)
@@ -380,6 +391,7 @@ components:
       - zlib
       - none
       example: apache-2.0
+      title: License
       type: string
     ToolType:
       description: The type of this tool
@@ -400,7 +412,7 @@ components:
         authorEmail: author@example.com
         url: https://example.com
         type: nlpsandbox:date-annotator
-        apiVersion: 1.1.0
+        apiVersion: 1.1.1
       properties:
         name:
           description: The tool name
@@ -456,6 +468,7 @@ components:
       - type
       - url
       - version
+      title: Tool
       type: object
     ToolDependencies:
       description: A list of tool dependencies
@@ -470,7 +483,7 @@ components:
           authorEmail: author@example.com
           url: https://example.com
           type: nlpsandbox:date-annotator
-          apiVersion: 1.1.0
+          apiVersion: 1.1.1
         - name: awesome-nlp-tool
           version: 1.0.6
           license: apache-2.0
@@ -480,15 +493,17 @@ components:
           authorEmail: author@example.com
           url: https://example.com
           type: nlpsandbox:date-annotator
-          apiVersion: 1.1.0
+          apiVersion: 1.1.1
       properties:
         tools:
           description: A list of tools
           items:
             $ref: '#/components/schemas/Tool'
+          title: tools
           type: array
       required:
       - tools
+      title: ToolDependencies
       type: object
     TextDateAnnotation_allOf:
       properties:

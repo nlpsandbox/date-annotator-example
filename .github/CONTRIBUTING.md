@@ -126,7 +126,7 @@ channel that best matches the topic of your request.
 
 <!-- Links -->
 
-[Code of Conduct]: https://github.com/nlpsandbox/date-annotator-example/blob/develop/CODE_OF_CONDUCT.md
+[Code of Conduct]: https://github.com/nlpsandbox/date-annotator-example/blob/develop/.github/CODE_OF_CONDUCT.md
 [upstream remote]: https://help.github.com/en/articles/configuring-a-remote-for-a-fork
 [reaction]: https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/
 [docs site]: https://github.com/nlpsandbox/nlpsandbox-website-synapse
