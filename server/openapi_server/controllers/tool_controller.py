@@ -17,7 +17,7 @@ def get_tool():  # noqa: E501
         license=License.APACHE_2_0,
         repository="github:nlpsandbox/date-annotator-example",
         description="Example implementation of the NLP Sandbox Date Annotator",
-        author="The NLP Sandbox Team",
+        author="NLP Sandbox Team",
         author_email="thomas.schaffter@sagebionetworks.org",
         url="https://github.com/nlpsandbox/date-annotator-example",
         type="nlpsandbox:date-annotator",
