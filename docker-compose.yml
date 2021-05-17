@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   date-annotator:
-    image: nlpsandbox/date-annotator-example:1.1.0
+    image: nlpsandbox/date-annotator-example:1.1.1
     build:
       context: server
       dockerfile: Dockerfile
