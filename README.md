@@ -21,9 +21,11 @@ note.
 
 ### Specification
 
-- Date Annotator API version: 1.1.1
-- Tool version: 1.1.1
-- Docker image: [nlpsandbox/date-annotator-example]
+- Date Annotator API version: 1.1.2
+- Tool version: 1.1.2
+- Docker image:
+  - [docker.synapse.org/syn22277123/date-annotator-example]
+  - [nlpsandbox/date-annotator-example]
 
 ## Model
 
@@ -249,6 +251,7 @@ Thinking about contributing to this project? Get started by reading our
 [nlpsandbox.io]: https://www.synapse.org/nlpsandbox
 [NLP Sandbox]: https://www.synapse.org/nlpsandbox
 [NLP Sandbox Date Annotator]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
+<!-- [docker.synapse.org/syn22277123/date-annotator-example]:  -->
 [nlpsandbox/date-annotator-example]: https://hub.docker.com/r/nlpsandbox/date-annotator-example
 [GitHub template]: https://github.com/nlpsandbox/date-annotator-example/generate
 [NLP Sandbox]: nlpsandbox.io
