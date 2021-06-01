@@ -137,4 +137,3 @@ jobs:
           org.opencontainers.image.version=${{ env.version }}
           org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.licenses=${{ github.event.repository.license.name }}
-
