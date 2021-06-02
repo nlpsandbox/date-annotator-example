@@ -5,38 +5,28 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "develop"
-    # reviewers:
-    #   - "nlpsandbox/maintainers"
+    target-branch: "main"
 
   - package-ecosystem: "docker"
     directory: "/server"
     schedule:
       interval: "monthly"
-    target-branch: "develop"
-    # reviewers:
-    #   - "nlpsandbox/maintainers"
+    target-branch: "main"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "develop"
-    # reviewers:
-    #   - "nlpsandbox/maintainers"
+    target-branch: "main"
 
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "monthly"
-    target-branch: "develop"
-    # reviewers:
-    #   - "nlpsandbox/maintainers"
+    target-branch: "main"
 
   - package-ecosystem: "pip"
     directory: "/server"
     schedule:
       interval: "monthly"
-    target-branch: "develop"
-    # reviewers:
-    #   - "nlpsandbox/maintainers"
+    target-branch: "main"
