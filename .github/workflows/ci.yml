@@ -108,6 +108,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Download .GITHUB_ENV
+      uses: actions/download-artifact@v2
+      with:
+        name: GITHUB_ENV
+        path: .
+
+    - name: Restore $GITHUB_ENV
+      run: cat .GITHUB_ENV >> $GITHUB_ENV
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
 
@@ -128,7 +137,7 @@ jobs:
       with:
         context: server
         file: server/Dockerfile
-        platforms: linux/amd64,linux/arm64
+        platforms: linux/amd64
         push: ${{ env.push }}
         tags: ${{ env.tags }}
         labels: |
