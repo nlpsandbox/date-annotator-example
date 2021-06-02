@@ -21,8 +21,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/templates:/etc/nginx/templates:ro
     networks:
-      - nlp-sandbox
-      - nlp-sandbox-internal
+      - nlpsandbox
+      - nlpsandbox-internal
     ports:
       - "80:80"
     depends_on:
