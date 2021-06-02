@@ -2,13 +2,13 @@ version: "3.8"
 
 services:
   date-annotator:
-    image: nlpsandbox/date-annotator-example:1.1.1
+    image: docker.synapse.org/syn22277123/date-annotator-example:1.1.2
     build:
       context: server
       dockerfile: Dockerfile
     container_name: date-annotator
     networks:
-      - nlp-sandbox-internal
+      - nlpsandbox-internal
 
   nginx:
     image: nginx:1.19.6-alpine
@@ -29,6 +29,6 @@ services:
       - date-annotator
 
 networks:
-  nlp-sandbox:
-  nlp-sandbox-internal:
+  nlpsandbox:
+  nlpsandbox-internal:
     internal: true

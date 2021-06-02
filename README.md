@@ -11,7 +11,7 @@
 
 Example implementation of the [NLP Sandbox Date Annotator]
 
-## Overview
+## Introduction
 
 This repository provides a Python-Flask implementation of the [NLP Sandbox Date
 Annotator]. The Date Annotator is one of the first NLP Tools that can be
@@ -19,11 +19,17 @@ benchmarked on [nlpsandbox.io]. A Date Annotator takes as input a clinical
 note and outputs a list of predicted date annotations found in the clinical
 note.
 
+### Requirements
+
+- [Docker Engine] >=19.03.0
+
 ### Specification
 
-- Date Annotator API version: 1.1.1
-- Tool version: 1.1.1
-- Docker image: [nlpsandbox/date-annotator-example]
+- Date Annotator API version: 1.1.2
+- Tool version: 1.1.2
+- Docker image:
+  - [docker.synapse.org/syn22277123/date-annotator-example]
+  - [nlpsandbox/date-annotator-example]
 
 ## Model
 
@@ -73,6 +79,13 @@ server.
 - Using Python: http://localhost:8080/ui
 
 ## Development
+
+### Requirements
+
+- [Node] >=14
+- [Java] >=1.8 (required by [openapi-generator])
+- [Conda] >=4 and/or [Python] >= 3.7
+- [Synapse.org] user account to push image to [docker.synapse.org]
 
 This section describes how you can start developing your own Date Annotator that
 you can then submit for evaluation to the NLP Sandbox.
@@ -249,6 +262,7 @@ Thinking about contributing to this project? Get started by reading our
 [nlpsandbox.io]: https://www.synapse.org/nlpsandbox
 [NLP Sandbox]: https://www.synapse.org/nlpsandbox
 [NLP Sandbox Date Annotator]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
+<!-- [docker.synapse.org/syn22277123/date-annotator-example]:  -->
 [nlpsandbox/date-annotator-example]: https://hub.docker.com/r/nlpsandbox/date-annotator-example
 [GitHub template]: https://github.com/nlpsandbox/date-annotator-example/generate
 [NLP Sandbox]: nlpsandbox.io
@@ -257,5 +271,12 @@ Thinking about contributing to this project? Get started by reading our
 [Patient schema]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/openapi/commons/components/schemas/Patient.yaml
 [nlpsandbox/nlpsandbox-schemas]: https://github.com/nlpsandbox/nlpsandbox-schemas
 [semantic versioning]: https://semver.org/
-[OpenAPITools/openapi-generator]: https://github.com/OpenAPITools/openapi-generator
+[openapi-generator]: https://github.com/OpenAPITools/openapi-generator
 [Contributor Guide]: .github/CONTRIBUTING.md
+[Docker Engine]: https://docs.docker.com/engine/install/
+[Node]: https://nodejs.org/en/
+[Java]: https://www.java.com/en/download/help/download_options.html
+[Synapse.org]: https://synapse.org
+[Conda]: https://conda.io/projects/conda/en/latest/user-guide/install/index.html
+[Python]: https://www.python.org/downloads/
+[docker.synapse.org]: https://synapse.org
