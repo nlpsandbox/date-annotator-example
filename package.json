@@ -10,6 +10,6 @@
         "test": "cd server && tox",
         "install:dependencies": "npm ci && cd server && pip install -r requirements.txt",
         "start:dev": "cd server && python -m openapi_server",
-        "start:prod": "docker-compose up --build"
+        "start:prod": "docker compose up --build"
     }
 }
