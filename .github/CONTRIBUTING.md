@@ -129,7 +129,7 @@ channel that best matches the topic of your request.
 [Code of Conduct]: CODE_OF_CONDUCT.md
 [upstream remote]: https://help.github.com/en/articles/configuring-a-remote-for-a-fork
 [reaction]: https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/
-[docs site]: https://github.com/nlpsandbox/nlpsandbox-website-synapse
+[docs site]: https://nlpsandbox.io
 [Forking Workflow]: https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
-[package.json]: package.json
+[package.json]: ../package.json
 [NLP Sandbox Discord server]: https://nlpsandbox.io/discord
