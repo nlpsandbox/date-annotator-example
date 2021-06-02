@@ -45,7 +45,13 @@ jobs:
           "version=${VERSION}" \
           "tags=${TAGS}" \
           "created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-          "push=${PUSH}" | tee -a .GITHUB_ENV
+          "push=${PUSH}" | tee -a .github_env
+
+    - name: Upload .github_env
+      uses: actions/upload-artifact@v2
+      with:
+        name: GITHUB_ENV
+        path: .github_env
 
   lint:
     needs: [configure]
@@ -104,14 +110,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Download .GITHUB_ENV
+    - name: Download .github_env
       uses: actions/download-artifact@v2
       with:
         name: GITHUB_ENV
         path: .
 
     - name: Restore $GITHUB_ENV
-      run: cat .GITHUB_ENV >> $GITHUB_ENV
+      run: cat .github_env >> $GITHUB_ENV
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
