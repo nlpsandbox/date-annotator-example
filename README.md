@@ -9,9 +9,30 @@
 [![Docker](https://img.shields.io/badge/leaderboard-blue.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=nlpsandbox&logo=data:image/svg%2bxml;base64,PHN2ZyByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMy4yIDcuOS0xLjctMXYxMS40bDkuOSA1LjdWMTIuNkw1LjYgOS4zIDMuMiA3Ljl6bTE3LjEtMS4zIDEuNS0uOUwxMiAwIDIuMiA1LjdsMi42IDEuNS4xLjEgMS43IDEgNS41IDMuMiA1LjEtMyAzLjEtMS45ek0xMiA5LjUgOS4zIDcuOSA3LjQgNi44bC0xLjctMS0uMS0uMWgtLjFMMTIgMS45bDYuNSAzLjhMMTYuMyA3IDEyIDkuNXptOC44LTEuNi0yLjQgMS40LS41LjItNS4zIDMuMVYyNGw5LjktNS43VjYuOWwtMS43IDF6IiBmaWxsPSIjZmZmIi8+PC9zdmc+)](https://www.synapse.org/#!Synapse:syn22277123/wiki/608544 "View the performance of this tool on nlpsandbox.io")
 [![Discord](https://img.shields.io/discord/770484164393828373.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=Discord&logo=discord)](https://nlpsandbox.io/discord "Realtime support / chat with the community and the team")
 
-## Table of contents
+## Introduction
 
-- [Introduction](#Introduction)
+[NLPSandbox.io] is an open platform for benchmarking modular natural language
+processing (NLP) tools on both public and private datasets. Academics, students,
+and industry professionals are invited to browse the available tasks and
+participate by developing and submitting an NLP Sandbox tool.
+
+This repository provides an example implementation of the [NLP Sandbox Date
+Annotator API] written in Python-Flask. An NLP Sandbox date annotato takes as
+input a clinical note (text) and outputs a list of predicted date annotations
+found in the clinical note. Here dates are identified using regular expressions.
+
+This tool is provided to NLP developers who develop in Python as a starting
+point to package their own date annotator as an NLP Sandbox tool (see section
+[Development](#Development)). This section also describes how to generate a tool
+"stub" using [openapi-generator] for 50+ programming languages-frameworks. This
+repository includes a GitHub CI/CD workflow that lints, tests, builds and pushes
+a Docker image of this tool to Synapse Docker Registry. This image of this
+example tool can be submitted as-is on NLPSandbox.io to benchmark its
+performance -- just don't expect a high performance!
+
+
+## Contents
+
 - [Specification](#Specification)
 - [Requirements](#Requirements)
 - [Usage](#Usage)
@@ -36,29 +57,6 @@
 - [Benchmarking on NLPSandbox&#46;io](#Benchmarking-on-NLPSandbox&#46;io)
 - [Contributing](#Contributing)
 - [License](#License)
-
-
-## Introduction
-
-[NLPSandbox.io] is an open platform for benchmarking modular natural language
-processing (NLP) tools on both public and private datasets. Academics, students,
-and industry professionals are invited to browse the available tasks and
-participate by developing and submitting an NLP Sandbox tool.
-
-This repository provides an example implementation of the [NLP Sandbox Date
-Annotator API] written in Python-Flask. An NLP Sandbox date annotato takes as
-input a clinical note (text) and outputs a list of predicted date annotations
-found in the clinical note. Here dates are identified using regular expressions.
-
-This tool is provided to NLP developers who develop in Python as a starting
-point to package their own date annotator as an NLP Sandbox tool (see section
-[Development](#Development)). This section also describes how to generate a tool
-"stub" using [openapi-generator] for 50+ programming languages-frameworks. This
-repository includes a GitHub CI/CD workflow that lints, tests, builds and pushes
-a Docker image of this tool to Synapse Docker Registry. This image of this
-example tool can be submitted as-is on NLPSandbox.io to benchmark its
-performance -- just don't expect a high performance!
-
 
 ## Specification
 
