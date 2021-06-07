@@ -24,17 +24,16 @@ found in the clinical note. Here dates are identified using regular expressions.
 This tool is provided to NLP developers who develop in Python as a starting
 point to package their own date annotator as an NLP Sandbox tool (see section
 [Development](#Development)). This section also describes how to generate a tool
-"stub" using [openapi-generator] for 50+ programming languages-frameworks.
-
-This repository includes a GitHub CI/CD workflow that lint, test, build and push
+"stub" using [openapi-generator] for 50+ programming languages-frameworks. This
+repository includes a GitHub CI/CD workflow that lints, tests, builds and pushes
 a Docker image of this tool to Synapse Docker Registry. This image of this
 example tool can be submitted as-is on NLPSandbox.io to benchmark its
 performance -- just don't expect a high performance!
 
 ## Specification
 
-- NLP Sandbox Schema version: 1.1.2
-- Tool version: 1.1.2
+- NLP Sandbox schemas version: 1.1.2
+- NLP Sandbox tool version: 1.1.2
 - Docker image: [docker.synapse.org/syn22277123/date-annotator-example]
 
 ## Requirements
@@ -80,7 +79,13 @@ the tool using Docker (production) or Python (development).
 - Using Docker: http://localhost/ui
 - Using Python: http://localhost:8080/ui
 
+
 ## Development
+
+This section describes how to develop your own NLP Sandbox date annotator in
+Python-Flask and other programming languages-frameworks. This example tool is
+also available in Java in the GitHub repository
+[nlpsandbox/date-annotator-example-java].
 
 ### Requirements
 
@@ -89,56 +94,57 @@ the tool using Docker (production) or Python (development).
 - [Conda] >=4 and/or [Python] >= 3.7
 - [Synapse.org] user account to push the image to [docker.synapse.org]
 
+### Creating a GitHub repository
 
+Depending on the language-frameworks you want to develop with:
 
+- Python-Flask: create a new repository from this [this GitHub template].
+- Java-Spring: create a new repository from the GitHub repository
+  [nlpsandbox/date-annotator-example-java].
+- Other languages-frameworks: create a brand-new GitHub repository before
+  generating a NLP Sandbox tool stub in section [XXX].
 
-
-
-
-
-
-
-
-
-
-### Creating a new GitHub repository
-
-This step will depend on your preferred programming language-framework.
-
-- If you develop in Python-Flask, create a new repository from this [GitHub
-  template].
-- If you develop in Java-Spring, create a new repository from the GitHub
-  template [nlpsandbox/date-annotator-example-java].
-
-If you prefer to develop using another language or if you want to learn how this
-repository has been generated, go to the section [Creating a new Date Annotator
-from scratch](#Creating-a-new-Date-Annotator-from-scratch).
+You can also use a different code repository hosting service like [GitLab] and
+[Bitbucket].
 
 ### Configuring the CI/CD workflow
 
-This repository provides a GitHub CI/CD workflow that performs the following
-actions:
+This repository includes a GitHub [CI/CD workflow] that lints, tests, builds and
+pushes a Docker image of this tool to Synapse Docker Registry. Only the images
+that have been pushed to Synapse Docker Resgitry can be submitted to
+[NLPSandbox.io] benchmarks for now.
 
-- Lint the Python code and Docker files.
-- Test this NLP tool (integration tests).
-- Build this NLP tool as a Docker image and publish it to DockerHub.
+After creating your GitHub repository, you need to configure the CI/CD workflow
+if you want to benefit from automatic lint checks, tests and Docker builds.
 
-If you wish to enable the above CI/CD actions for your repository, please:
+1. Create two [GitHub secrets]
+   - `SYNAPSE_USERNAME`: Your [Synapse.org] username.
+   - `SYNAPSE_TOKEN`: A [personal access token] that has the permissions `View`,
+     `Download` and `Modify`.
+2. In the [CI/CD workflow], update the environment variable `docker_repository`
+   with the value `docker.synapse.org/<synapse_project_id>/<docker_image>`
+   where:
+   - `<synapse_project_id>`: the Synapse ID of a project you have created on
+     [Synapse.org].
+   - `<docker_image>` is the name of your image/tool.
 
-1. Create a public or private Docker repository on DockerHub (or another Docker
-   registry).
-2. Add the following GitHub Secrets to your repository to specify the
-   credentials that the CI/CD workflow will use to push the Docker image to the
-   registry.
-    - `DOCKERHUB_PASSWORD`
-    - `DOCKERHUB_USERNAME`
-3. In the CI/CD workflow (.github/workflows/ci.yml), update the environment
-   variable listed below with the name of your docker repository.
-    - `docker_repository`
+### Enabling and disabling version updates
 
-Note that the credentials used to push the Docker image to DockerHub must have
-the permission `Admin` to push the README of your repository to DockerHub and
-complete successfully the CI/CD workflow.
+This repository includes a [Dependabot configuration] that instructs GitHub to
+let you know when an update is available for a dependency of this project (e.g.
+Python, Node, Docker). Dependabot will automatically open a PR when an update is
+available. If you have configured the CI/CD workflow that comes with this
+repository, the workflow will automatically run and notify you if the update is
+breaking your code. You can then resolve the issue before merging the PR, hence
+making the update effective.
+
+For more information on Dependabot, please visit the GitHub page [Enabling and
+disabling version updates].
+
+
+
+
+
 
 ### Docker tags
 
@@ -257,7 +263,7 @@ its performance on public and private datasets.
 ## Contributing
 
 Thinking about contributing to this project? Get started by reading our
-[Contributor Guide].
+[contribution guide].
 
 ## License
 
@@ -268,25 +274,32 @@ Thinking about contributing to this project? Get started by reading our
 [nlpsandbox.io]: https://www.synapse.org/nlpsandbox
 [docker.synapse.org/syn22277123/date-annotator-example]: https://www.synapse.org/#!Synapse:syn25828638
 [Synapse.org]: https://synapse.org
+[openapi-generator]: https://github.com/OpenAPITools/openapi-generator
+[contribution guide]: .github/CONTRIBUTING.md
+[Apache License 2.0]: https://github.com/nlpsandbox/date-annotator-example/blob/main/LICENSE
+[Docker Engine]: https://docs.docker.com/engine/install/
+[Node]: https://nodejs.org/en/
+[Java]: https://www.java.com/en/download/help/download_options.html
+[Conda]: https://conda.io/projects/conda/en/latest/user-guide/install/index.html
+[Python]: https://www.python.org/downloads/
+[docker.synapse.org]: https://synapse.org
+[GitLab]: https://about.gitlab.com/
+[Bitbucket]: https://bitbucket.org/product
+[GitHub secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets
+[personal access token]: https://help.synapse.org/docs/Managing-Your-Account.2055405596.html
+[CI/CD workflow]: .github/workflows/ci.yml
+[Dependabot configuration]: .github/dependabot.yml
+[Enabling and disabling version updates]: https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/enabling-and-disabling-version-updates
 
 
 [NLP Sandbox]: https://www.synapse.org/nlpsandbox
 [NLP Sandbox Date Annotator API]: https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/docs/
 <!-- [docker.synapse.org/syn22277123/date-annotator-example]:  -->
 [nlpsandbox/date-annotator-example]: https://hub.docker.com/r/nlpsandbox/date-annotator-example
-[GitHub template]: https://github.com/nlpsandbox/date-annotator-example/generate
+[this GitHub template]: https://github.com/nlpsandbox/date-annotator-example/generate
 [NLP Sandbox]: nlpsandbox.io
 [nlpsandbox/date-annotator-example-java]: https://github.com/nlpsandbox/date-annotator-example-java
 [Apache License 2.0]: https://github.com/nlpsandbox/date-annotator-example/blob/develop/LICENSE
 [Patient schema]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/openapi/commons/components/schemas/Patient.yaml
 [nlpsandbox/nlpsandbox-schemas]: https://github.com/nlpsandbox/nlpsandbox-schemas
 [semantic versioning]: https://semver.org/
-[openapi-generator]: https://github.com/OpenAPITools/openapi-generator
-[Contributor Guide]: .github/CONTRIBUTING.md
-[Docker Engine]: https://docs.docker.com/engine/install/
-[Node]: https://nodejs.org/en/
-[Java]: https://www.java.com/en/download/help/download_options.html
-
-[Conda]: https://conda.io/projects/conda/en/latest/user-guide/install/index.html
-[Python]: https://www.python.org/downloads/
-[docker.synapse.org]: https://synapse.org
