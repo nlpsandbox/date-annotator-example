@@ -3,6 +3,9 @@ name: Update to latest NLP Sandbox version
 on:
   schedule:
     - cron: '*/5 * * * *'  # every 5 minutes
+  push:
+    branches:
+      - main
 
 jobs:
   check-and-update:
@@ -36,35 +39,35 @@ jobs:
         with:
           title: Update to NLP Sandbox schemas ${{ env.NEW_VERSION }}
           commit-message: Update to NLP Sandbox schemas ${{ env.NEW_VERSION }}
-          # body: |
-          #   1. Checkout the branch created by the workflow.
+          body: |
+            1. Checkout the branch created by the workflow.
 
-          #         git checkout <branch_name>
+                  git checkout <branch_name>
 
-          #   2. Re-run the same [openapi-generator] command you used to generate
-          #      the tool stub. If you started from an existing tool
-          #      implementation like the one included in this GitHub repository,
-          #      run the following command to update your tool to the latest
-          #      version of the [NLP Sandbox schemas] (this command would be
-          #      defined in `package.json`).
+            2. Re-run the same [openapi-generator] command you used to generate
+               the tool stub. If you started from an existing tool
+               implementation like the one included in this GitHub repository,
+               run the following command to update your tool to the latest
+               version of the [NLP Sandbox schemas] (this command would be
+               defined in `package.json`).
 
-          #         npm run generate:server:latest
+                  npm run generate:server:latest
 
-          #   3. Review the updates made to this tool in [NLP Sandbox schemas
-          #      CHANGELOG].
+            3. Review the updates made to this tool in [NLP Sandbox schemas
+               CHANGELOG].
 
-          #   4. Review and merge the changes. If you are using VS Code, this step
-          #      can be performed relatively easily using the section named
-          #      "Source Control". This section lists the files that have been
-          #      modified by the generator. When clicking on a file, VS Code shows
-          #      side-by-side the current and updated version of the file. Changes
-          #      can be accepted or rejected at the level of an entire file or for
-          #      a selection of lines.
+            4. Review and merge the changes. If you are using VS Code, this step
+               can be performed relatively easily using the section named
+               "Source Control". This section lists the files that have been
+               modified by the generator. When clicking on a file, VS Code shows
+               side-by-side the current and updated version of the file. Changes
+               can be accepted or rejected at the level of an entire file or for
+               a selection of lines.
 
-          #   5. Submit your updated tool to [NLPSandbox.io].
+            5. Submit your updated tool to [NLPSandbox.io].
 
-          #   [openapi-generator]: https://github.com/OpenAPITools/openapi-generator
-          #   [NLP Sandbox schemas]: https://github.com/nlpsandbox/nlpsandbox-schemas
-          #   [NLP Sandbox schemas CHANGELOG]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/main/.github/CHANGELOG.md
-          #   [NLPSandbox.io]: https://nlpsandbox.io
+            [openapi-generator]: https://github.com/OpenAPITools/openapi-generator
+            [NLP Sandbox schemas]: https://github.com/nlpsandbox/nlpsandbox-schemas
+            [NLP Sandbox schemas CHANGELOG]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/main/.github/CHANGELOG.md
+            [NLPSandbox.io]: https://nlpsandbox.io
           delete-branch: true
