@@ -17,7 +17,7 @@ and industry professionals are invited to browse the available tasks and
 participate by developing and submitting an NLP Sandbox tool.
 
 This repository provides an example implementation of the [NLP Sandbox Date
-Annotator API] written in Python-Flask. An NLP Sandbox date annotato takes as
+Annotator API] written in Python-Flask. An NLP Sandbox date annotator takes as
 input a clinical note (text) and outputs a list of predicted date annotations
 found in the clinical note. Here dates are identified using regular expressions.
 
