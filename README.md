@@ -245,6 +245,8 @@ Follow the steps listed below to update your tool.
    version of the file. Changes can be accepted or rejected at the level of an
    entire file or for a selection of lines.
 
+5. Submit your updated tool to [NLPSandbox.io].
+
 ### Testing
 
 If you started from an existing tool implementation like the one included in
