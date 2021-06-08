@@ -226,7 +226,7 @@ Follow the steps listed below to update your tool.
 
 1. Checkout the branch created by the workflow.
 
-       git checkout <branch_name>
+       `git checkout <branch_name>`
 
 2. Re-run the same [openapi-generator] command you used to generate the tool
    stub. If you started from an existing tool implementation like the one
@@ -234,9 +234,9 @@ Follow the steps listed below to update your tool.
    tool to the latest version of the [NLP Sandbox schemas] (this command would
    be defined in `package.json`).
 
-       npm run generate:server:latest
+       `npm run generate:server:latest`
 
-3. Review the updates made to this tool in [NLP Sandbox schemas CHANGELOG].
+3. Review the updates made to this tool in the [NLP Sandbox schemas CHANGELOG].
 
 4. Review and merge the changes. If you are using VS Code, this step can be
    performed relatively easily using the section named "Source Control". This
