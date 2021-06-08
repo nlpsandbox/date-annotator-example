@@ -236,6 +236,8 @@ Follow the steps listed below to update your tool.
 
        npm run generate:server:latest
 
+3. Review the updates made to this tool in [NLP Sandbox schemas CHANGELOG].
+
 4. Review and merge the changes. If you are using VS Code, this step can be
    performed relatively easily using the section named "Source Control". This
    section lists the files that have been modified by the generator. When
@@ -349,3 +351,4 @@ Thinking about contributing to this project? Get started by reading our
 [nlpsandbox/date-annotator-example-java]: https://github.com/nlpsandbox/date-annotator-example-java
 [Patient schema]: https://github.com/nlpsandbox/nlpsandbox-schemas/blob/develop/openapi/commons/components/schemas/Patient.yaml
 [semantic versioning]: https://semver.org/
+[NLP Sandbox schemas CHANGELOG]: .github/CHANGELOG.md
