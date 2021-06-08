@@ -2,10 +2,7 @@ name: Update to latest NLP Sandbox version
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # every 5 minutes
-  push:
-    branches:
-      - main
+    - cron: '0 10 * * *'  # everyday at 10am
 
 jobs:
   check-and-update:
@@ -40,9 +37,13 @@ jobs:
           title: Update to NLP Sandbox schemas ${{ env.NEW_VERSION }}
           commit-message: Update to NLP Sandbox schemas ${{ env.NEW_VERSION }}
           body: |
-            1. Checkout the branch created by the workflow.
+            A new version of the [NLP Sandbox schemas] is available. Follow
+            these instructions to update your NLP Sandbox tool before checking
+            its performance on [NLPSandbox.io].
 
-                  git checkout <branch_name>
+            1. Checkout the branch behind this Pull Request.
+
+                  `git checkout <branch_name>`
 
             2. Re-run the same [openapi-generator] command you used to generate
                the tool stub. If you started from an existing tool
@@ -51,9 +52,9 @@ jobs:
                version of the [NLP Sandbox schemas] (this command would be
                defined in `package.json`).
 
-                  npm run generate:server:latest
+                  `npm run generate:server:latest`
 
-            3. Review the updates made to this tool in [NLP Sandbox schemas
+            3. Review the updates made to this tool in the [NLP Sandbox schemas
                CHANGELOG].
 
             4. Review and merge the changes. If you are using VS Code, this step
