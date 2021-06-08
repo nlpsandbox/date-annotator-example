@@ -6,7 +6,7 @@ on:
 
 jobs:
   check-and-update:
-    name: Check if a new NLP Sandbox version is available
+    name: Check and update to the latest NLP Sandbox version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
           new_version=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}
           echo "NEW_VERSION=$(echo $new_version)" >> $GITHUB_ENV
 
-      - name: Update date annotator stub
+      - name: Start updating this NLP Sandbox tool
         run: |
           current_version=$(cat .nlpsandbox-version)
           echo "${{ env.NEW_VERSION }}" > .nlpsandbox-version
