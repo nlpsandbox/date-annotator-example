@@ -27,7 +27,7 @@ point to package their own date annotator as an NLP Sandbox tool (see section
 "stub" using [openapi-generator] for 50+ programming languages-frameworks. This
 repository includes a GitHub CI/CD workflow that lints, tests, builds and pushes
 a Docker image of this tool to Synapse Docker Registry. This image of this
-example tool can be submitted as-is on NLPSandbox.io to benchmark its
+example tool can be submitted as-is on [NLPSandbox.io] to benchmark its
 performance -- just don't expect a high performance!
 
 
