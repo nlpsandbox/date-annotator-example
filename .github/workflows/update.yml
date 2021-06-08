@@ -1,4 +1,4 @@
-name: Update to new NLP Sandbox version
+name: Update to latest NLP Sandbox version
 
 on:
   schedule:
