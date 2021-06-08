@@ -15,8 +15,9 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
-          route: GET /repos/:repository/releases/latest
-          repository: nlpsandbox/nlpsandbox-schemas
+          route: GET /repos/{owner}/{repo}/releases/latest
+          owner: nlpsandbox
+          repo: nlpsandbox-schemas
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
