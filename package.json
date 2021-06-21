@@ -3,9 +3,10 @@
         "@openapitools/openapi-generator-cli": "2.3.3"
     },
     "scripts": {
-        "generate:server": "openapi-generator-cli generate -g python-flask -o server -i $npm_config_specification",
+        "generate:server": "openapi-generator-cli generate -g python-flask -o server -i $npm_config_openapi",
         "generate:server:latest": "openapi-generator-cli generate -g python-flask -o server -i https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/latest/openapi.json",
         "generate:server:edge": "openapi-generator-cli generate -g python-flask -o server -i https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/edge/openapi.json",
+        "generate:server:version": "openapi-generator-cli generate -g python-flask -o server -i https://nlpsandbox.github.io/nlpsandbox-schemas/date-annotator/$npm_config_schemas_version/openapi.json",
         "lint": "cd server && flake8",
         "test": "cd server && tox",
         "install:dependencies": "npm ci && cd server && pip install -r requirements.txt",
