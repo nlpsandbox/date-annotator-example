@@ -7,10 +7,12 @@ from typing import List, Dict  # noqa: F401
 
 from openapi_server.models.base_model_ import Model
 from openapi_server.models.license import License
+from openapi_server.models.tool_type import ToolType
 import re
 from openapi_server import util
 
 from openapi_server.models.license import License  # noqa: E501
+from openapi_server.models.tool_type import ToolType  # noqa: E501
 import re  # noqa: E501
 
 class Tool(Model):
@@ -39,7 +41,7 @@ class Tool(Model):
         :param url: The url of this Tool.  # noqa: E501
         :type url: str
         :param type: The type of this Tool.  # noqa: E501
-        :type type: str
+        :type type: ToolType
         :param api_version: The api_version of this Tool.  # noqa: E501
         :type api_version: str
         """
@@ -52,7 +54,7 @@ class Tool(Model):
             'author': str,
             'author_email': str,
             'url': str,
-            'type': str,
+            'type': ToolType,
             'api_version': str
         }
 
@@ -221,8 +223,8 @@ class Tool(Model):
         """
         if description is None:
             raise ValueError("Invalid value for `description`, must not be `None`")  # noqa: E501
-        if description is not None and len(description) > 100:
-            raise ValueError("Invalid value for `description`, length must be less than or equal to `100`")  # noqa: E501
+        if description is not None and len(description) > 280:
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `280`")  # noqa: E501
 
         self._description = description
 
@@ -305,10 +307,9 @@ class Tool(Model):
     def type(self):
         """Gets the type of this Tool.
 
-        The type of this tool  # noqa: E501
 
         :return: The type of this Tool.
-        :rtype: str
+        :rtype: ToolType
         """
         return self._type
 
@@ -316,19 +317,12 @@ class Tool(Model):
     def type(self, type):
         """Sets the type of this Tool.
 
-        The type of this tool  # noqa: E501
 
         :param type: The type of this Tool.
-        :type type: str
+        :type type: ToolType
         """
         if type is None:
             raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
-        if type is not None and len(type) > 60:
-            raise ValueError("Invalid value for `type`, length must be less than or equal to `60`")  # noqa: E501
-        if type is not None and len(type) < 3:
-            raise ValueError("Invalid value for `type`, length must be greater than or equal to `3`")  # noqa: E501
-        if type is not None and not re.search(r'^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$', type):  # noqa: E501
-            raise ValueError("Invalid value for `type`, must be a follow pattern or equal to `/^[a-z0-9]+(?:-[a-z0-9]+)*(:)[a-z0-9]+(?:-[a-z0-9]+)*$/`")  # noqa: E501
 
         self._type = type
 

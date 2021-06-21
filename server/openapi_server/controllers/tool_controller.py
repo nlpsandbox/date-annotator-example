@@ -1,5 +1,6 @@
 from openapi_server.models.tool import Tool  # noqa: E501
 from openapi_server.models.tool_dependencies import ToolDependencies  # noqa: E501
+from openapi_server.models.tool_type import ToolType  # noqa: E501
 from openapi_server.models.license import License
 
 
@@ -20,7 +21,7 @@ def get_tool():  # noqa: E501
         author="NLP Sandbox Team",
         author_email="thomas.schaffter@sagebionetworks.org",
         url="https://github.com/nlpsandbox/date-annotator-example",
-        type="nlpsandbox:date-annotator",
+        type=ToolType.DATE_ANNOTATOR,
         api_version="1.1.2"
     )
     return tool, 200
