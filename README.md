@@ -87,7 +87,7 @@ You can stop the container run with `Ctrl+C`, followed by `docker compose down`.
 Create a Conda environment.
 
 ```console
-conda create --name date-annotator python=3.9
+conda create --name date-annotator python=3.9 -y
 conda activate date-annotator
 ```
 
