@@ -1,6 +1,6 @@
 {
     "devDependencies": {
-        "@openapitools/openapi-generator-cli": "2.3.5"
+        "@openapitools/openapi-generator-cli": "2.4.13"
     },
     "scripts": {
         "generate:server": "openapi-generator-cli generate -g python-flask -o server -i $npm_config_openapi",
